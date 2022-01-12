@@ -1,0 +1,171 @@
+@import '../variables';
+
+%center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+%cover {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+%translateCenter {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+}
+
+%title-20 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 2rem;
+  color: get-color(secondary, normal);
+
+  @include desktop {
+    font-size: 2rem;
+  }
+
+  @include tablet {
+    font-size: 2rem;
+  }
+
+  @include phone {
+    font-size: 2rem;
+  }
+}
+
+%title-24 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.1rem;
+  line-height: 1;
+  color: get-color(secondary, normal);
+  @include phone {
+    font-size: 3rem;
+  }
+}
+
+%title-30 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 3rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.05;
+  color: get-color(secondary, normal);
+  @include phone {
+    font-size: 3rem;
+  }
+}
+
+%title-40 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 4rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.05;
+  color: get-color(secondary, normal);
+  @include phone {
+    font-size: 4rem;
+  }
+}
+
+%title-50 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: get-color(secondary, normal);
+}
+
+%title-60 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 6rem;
+  color: get-color(secondary, normal);
+}
+
+%title-80 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 8rem;
+  color: get-color(secondary, normal);
+}
+
+%title-100 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 10rem;
+  line-height: 1.1;
+
+  @include phone {
+    font-size: 12rem;
+  }
+}
+
+%title-110 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 11rem;
+  line-height: 1.1;
+
+  @include phone {
+    font-size: 12rem;
+  }
+}
+
+%title-120 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 12rem;
+  line-height: 0.82;
+  color: get-color(secondary, normal);
+
+  @include phone {
+    font-size: 18rem;
+  }
+}
+
+%title-200 {
+  font-family: 'FogtwoNo5', serif;
+  font-size: 20rem;
+  color: get-color(secondary, normal);
+}
+
+%paragraph-16 {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.1;
+
+  @include phone {
+    font-size: 16px;
+  }
+}
+
+%paragraph-20 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  @include phone {
+    font-size: 12rem;
+  }
+}
+
+%paragraph-menu {
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: get-color(secondary, normal);
+  letter-spacing: 0.2rem;
+
+  @include phone {
+    font-size: 2.4rem;
+  }
+}
+
+%vertical-titles {
+  display: inline-block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+}

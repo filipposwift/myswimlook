@@ -1,0 +1,44 @@
+@import './base/ress.scss';
+@import './base/states';
+@import './base/globals';
+
+// .slide-right-enter-active {
+//   transition: all 0.5s;
+// }
+// .slide-right-leave-active {
+//   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+// }
+// .slide-right-enter {
+//   transform: translateX(100%);
+//   opacity: 0;
+// }
+// .slide-right-leave-active {
+//   transform: translateX(-100%);
+//   opacity: 0;
+// }
+// // .slide-right-move {
+// //   transition: all 0.5s;
+// // }
+
+// // .layout-enter-active,
+// .slide-left-enter-active {
+//   transition: all 0.5s ease;
+// }
+// // .layout-leave-active,
+// .slide-left-leave-active {
+//   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+// }
+// // .layout-enter,
+// .slide-left-enter {
+//   transform: translateX(-100%);
+//   opacity: 0;
+// }
+// // .layout-leave-active,
+// .slide-left-leave-active {
+//   transform: translateX(100%);
+//   opacity: 0;
+// }
+// .layout-move,
+// .slide-left-move {
+//   transition: all 0.5s;
+// }

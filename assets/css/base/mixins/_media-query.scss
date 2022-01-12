@@ -1,0 +1,17 @@
+// @import '../variables';
+
+@mixin phone {
+  @media screen and (max-width: get-media(s)) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: get-media(m)) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media screen and (max-width: get-media(l)) {
+    @content;
+  }
+}
