@@ -214,6 +214,7 @@ h2 {
   position: sticky;
   top: 12rem;
   padding: 0.8rem;
+  z-index: 4; // Stay on top during scrolling
 }
 
 .arrow-icon-wrapper-link {
@@ -295,7 +296,6 @@ h2 {
   border-right: 1px solid $b-color;
   background-color: white;
   position: relative;
-  // z-index: 2;
 }
 
 .content-grid {

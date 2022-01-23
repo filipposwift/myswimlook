@@ -1,16 +1,16 @@
-// import path from 'path'
-// import fs from 'fs'
+import path from 'path'
+import fs from 'fs'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  // server: {
-  //   https: {
-  //     key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-  //     cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-  //   },
-  // },
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+    },
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,7 +37,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://sl-development-testing.netlify.app/',
+        content: 'https://myswimlook.com/',
       },
       {
         hid: 'og:title',
@@ -54,8 +54,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content:
-          'https://sl-development-testing.netlify.app/social-media-card.jpg',
+        content: 'https://myswimlook.com/social-media-card.jpg',
       },
       { hid: 'og:image:height', property: 'og:image:height', content: '630' },
       { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
@@ -89,10 +88,10 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/css/app'],
 
-  privateRuntimeConfig: {
-    contentfulSpace: process.env.CONTENTFUL_SPACE,
-    contentfulToken: process.env.CONTENTFUL_TOKEN,
-  },
+  // privateRuntimeConfig: {
+  //   contentfulSpace: process.env.CONTENTFUL_SPACE,
+  //   contentfulToken: process.env.CONTENTFUL_TOKEN,
+  // },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/vue-dompurify', '~/plugins/contentful.js'],

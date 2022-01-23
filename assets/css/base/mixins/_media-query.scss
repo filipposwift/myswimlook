@@ -1,5 +1,11 @@
 // @import '../variables';
 
+@mixin xs-phone {
+  @media screen and (max-width: get-media(xs)) {
+    @content;
+  }
+}
+
 @mixin phone {
   @media screen and (max-width: get-media(s)) {
     @content;

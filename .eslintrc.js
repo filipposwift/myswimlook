@@ -23,7 +23,7 @@ module.exports = {
     'vue/multi-word-component-names': [
       'error',
       {
-        ignores: ['Hero', 'Carousel', 'default', 'error'],
+        ignores: ['Hero', 'Carousel', 'default', 'error', 'home'],
       },
     ],
   },

@@ -63,49 +63,59 @@ export default {
   width: 75%;
   height: 100%;
   position: relative;
+  overflow: hidden;
+  transition: transform 1s ease-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 
   &.one {
-    border-right: 1px solid;
-    // border-bottom: 1px solid;
+    border-right: 1px solid $b-color;
+    // border-bottom: 1px solid $b-color;
   }
 
   &.two {
-    border-right: 1px solid;
-    border-left: 1px solid;
+    border-right: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   &.three {
-    border-right: 1px solid;
-    border-left: 1px solid;
+    border-right: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   &.four {
-    border-top: 1px solid;
-    border-right: 1px solid;
-    border-left: 1px solid;
+    border-top: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   &.five {
-    border-right: 1px solid;
-    border-bottom: 1px solid;
+    border-right: 1px solid $b-color;
+    border-bottom: 1px solid $b-color;
   }
 
   &.six {
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
+    border-right: 1px solid $b-color;
+    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   &.seven {
-    border-right: 1px solid;
-    border-left: 1px solid;
+    border-right: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   .styles__grid__media__image {
     @extend %cover;
-    width: 100%;
-    height: 100%;
     z-index: -1;
+    cursor: pointer;
+    transition: transform 1s ease-out;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 .styles__grid__title {
@@ -120,26 +130,29 @@ export default {
     @include desktop {
       font-size: 4rem;
     }
+    @include xs-phone {
+      font-size: 40px;
+    }
   }
   &.three {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
   }
 
   &.four {
-    border-top: 1px solid;
-    border-bottom: 1px solid;
+    border-top: 1px solid $b-color;
+    border-bottom: 1px solid $b-color;
   }
 
   &.five {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
   }
 
   &.six {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
   }
 
   &.seven {
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
   }
 }
 .styles__grid__carousel__controls {

@@ -1,10 +1,25 @@
 <template>
   <div class="page__wrapper styles">
     <SocialHead :title="title" :description="description" :image="image" />
-    <hero></hero>
+    <hero>
+      <template #title> Styles </template>
+      <template #verticalTitle> Style isn't what you wear </template>
+      <template #header>
+        Find your perfect outfit in no time with this easy-to use style compass
+        that will help you decide what image people see when they think of
+        yooou!
+      </template>
+      <nuxt-img
+        src="swimlook/Home%20Page/Styles-1.jpg"
+        alt="Hero image of woman in swimwear"
+        width="2000"
+        provider="cloudinary"
+        class="styles__hero__media__image"
+      ></nuxt-img
+    ></hero>
     <div class="styles__container">
       <div
-        v-for="(n, num) in 10"
+        v-for="(n, num) in 7"
         :key="num"
         :class="`styles__box ${classLetter(num)}`"
       >
@@ -23,11 +38,11 @@
         :class="`styles__grid__box__wrapper ${classLetter(index)}`"
       ></styles-grid>
       <div class="styles__title__wrapper">
-        <div class="styles__titles"><h2>7 different mood and</h2></div>
+        <div class="styles__titles"><h2>7 different styles</h2></div>
       </div>
     </div>
     <div class="styles__title__wrapper one">
-      <div class="styles__titles"><h2>1 personality</h2></div>
+      <div class="styles__titles"><h2>to describe yourself</h2></div>
     </div>
   </div>
 </template>
@@ -38,7 +53,7 @@ import { slideRight } from '@/utils/transitions'
 
 export default {
   name: 'StylesPage',
-  layout: 'homeLayout',
+  layout: 'home',
   scrollToTop: true,
 
   transition: slideRight,
@@ -119,7 +134,12 @@ export default {
   grid-row-gap: 0px;
   width: 100%;
   height: calc(100vw - 128px);
-  border-top: 1px solid;
+  border-top: 1px solid $b-color;
+  @include xs-phone {
+    display: flex;
+    flex-direction: column;
+    height: 300vh;
+  }
 }
 
 .styles__box {
@@ -127,6 +147,10 @@ export default {
   z-index: 2;
   padding: 0.8rem;
   @extend %paragraph-16;
+  @include xs-phone {
+    padding-top: 3.2rem;
+    padding-bottom: 3.2rem;
+  }
   p {
     @extend %paragraph-16;
     text-align: right;
@@ -136,63 +160,107 @@ export default {
   }
   &.one {
     grid-area: 9 / 1 / 10 / 5;
-    border-top: 1px solid;
+    border-top: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 2;
+    }
   }
   &.two {
     grid-area: 2 / 5 / 3 / 8;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
-    border-right: 1px solid;
+    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 4;
+    }
   }
   &.three {
     grid-area: 8 / 9 / 9 / 13;
     background-color: get-color(primary, normal);
-    border-left: 1px solid;
+    border-left: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 6;
+    }
   }
   &.four {
     grid-area: 16 / 9 / 17 / 13;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
+    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 9;
+    }
   }
   &.five {
     grid-area: 22 / 1 / 23 / 5;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 11;
+    }
   }
   &.six {
     grid-area: 15 / 5 / 16 / 9;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
+    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 13;
+    }
   }
   &.seven {
     grid-area: 23 / 1 / 24 / 9;
     background-color: get-color(primary, normal);
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
+    @include xs-phone {
+      width: 100%;
+      order: 15;
+    }
+  }
+  &.eight {
+    grid-area: none;
+    display: none;
   }
 
   &.nine {
     grid-area: 1 / 1 / 2 / 8;
-    border-bottom: 1px solid;
-    border-right: 1px solid;
+    border-bottom: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include xs-phone {
+      display: none;
+    }
   }
   &.ten {
     grid-area: 1 / 8 / 3 / 9;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid $b-color;
+    @include xs-phone {
+      display: none;
+    }
   }
 }
 
 .styles__title__wrapper {
   grid-area: 10 / 1 / 15 / 9;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-
+  border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   background-color: get-color(primary, normal);
   z-index: 2;
-  position: sticky;
-  top: calc(100% / 10);
+  @include xs-phone {
+    width: 100%;
+    order: 7;
+    min-height: 300px;
+  }
+
   &.one {
-    grid-area: 23 / 1 / 25 / 9;
     height: 16rem;
     border: 0px;
+    @include xs-phone {
+      width: 100%;
+      height: 300px;
+    }
   }
 }
 
@@ -201,9 +269,14 @@ export default {
   height: 100%;
   h2 {
     @extend %title-100;
-    padding: 1.6 rem;
-    @include desktop {
-      font-size: 7rem;
+    padding: 1.6rem;
+    @include phone {
+      font-size: 10rem;
+      padding: 3.2rem 1.6rem;
+    }
+    @include xs-phone {
+      font-size: 60px;
+      padding: 3.2rem 1.6rem;
     }
   }
 }
@@ -211,33 +284,57 @@ export default {
 .styles__grid__box__wrapper {
   &.one {
     grid-area: 2 / 1 / 9 / 5;
-    // position: sticky;
-    // top: calc(100% / 24);
+    @include xs-phone {
+      width: 100%;
+      order: 1;
+    }
   }
   &.two {
     grid-area: 3 / 5 / 10 / 9;
-    // position: sticky;
-    // top: calc(100% / 24);
+    @include xs-phone {
+      width: 100%;
+      order: 3;
+    }
   }
   &.three {
     grid-area: 1 / 9 / 8 / 13;
-    // position: sticky;
-    // top: 0;
+    @include xs-phone {
+      width: 100%;
+      order: 5;
+    }
   }
   &.four {
     grid-area: 9 / 9 / 16 / 13;
+    @include xs-phone {
+      width: 100%;
+      order: 8;
+    }
   }
 
   &.five {
     grid-area: 15 / 1 / 22 / 5;
-    z-index: 3;
+    @include xs-phone {
+      width: 100%;
+      order: 10;
+    }
   }
   &.six {
     grid-area: 16 / 5 / 23 / 9;
+    @include xs-phone {
+      width: 100%;
+      order: 12;
+    }
   }
   &.seven {
     grid-area: 17 / 9 / 24 / 13;
-    z-index: 3;
+    @include xs-phone {
+      width: 100%;
+      order: 14;
+    }
   }
+}
+
+.styles__hero__media__image {
+  @extend %cover;
 }
 </style>

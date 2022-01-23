@@ -17,7 +17,7 @@ $color-primary: (
   dark: null,
   // darker: #adb9e3,
   // ipotesi per bordo
-  // darkest: #d2d8ee,,,,,
+  // darkest: #d2d8ee,,,,,,,
 );
 
 $color-secondary: (
@@ -70,6 +70,7 @@ $font-weight: (
 
 // Medias (Only as example, use the values you really need)
 $media: (
+  xs: 500px,
   s: 768px,
   m: 1024px,
   l: 1440px,

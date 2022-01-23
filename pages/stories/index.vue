@@ -1,7 +1,22 @@
 <template>
   <div class="page__wrapper stories">
     <SocialHead :title="title" :description="description" :image="image" />
-    <hero-two></hero-two>
+    <hero>
+      <template #title> Stories </template>
+      <template #verticalTitle>Swimwear trends in a click</template>
+      <template #header>
+        Stay up to date with the latest fashion trends in swimwear around the
+        world, discover emerging designers and learn what celebrities are
+        choosing
+      </template>
+      <nuxt-img
+        src="swimlook/styles/cover-styles"
+        alt="Hero image of woman in swimwear"
+        width="2000"
+        provider="cloudinary"
+        class="styles__hero__media__image"
+      ></nuxt-img
+    ></hero>
     <div class="stories__slider__wrapper">
       <div class="stories__slider__content">
         <div
@@ -43,7 +58,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'StoriesPage',
-  layout: 'homeLayout',
+  layout: 'home',
   scrollToTop: true,
   transition: 'slide-left',
   data() {
@@ -100,9 +115,15 @@ export default {
   -ms-overflow-style: none;
   height: 20vw;
   width: 100vw;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+  border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
+  @include phone {
+    height: 40vh;
+  }
+  @include xs-phone {
+    height: 65vh;
+  }
 }
 .stories__slider__wrapper::-webkit-scrollbar {
   display: none !important;
@@ -119,9 +140,18 @@ export default {
 }
 
 .stories__slider__cell {
-  width: 22.5vw;
-  height: 20vw;
-  border-right: 1px solid;
+  width: 22.5vmax;
+  height: 20vmax;
+  border-right: 1px solid $b-color;
+  @include phone {
+    height: 40vh;
+    width: 35vh;
+  }
+
+  @include xs-phone {
+    height: 65vh;
+    width: 70vw;
+  }
 
   &-text {
     height: 100%;
@@ -132,6 +162,9 @@ export default {
       @extend %title-50;
       line-height: 1.2;
       font-size: max(5vw);
+      @include phone {
+        font-size: 50px;
+      }
     }
     // &:nth-child(2) {
     //   text-align: end;
@@ -143,12 +176,18 @@ export default {
 }
 
 .stories__text {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $b-color;
 
   @extend %paragraph-16;
   font-size: 3rem;
   line-height: 4rem;
   padding: 8rem 1.6rem 8rem 1.6rem;
+
+  @include phone {
+    padding: 16rem 1.6rem 16rem 1.6rem;
+    font-size: 18px;
+    line-height: 1.2;
+  }
 }
 
 .cell__content {
@@ -184,6 +223,10 @@ export default {
   width: 100%;
   height: 25%;
   @extend %title-24;
+  @include phone {
+    font-size: 20px;
+    padding: 4rem 1.6rem;
+  }
 
   h2 {
     padding: 0.8rem;
@@ -192,5 +235,9 @@ export default {
       color: get-color(basic, normal);
     }
   }
+}
+
+.styles__hero__media__image {
+  @extend %cover;
 }
 </style>

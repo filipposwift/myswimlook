@@ -38,7 +38,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'DesignersPage',
-  layout: 'homeLayout',
+  layout: 'home',
   scrollToTop: true,
   transition: 'slide-right',
 
@@ -123,9 +123,15 @@ export default {
 <style lang="scss" scoped>
 .designers__intro {
   width: 100%;
-  padding: 5rem 1.6rem;
+  padding: 8rem 1.6rem;
   h1 {
-    @extend %title-60;
+    font-size: 3rem;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.1;
+    @include phone {
+      font-size: 18px;
+    }
   }
 }
 .designers__grid__wrapper {
@@ -133,11 +139,14 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 0px;
 
-  border-top: 1px solid;
+  border-top: 1px solid $b-color;
+  @include xs-phone {
+    display: block;
+  }
 }
 .designers__grid__letters {
-  border-bottom: 1px solid;
-  border-right: 1px solid;
+  border-bottom: 1px solid $b-color;
+  border-right: 1px solid $b-color;
 
   &:nth-child(even) {
     border-right: none;
@@ -149,8 +158,16 @@ export default {
   height: 3.2rem;
   padding-left: 1.6rem;
   @extend %title-30;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $b-color;
   background-color: get-color(primary, bright);
+  @include phone {
+    font-size: 24px;
+    height: 32px;
+  }
+  @include xs-phone {
+    font-size: 20px;
+    height: 24px;
+  }
 }
 
 .designers__letter__items {

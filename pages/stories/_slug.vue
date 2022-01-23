@@ -206,9 +206,9 @@ export default {
 .story__intro__title {
   grid-area: 2 / 1 / 3 / 7;
   z-index: 2;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-right: 1px solid;
+  border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
+  border-right: 1px solid $b-color;
   background-color: get-color(primary, bright);
   h1 {
     @extend %title-60;
@@ -218,7 +218,7 @@ export default {
 .story__intro__media {
   grid-area: 1 / 5 / 5 / 13;
   position: relative;
-  border-left: 1px solid;
+  border-left: 1px solid $b-color;
 }
 .story__intro__media__image {
   @extend %cover;
@@ -245,8 +245,8 @@ export default {
 }
 .story__intro__highlight {
   grid-area: 5 / 1 / 6 / 9;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+  border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
 
   position: relative;
 
@@ -285,9 +285,9 @@ export default {
   right: 0%;
   background-color: get-color(primary, normal);
   z-index: 2;
-  border-bottom: 1px solid;
-  border-top: 1px solid;
-  border-left: 1px solid;
+  border-bottom: 1px solid $b-color;
+  border-top: 1px solid $b-color;
+  border-left: 1px solid $b-color;
 
   p {
     @extend %paragraph-16;
@@ -308,7 +308,7 @@ export default {
   height: 100%;
   width: 80%;
   position: relative;
-  border: 1px solid;
+  border: 1px solid $b-color;
 }
 .story__intro__style-card__media__image {
   @extend %cover;

@@ -6,6 +6,15 @@
   justify-content: center;
 }
 
+%ab-center {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 %cover {
   height: 100%;
   left: 0;
@@ -36,7 +45,7 @@
   }
 
   @include phone {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -58,7 +67,7 @@
   line-height: 1.05;
   color: get-color(secondary, normal);
   @include phone {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 }
 
@@ -69,7 +78,7 @@
   line-height: 1.05;
   color: get-color(secondary, normal);
   @include phone {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 }
 
@@ -78,18 +87,27 @@
   font-size: 5rem;
   line-height: 1;
   color: get-color(secondary, normal);
+  @include phone {
+    font-size: 6rem;
+  }
 }
 
 %title-60 {
   font-family: 'FogtwoNo5', serif;
   font-size: 6rem;
   color: get-color(secondary, normal);
+  @include phone {
+    font-size: 7rem;
+  }
 }
 
 %title-80 {
   font-family: 'FogtwoNo5', serif;
   font-size: 8rem;
   color: get-color(secondary, normal);
+  @include phone {
+    font-size: 9rem;
+  }
 }
 
 %title-100 {
@@ -97,9 +115,9 @@
   font-size: 10rem;
   line-height: 1.1;
 
-  @include phone {
-    font-size: 12rem;
-  }
+  // @include phone {
+  //   font-size: 100px;
+  // }
 }
 
 %title-110 {
@@ -107,9 +125,9 @@
   font-size: 11rem;
   line-height: 1.1;
 
-  @include phone {
-    font-size: 12rem;
-  }
+  // @include phone {
+  //   font-size: 110px;
+  // }
 }
 
 %title-120 {
@@ -118,24 +136,39 @@
   line-height: 0.82;
   color: get-color(secondary, normal);
 
-  @include phone {
-    font-size: 18rem;
-  }
+  // @include phone {
+  //   font-size: 120px;
+  // }
 }
 
 %title-200 {
   font-family: 'FogtwoNo5', serif;
   font-size: 20rem;
   color: get-color(secondary, normal);
+  // @include phone {
+  //   font-size: 200px;
+  // }
 }
 
 %paragraph-16 {
   font-size: 1.6rem;
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.2;
 
   @include phone {
     font-size: 16px;
+    line-height: 1.2;
+  }
+}
+
+%paragraph-18 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.2;
+
+  @include phone {
+    font-size: 18px;
+    line-height: 1.4;
   }
 }
 
@@ -145,7 +178,17 @@
   line-height: 1.5;
 
   @include phone {
-    font-size: 12rem;
+    font-size: 20px;
+  }
+}
+
+%paragraph-20-light {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.5;
+
+  @include phone {
+    font-size: 20px;
   }
 }
 
@@ -157,7 +200,7 @@
   letter-spacing: 0.2rem;
 
   @include phone {
-    font-size: 2.4rem;
+    font-size: 24px;
   }
 }
 

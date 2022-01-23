@@ -15,6 +15,7 @@
             <nuxt-img
               :src="person.socialMedia[0].fields.image[0].public_id"
               provider="cloudinary"
+              alt="Image from instagram post"
               width="400"
               class="people__grid__cell__media-img"
             ></nuxt-img>
@@ -33,10 +34,10 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import _shuffle from 'lodash/shuffle'
 export default {
   name: 'PeoplePage',
-  layout: 'homeLayout',
+  layout: 'home',
   scrollToTop: true,
 
   data() {
@@ -52,6 +53,8 @@ export default {
       description:
         "We believe that you can always find someone who has a style you want. You just need to look at what they're wearing and take some inspiration from their choices. There's a wide spectrum in terms of age and location; some people are influencers, content creators or even just your average Mary. They all have their own unique interests: some can make us feel good by being authentic while others catch our attention with aesthetically pleasing images",
       image: 'https://myswimlook.com/social-media-card.jpg',
+
+      adjustedPeople: null,
     }
   },
 
@@ -59,9 +62,33 @@ export default {
     ...mapState({
       people: (state) => state.people.data,
     }),
-    adjustedPeople() {
+    // adjustedPeople() {
+    //   const tmp = [...this.people]
+    //   const shuffled = tmp
+    //     .map((value) => ({ value, sort: Math.random() }))
+    //     .sort((a, b) => a.sort - b.sort)
+    //     .map(({ value }) => value)
+
+    //   let i = 0
+    //   while (i * 3 < shuffled.length) {
+    //     shuffled.splice(++i * 3, 0, this.peopleSpace)
+    //   }
+    //   shuffled.splice(0, 0, this.peopleIntro)
+    //   // tmp.splice(1, 0, this.peopleIntro)
+
+    //   return shuffled
+    // },
+  },
+
+  mounted() {
+    this.adjustedPeople = this.adjusted()
+  },
+
+  methods: {
+    adjusted() {
       const tmp = [...this.people]
-      const shuffled = tmp.sort(() => Math.random() - 0.5)
+      const shuffled = _shuffle(tmp)
+
       let i = 0
       while (i * 3 < shuffled.length) {
         shuffled.splice(++i * 3, 0, this.peopleSpace)
@@ -72,8 +99,6 @@ export default {
       return shuffled
     },
   },
-
-  methods: {},
 }
 </script>
 
@@ -82,17 +107,20 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 25%);
   grid-auto-flow: dense;
+  @include phone {
+    grid-template-columns: repeat(2, 50%);
+  }
 }
 
 .people__grid--large {
   grid-auto-rows: 50vmin;
   margin-top: 0.5vw;
   --grid-padding: 0.5vw;
-  border-top: 1px solid;
+  border-top: 1px solid $b-color;
 }
 
 .people__grid__cell {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $b-color;
 }
 
 .people__grid__cell:nth-child(1) {
@@ -100,11 +128,11 @@ export default {
 }
 
 .people__grid__cell:nth-child(even) {
-  border-left: 1px solid;
+  border-left: 1px solid $b-color;
 }
 
 .people__grid__cell:nth-child(4n + 3) {
-  border-left: 1px solid;
+  border-left: 1px solid $b-color;
 }
 
 .people__grid__cell__media {
@@ -151,6 +179,25 @@ export default {
 
 .people__grid__cell__text {
   padding: 1.6rem 0.8rem;
-  @extend %title-40;
+  position: relative;
+  height: 100%;
+  h2 {
+    @extend %title-100;
+    position: absolute;
+    left: -75%;
+    bottom: 0;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    @include phone {
+      font-size: 60px;
+      position: static;
+      transform: none;
+      white-space: normal;
+      overflow-wrap: normal;
+    }
+    @include xs-phone {
+      font-size: 40px;
+    }
+  }
 }
 </style>

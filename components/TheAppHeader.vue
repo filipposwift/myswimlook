@@ -21,7 +21,7 @@
         </h2>
       </div>
     </div>
-    <div class="isMobile">
+    <div v-if="isMobile" class="isMobile">
       <div class="header__hamburgher__wrapper">
         <Menu :width="'100'">
           <nuxt-link :to="localePath('/')" exact>
@@ -51,6 +51,30 @@
 export default {
   name: 'TheAppHeader',
 
+  data() {
+    return {
+      windowSize: null,
+    }
+  },
+
+  computed: {
+    isMobile() {
+      return this.windowSize <= 768
+    },
+  },
+
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.windowSize = window.innerWidth
+    })
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', () => {
+      this.windowSize = window.innerWidth
+    })
+  },
+
   methods: {
     openMenu() {
       this.$emit('openMenu')
@@ -64,9 +88,12 @@ export default {
 
 <style lang="scss" scoped>
 .isMobile {
-  display: none;
+  width: 20%;
+  height: 50px;
+  flex: 1;
   position: relative;
   border-bottom: 1px solid $b-color;
+  border-right: 1px solid $b-color;
 
   .linkExactActiveClass {
     color: get-color(basic, normal);
@@ -74,19 +101,21 @@ export default {
 
   span {
     @extend %paragraph-20;
-  }
-  @include phone {
-    display: block;
-    width: 20%;
+    font-weight: 300;
+    text-transform: uppercase;
   }
 }
 
 .header__hamburgher__wrapper {
-  @extend %cover;
+  position: absolute;
+  width: 40%;
+  top: 30px;
+  right: 0;
 }
 
 .header__container {
-  width: 92%;
+  display: flex;
+  width: 100%;
   position: fixed;
   left: 50%;
   top: 0%;
@@ -94,11 +123,10 @@ export default {
   z-index: 10;
   background-color: get-color(primary, normal);
   border-top: 1px solid $b-color;
-  display: flex;
 
   @include phone {
-    width: 100%;
-    height: 20rem;
+    width: calc(100vw - 8vw);
+    position: fixed;
   }
 }
 
@@ -110,8 +138,9 @@ export default {
   background-color: get-color(primary, bright);
   width: 20%;
   @include phone {
-    width: 80%;
-    padding: 2.4rem;
+    width: 50%;
+    height: 50px;
+    padding: 5px;
   }
 }
 

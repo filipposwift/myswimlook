@@ -112,6 +112,10 @@ body {
     text-decoration: none;
   }
 
+  @include xs-phone {
+    font-size: calc((100vw / 500) * 10);
+  }
+
   @include phone {
     font-size: calc((100vw / 768) * 10);
   }

@@ -26,13 +26,11 @@
             <div class="item__card__designer__left-price">
               <h2>USD {{ item.price }}</h2>
             </div>
-            <div class="item__card__designer__left-visit-site">
-              <a
-                :href="designerSite"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                >Visit Site</a
-              >
+            <div
+              v-if="designerSite"
+              class="item__card__designer__left-visit-site"
+            >
+              <VisitSite :url="designerSite" />
             </div>
           </div>
         </div>
@@ -42,7 +40,7 @@
         ></div>
       </div>
     </div>
-    <div class="item__card__instagram">
+    <div v-if="slides.length > 0" class="item__card__instagram">
       <!-- <p>As Seen On Instragram</p> -->
       <carousel
         :slides="slides"
@@ -85,9 +83,16 @@ export default {
       return []
     },
     designerSite() {
-      return this.$store.state.data.data.find(
-        (designer) => designer.name === this.item.designer
-      ).website
+      if (this.item.designer) {
+        const tmp = this.$store.state.data.data.find(
+          (designer) => designer.name === this.item.designer
+        )
+        if (tmp) {
+          return tmp.website
+        }
+        return false
+      }
+      return false
     },
   },
 }
@@ -179,12 +184,9 @@ export default {
 
 .item__card__designer__left-price {
   @extend %center;
-
   width: 20%;
-  height: 5rem;
-  border-left: 1px solid $b-color;
+  padding: 0.8rem;
   border-top: 1px solid $b-color;
-  // border-right: 1px solid $b-color;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -193,30 +195,21 @@ export default {
 
   h2 {
     @extend %paragraph-20;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
     text-align: center;
+    display: block;
   }
 }
 
 .item__card__designer__left-visit-site {
-  @extend %center;
-
-  width: 20%;
-  height: 5rem;
-  border-left: 1px solid $b-color;
-  border-top: 1px solid $b-color;
-  // border-right: 1px solid $b-color;
   position: absolute;
   bottom: 0;
   right: 20%;
-  background-color: get-color(primary, normal);
-  z-index: 2;
 
-  a {
-    @extend %paragraph-20;
-    text-transform: uppercase;
-    color: get-color(basic, normal);
-    text-align: center;
-  }
+  z-index: 2;
 }
 
 .item__card__designer__left-description {

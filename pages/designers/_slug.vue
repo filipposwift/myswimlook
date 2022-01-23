@@ -5,12 +5,7 @@
       <div class="designer__intro__left">
         <h2>{{ designer.name }}</h2>
         <div class="designer__intro__left__visit-site">
-          <a
-            :href="designer.website"
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-            >Visit Site</a
-          >
+          <VisitSite :url="designer.website" />
         </div>
       </div>
       <div class="designer__intro__right">
@@ -61,7 +56,7 @@
 import { mapState } from 'vuex'
 export default {
   name: 'DesignerPage',
-  layout: 'homeLayout',
+  layout: 'home',
   validate({ params, store }) {
     return store.state.data.data.some((el) => el.slug === params.slug)
   },
@@ -121,6 +116,10 @@ export default {
     @extend %title-50;
     @extend %translateCenter;
     white-space: nowrap;
+    @include phone {
+      white-space: normal;
+      text-align: center;
+    }
   }
 }
 
@@ -128,17 +127,6 @@ export default {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 40%;
-  height: 5rem;
-  border-left: 1px solid $b-color;
-  border-top: 1px solid $b-color;
-  @extend %center;
-  a {
-    @extend %paragraph-20;
-    text-transform: uppercase;
-    color: get-color(basic, normal);
-    text-align: center;
-  }
 }
 
 .designer__intro__right {

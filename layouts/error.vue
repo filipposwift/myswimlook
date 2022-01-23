@@ -74,10 +74,17 @@ export default {
 h1 {
   font-size: 5rem;
   margin-bottom: 20px;
+  @include xs-phone {
+    font-size: 30px;
+    margin-top: 50px;
+  }
 }
 
 p {
   font-size: 2rem;
   margin-bottom: 20px;
+  @include xs-phone {
+    font-size: 20px;
+  }
 }
 </style>

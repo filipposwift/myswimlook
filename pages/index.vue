@@ -1,80 +1,166 @@
 <template>
   <div>
-    <home-gallery></home-gallery>
+    <TheIntro />
     <div class="home__content">
-      <div class="hc__text">
-        <p>Discover, wear and share the best swimsuits for you.</p>
-        <p>
-          Listen suggestions from top influencers, read about the latest trends
-        </p>
-      </div>
-      <div class="hc__slider__wrapper">
-        <div class="hc__slider__content">
-          <div
-            v-for="(style, index) in adjustedStyles"
-            :key="index"
-            class="hc__slider__cell"
-          >
-            <!-- <div v-if="index !== 0" class="cell__spacer"></div> -->
-            <nuxt-link
-              v-if="index !== 0"
-              :to="localePath(`/styles/${style.slug}`)"
-              class="cell__content"
+      <section class="home__section home__styles">
+        <TheTitle>Styles</TheTitle>
+        <div class="hc__text">
+          <p>
+            Browse through our collection of curated swimwear looks and find
+            inspiration on how to mix and match a beach look that fits your
+            style.
+          </p>
+          <p class="second">
+            We want to help you find the perfect look for your body type. We
+            have selected looks from some of the best fashion designers in the
+            world, and we are confident that our style collections will give you
+            plenty of inspiration.
+          </p>
+        </div>
+        <div class="hc__slider__wrapper">
+          <div class="hc__slider__content">
+            <div
+              v-for="(style, index) in adjustedStyles"
+              :key="index"
+              class="hc__slider__cell"
             >
-              <figure class="cell__image__media">
-                <nuxt-img
-                  :src="style.image[0].public_id"
-                  :alt="`Photo of style ${style.name}`"
-                  provider="cloudinary"
-                  width="400"
-                  class="cell__image__media-img"
-                ></nuxt-img>
-              </figure>
-              <div class="cell__title">
-                <h2>{{ style.name }}</h2>
+              <!-- <div v-if="index !== 0" class="cell__spacer"></div> -->
+              <nuxt-link
+                v-if="index !== 0"
+                :to="localePath(`/styles/${style.slug}`)"
+                class="cell__content"
+              >
+                <figure class="cell__image__media">
+                  <nuxt-img
+                    :src="style.image[0].public_id"
+                    :alt="`Photo of style ${style.name}`"
+                    provider="cloudinary"
+                    width="400"
+                    class="cell__image__media-img"
+                  ></nuxt-img>
+                </figure>
+                <div class="cell__title">
+                  <h2>{{ style.name }}</h2>
+                </div>
+              </nuxt-link>
+              <div v-else class="hc__slider__cell-text">
+                <h2>{{ style.intro }}</h2>
               </div>
-            </nuxt-link>
-            <div v-else class="hc__slider__cell-text">
-              <h2>{{ style.intro }}</h2>
             </div>
           </div>
         </div>
-      </div>
-      <div class="hc__slider__wrapper">
-        <div class="hc__slider__content">
-          <div
-            v-for="(designer, index) in featuredDesigners"
-            :key="index"
-            class="hc__slider__cell"
-          >
-            <!-- <div v-if="index !== 2" class="cell__spacer"></div> -->
-            <nuxt-link
-              v-if="index !== 2"
-              :to="localePath(`/designers/${designer.slug}`)"
-              class="cell__content"
+      </section>
+      <section class="home__section home__designers">
+        <TheTitle>Designers</TheTitle>
+        <div class="hc__text">
+          <p>
+            Myswimlook is your guide to the best sustainable swimwear brands in
+            2022
+          </p>
+          <p class="second">
+            Here are some of our favorite eco-friendly swimwear brands that we
+            have handpicked to help you find the perfect one for your body type.
+            It was not an easy job and so we've created this guide on what makes
+            each brand unique
+          </p>
+        </div>
+        <div class="hc__slider__wrapper">
+          <div class="hc__slider__content">
+            <div
+              v-for="(designer, index) in featuredDesigners"
+              :key="index"
+              class="hc__slider__cell"
             >
-              <figure class="cell__image__media">
-                <nuxt-img
-                  :src="getFeaturedImage(designer.items)"
-                  :alt="`Photo of style ${designer.name}`"
-                  provider="cloudinary"
-                  width="400"
-                  class="cell__image__media-img"
-                ></nuxt-img>
-              </figure>
-              <div class="cell__title">
-                <h2>{{ designer.name }}</h2>
+              <!-- <div v-if="index !== 2" class="cell__spacer"></div> -->
+              <nuxt-link
+                v-if="index !== 2"
+                :to="localePath(`/designers/${designer.slug}`)"
+                class="cell__content"
+              >
+                <figure class="cell__image__media">
+                  <nuxt-img
+                    :src="getFeaturedImage(designer.items)"
+                    :alt="`Photo of style ${designer.name}`"
+                    provider="cloudinary"
+                    width="400"
+                    class="cell__image__media-img"
+                  ></nuxt-img>
+                </figure>
+                <div class="cell__title">
+                  <h2>{{ designer.name }}</h2>
+                </div>
+              </nuxt-link>
+              <div v-else class="hc__slider__cell-text">
+                <h2>{{ designer.intro }}</h2>
               </div>
-            </nuxt-link>
-            <div v-else class="hc__slider__cell-text">
-              <h2>{{ designer.intro }}</h2>
             </div>
           </div>
         </div>
-      </div>
-      <div class="hc__text">
-        <p>Visit our instragram @myswimlook to share your ideas</p>
-      </div>
+      </section>
+      <section class="home__section home__stories">
+        <TheTitle>Stories</TheTitle>
+        <div class="hc__text">
+          <p>
+            Get inspired by our weekly fashion articles covering everything you
+            need know about beachwear fashion
+          </p>
+          <p class="second">
+            Stay up to date with the latest fashion trends in swimwear around
+            the world, discover emerging designers and learn what celebrities
+            are choosing
+          </p>
+        </div>
+        <div class="hc__stories">
+          <div class="story__wrapper">
+            <figure class="story__media">
+              <nuxt-img
+                :src="lastStory.images[0].public_id"
+                provider="cloudinary"
+                width="400"
+                class="story__media-img"
+              ></nuxt-img>
+            </figure>
+            <div class="story__text__inner">
+              <div class="story__text__intro"><h2>Latest Article</h2></div>
+              <div class="story__text">
+                <h3>{{ lastStory.title }}</h3>
+                <p>{{ lastStory.incipit }}</p>
+                <p v-if="!isMobile">{{ lastStory.highLight }}</p>
+              </div>
+              <div class="story__text__cta">
+                <div class="cta__link">
+                  <nuxt-link :to="localePath(`/stories/${lastStory.slug}`)"
+                    ><span>Read More</span></nuxt-link
+                  >
+                </div>
+                <div class="cta__link no__border-right">
+                  <nuxt-link :to="localePath('/stories')"
+                    ><span>All Articles</span></nuxt-link
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="home__section home__people">
+        <TheTitle>People</TheTitle>
+        <HomeGallery />
+        <div class="hc__text is-last">
+          <p>
+            We believe that you can always find someone who has a style you
+            want. You just need to look at what they're wearing and take some
+            inspiration from their choices. We have searched for a wide spectrum
+            in terms of age and location; some people are influencers, content
+            creators or even just your average Mary. They all have their own
+            unique interests: some can make us feel good by being authentic
+            while others catch our attention with aesthetically pleasing images
+          </p>
+          <p class="second">
+            Visit our instragram @myswimlook to share your ideas
+          </p>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -83,16 +169,17 @@
 import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'HomePage',
-  layout: 'homeLayout',
+  layout: 'home',
 
   data() {
     return {
       designerIntro: {
-        intro: 'today designers to look at',
+        intro: 'Featured designers to start your 2022',
       },
       stylesIntro: {
-        intro: '7 styles 1 everyday mood',
+        intro: "What's your mood today?",
       },
+      windowSize: null,
     }
   },
 
@@ -102,6 +189,7 @@ export default {
     }),
     ...mapState({
       designers: 'data',
+      stories: 'stories',
     }),
 
     featuredDesigners() {
@@ -116,14 +204,63 @@ export default {
       tmp.splice(0, 0, this.stylesIntro)
       return tmp
     },
+    lastStory() {
+      return this.stories.story[0].fields
+    },
+
+    isMobile() {
+      return this.windowSize <= 768
+    },
   },
   mounted() {
-    // console.log(this.featuredDesigners)
+    window.addEventListener('resize', () => {
+      this.windowSize = window.innerWidth
+    })
+    this.lineAnimation()
+    this.$ScrollTrigger.getById('item0').enable()
+    this.$ScrollTrigger.getById('item1').enable()
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', () => {
+      this.windowSize = window.innerWidth
+    })
+    this.$ScrollTrigger.getById('item0').disable()
+    this.$ScrollTrigger.getById('item1').disable()
   },
 
   methods: {
     getFeaturedImage(designer) {
       return designer[0].fields.cloudinarySwimlook[0].public_id
+    },
+
+    lineAnimation() {
+      const sections = this.$gsap.utils.toArray('section')
+      sections.forEach((section) => {
+        const items = section.querySelectorAll('.line')
+        items.forEach((item, i) => {
+          const anim = this.$gsap.from(item, {
+            scaleX: 0,
+            duration: 1,
+            ease: 'power1.out',
+            paused: true,
+          })
+
+          this.$ScrollTrigger.create({
+            id: 'item' + i,
+            trigger: item,
+            start: 'center 80%',
+            onEnter: () => anim.play(),
+          })
+
+          this.$ScrollTrigger.create({
+            id: 'item' + i,
+            trigger: item,
+            start: 'top bottom',
+            onLeaveBack: () => anim.pause(0),
+          })
+        })
+      })
     },
   },
 }
@@ -144,7 +281,7 @@ export default {
 .cell__image__media {
   height: 100%;
   position: relative;
-  width: 75%;
+  width: 90%;
   @include phone {
     height: 95%;
     margin-top: 16px;
@@ -158,7 +295,7 @@ export default {
 .cell__title {
   position: relative;
   width: 25%;
-  @extend %title-30;
+  @extend %title-50;
 
   h2 {
     @extend %vertical-titles;
@@ -178,19 +315,27 @@ export default {
 }
 
 .hc__text {
-  border-top: 1px solid $b-color;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $b-color;
   @extend %paragraph-16;
   font-size: 3rem;
   line-height: 4rem;
-  padding: 8rem 1.6rem 8rem 1.6rem;
+  padding: 18rem 1.6rem 18rem 1.6rem;
+
+  &.is-last {
+    border-bottom: none;
+  }
   @include phone {
-    font-size: 24px;
-    line-height: 1.1;
+    font-size: 18px;
+    line-height: 1.4;
+
     p {
       padding-top: 2.4rem;
     }
   }
+}
+
+.second {
+  margin-top: 2.4rem;
 }
 
 .hc__slider__wrapper {
@@ -198,9 +343,9 @@ export default {
   overflow-x: scroll;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
-  height: 20vw;
+  height: 35vw;
   width: 100vw;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
   @include phone {
     height: 50vw;
@@ -221,9 +366,9 @@ export default {
 }
 
 .hc__slider__cell {
-  width: 22.5vw;
-  height: 20vw;
-  border-right: 1px solid;
+  width: 30vw;
+  height: 35vw;
+  border-right: 1px solid $b-color;
 
   @include phone {
     width: 60vw;
@@ -250,5 +395,143 @@ export default {
 }
 .hc__slider__cell-txt:nth-child(2) {
   text-align: end;
+}
+
+.hc__stories {
+  height: 80rem;
+  @include phone {
+    height: 800px;
+  }
+}
+.story__wrapper {
+  display: flex;
+  height: 100%;
+  @include phone {
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+}
+.story__media {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  @include phone {
+    width: 90%;
+  }
+}
+.story__media-img {
+  @extend %cover;
+}
+
+.story__text__inner {
+  position: relative;
+  max-width: 50%;
+  @include phone {
+    position: static;
+    max-width: 100%;
+    border-top: 1px solid $b-color;
+  }
+}
+
+.story__text__intro {
+  @extend %title-50;
+  font-size: max(5vw);
+  border-bottom: 1px solid $b-color;
+  background-color: get-color(primary, bright);
+  padding: 3.2rem 1.6rem;
+  @include phone {
+    position: absolute;
+    top: 15%;
+    right: 0%;
+    background: none;
+    border: none;
+
+    transform: translate(35%, 0%) rotate(-90deg);
+    white-space: nowrap;
+  }
+}
+.story__text {
+  padding: 2.4rem 1.6rem;
+  // overflow: hidden;
+
+  @include phone {
+    padding: none;
+  }
+  h3 {
+    @extend %title-30;
+    @include phone {
+      border-bottom: 1px solid $b-color;
+      padding: 4.8rem 1.6rem;
+    }
+  }
+  p {
+    @extend %paragraph-18;
+    padding: 1.6rem;
+    @include phone {
+    }
+  }
+}
+
+.story__text__cta {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  background-color: get-color(primary, bright);
+  border-top: 1px solid $b-color;
+  border-left: 1px solid $b-color;
+  width: 100%;
+  @include phone {
+    position: static;
+  }
+}
+
+.cta__link {
+  width: 100%;
+  height: 50px;
+  border-right: 1px solid $b-color;
+  overflow: hidden;
+  text-align: center;
+  background-color: get-color(secondary, normal);
+  color: get-color(primary, bright);
+  position: relative;
+  span {
+    @extend %paragraph-20;
+    font-weight: 300;
+    line-height: 50px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    mix-blend-mode: difference;
+  }
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: get-color(primary, bright);
+    transition: transform 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transform-origin: 0% 50%;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover::before {
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+  }
+}
+
+.no__border-right {
+  border-right: 0px;
 }
 </style>
