@@ -34,7 +34,7 @@
           />
         </div>
         <div class="person__swimsuit__left__back">
-          <button class="circle__back">
+          <button class="circle__back" @click="redirectToPeople">
             <svg
               aria-hidden="true"
               class="progress"
@@ -211,6 +211,9 @@ export default {
       })
       return designer.website
     },
+    redirectToPeople() {
+      this.$router.push({ path: '/people' })
+    },
   },
 }
 </script>
@@ -280,6 +283,10 @@ export default {
   }
   p {
     @extend %paragraph-20;
+    @include xs-phone {
+      font-size: 16px;
+      font-weight: 300;
+    }
   }
 }
 
@@ -297,8 +304,8 @@ export default {
     grid-template-columns: minmax(40%, 1fr) minmax(326px, 540px);
   }
   @include xs-phone {
-    grid-template-columns: 1fr;
-    grid-template-rows: 75px 1fr 0.5fr;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -320,6 +327,10 @@ export default {
   flex-direction: column;
   padding-top: 5rem;
   border-right: 1px solid $b-color;
+  @include xs-phone {
+    border-left: 1px solid $b-color;
+    border-bottom: 1px solid $b-color;
+  }
 
   p {
     @extend %paragraph-16;
@@ -352,9 +363,19 @@ export default {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 3.2rem;
+    @include phone {
+      font-size: 6rem;
+    }
+    @include xs-phone {
+      font-size: 24px;
+      margin-bottom: 48px;
+    }
   }
   @include xs-phone {
-    grid-area: 3 / 1 / 4 / 2;
+    order: 3;
+    margin-top: -360px;
+    border-top: 1px solid $b-color;
+    margin-bottom: 40px;
   }
 }
 
@@ -383,6 +404,10 @@ export default {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
+    @include phone {
+      font-size: 16px;
+      font-weight: 300;
+    }
   }
 }
 
@@ -395,6 +420,7 @@ export default {
   padding: 0.8rem;
   @include phone {
     width: 100%;
+    border-right: 1px solid $b-color;
   }
   p {
     @extend %paragraph-20;
@@ -410,7 +436,8 @@ export default {
   position: relative;
   border-left: 1px solid $b-color;
   @include xs-phone {
-    grid-area: 2 / 1 / 3 / 2;
+    order: 2;
+    border-left: 0px;
   }
 }
 
@@ -425,7 +452,9 @@ export default {
   border-top: 1px solid $b-color;
   @extend %center;
   @include xs-phone {
-    grid-area: 1 / 1 / 2 / 2;
+    order: 1;
+    border-top: 0px;
+    padding: 4.8rem 0;
   }
 
   h3 {
