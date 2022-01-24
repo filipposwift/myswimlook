@@ -1,7 +1,7 @@
 <template>
   <div class="layout__home">
     <nav class="left__navigation">
-      <ol>
+      <ul>
         <li class="nav__items">
           <nuxt-link :to="localePath('/styles')">
             <span>Styles</span>
@@ -12,11 +12,11 @@
             <span>Designers</span>
           </nuxt-link>
         </li>
-      </ol>
+      </ul>
       <!-- <div class="spacer"></div> -->
     </nav>
     <nav class="right__navigation">
-      <ol>
+      <ul>
         <li class="nav__items">
           <nuxt-link :to="localePath('/stories')">
             <span>Stories</span>
@@ -27,7 +27,7 @@
             <span>People</span>
           </nuxt-link>
         </li>
-      </ol>
+      </ul>
       <!-- <div class="spacer"></div> -->
     </nav>
     <main class="main__container">

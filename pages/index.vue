@@ -1,9 +1,9 @@
 <template>
   <div>
-    <TheIntro />
+    <HomeTheIntro />
     <div class="home__content">
       <section class="home__section home__styles">
-        <TheTitle>Styles</TheTitle>
+        <HomeTheTitle>Styles</HomeTheTitle>
         <div class="hc__text">
           <p>
             Browse through our collection of curated swimwear looks and find
@@ -45,13 +45,40 @@
               </nuxt-link>
               <div v-else class="hc__slider__cell-text">
                 <h2>{{ style.intro }}</h2>
+                <div class="hc__slider__cell-swipe">
+                  <svg
+                    aria-hidden="true"
+                    class="arrow_left"
+                    width="50"
+                    height="20"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      class="arrow_path"
+                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
+                    ></path>
+                  </svg>
+                  <h3>{{ style.message.text }}</h3>
+                  <svg
+                    aria-hidden="true"
+                    class="arrow_right"
+                    width="50"
+                    height="20"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      class="arrow_path"
+                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
+                    ></path>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
       <section class="home__section home__designers">
-        <TheTitle>Designers</TheTitle>
+        <HomeTheTitle>Designers</HomeTheTitle>
         <div class="hc__text">
           <p>
             Myswimlook is your guide to the best sustainable swimwear brands in
@@ -71,7 +98,6 @@
               :key="index"
               class="hc__slider__cell"
             >
-              <!-- <div v-if="index !== 2" class="cell__spacer"></div> -->
               <nuxt-link
                 v-if="index !== 2"
                 :to="localePath(`/designers/${designer.slug}`)"
@@ -98,7 +124,7 @@
         </div>
       </section>
       <section class="home__section home__stories">
-        <TheTitle>Stories</TheTitle>
+        <HomeTheTitle>Stories</HomeTheTitle>
         <div class="hc__text">
           <p>
             Get inspired by our weekly fashion articles covering everything you
@@ -144,7 +170,7 @@
         </div>
       </section>
       <section class="home__section home__people">
-        <TheTitle>People</TheTitle>
+        <HomeTheTitle>People</HomeTheTitle>
         <HomeGallery />
         <div class="hc__text is-last">
           <p>
@@ -177,6 +203,10 @@ export default {
         intro: 'Featured designers to start your 2022',
       },
       stylesIntro: {
+        message: {
+          image: '',
+          text: 'Swipe to scroll',
+        },
         intro: "What's your mood today?",
       },
       windowSize: null,
@@ -216,6 +246,7 @@ export default {
     window.addEventListener('resize', () => {
       this.windowSize = window.innerWidth
     })
+
     this.lineAnimation()
     this.$ScrollTrigger.getById('item0').enable()
     this.$ScrollTrigger.getById('item1').enable()
@@ -238,6 +269,7 @@ export default {
       const sections = this.$gsap.utils.toArray('section')
       sections.forEach((section) => {
         const items = section.querySelectorAll('.line')
+
         items.forEach((item, i) => {
           const anim = this.$gsap.from(item, {
             scaleX: 0,
@@ -250,6 +282,7 @@ export default {
             id: 'item' + i,
             trigger: item,
             start: 'center 80%',
+            // markers: true,
             onEnter: () => anim.play(),
           })
 
@@ -282,6 +315,12 @@ export default {
   height: 100%;
   position: relative;
   width: 90%;
+  transition: transform 1s ease-out;
+  overflow: hidden;
+
+  &:hover {
+    transform: scale(0.95);
+  }
   @include phone {
     height: 95%;
     margin-top: 16px;
@@ -289,6 +328,12 @@ export default {
 
   &-img {
     @extend %cover;
+    cursor: pointer;
+    transition: transform 1s ease-out;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 
@@ -296,6 +341,7 @@ export default {
   position: relative;
   width: 25%;
   @extend %title-50;
+  border-left: 1px solid $b-color;
 
   h2 {
     @extend %vertical-titles;
@@ -309,9 +355,17 @@ export default {
   }
 }
 
+.arrow_left {
+  transform: rotate(180deg);
+}
+
 .home__content {
   width: 100%;
   height: 100%;
+}
+
+.home__section {
+  margin-top: 20rem;
 }
 
 .hc__text {
@@ -319,7 +373,7 @@ export default {
   @extend %paragraph-16;
   font-size: 3rem;
   line-height: 4rem;
-  padding: 18rem 1.6rem 18rem 1.6rem;
+  padding: 8rem 1.6rem 18rem 1.6rem;
 
   &.is-last {
     border-bottom: none;
@@ -341,6 +395,7 @@ export default {
 .hc__slider__wrapper {
   position: relative;
   overflow-x: scroll;
+  overflow-y: hidden;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
   height: 35vw;
@@ -380,6 +435,7 @@ export default {
     width: 100%;
     background-color: get-color(primary, bright);
     padding-left: 10px;
+    position: relative;
     h2 {
       @extend %title-50;
       line-height: 1.2;
@@ -388,13 +444,34 @@ export default {
         font-size: 32px;
       }
     }
-    // &:nth-child(2) {
-    //   text-align: end;
-    // }
+    h3 {
+      font-family: 'Work Sans', sans-serif;
+      color: #000000;
+      font-weight: 300;
+      line-height: 1.2;
+      font-size: max(2vw);
+      text-align: center;
+      @include phone {
+        font-size: 24px;
+      }
+      @include xs-phone {
+        font-size: 16px;
+      }
+    }
   }
 }
 .hc__slider__cell-txt:nth-child(2) {
   text-align: end;
+}
+
+.hc__slider__cell-swipe {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .hc__stories {
@@ -416,6 +493,8 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+  border: 1px solid $b-color;
+  border-top: 0px;
   @include phone {
     width: 90%;
   }
@@ -435,23 +514,29 @@ export default {
 }
 
 .story__text__intro {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120%;
   @extend %title-50;
   font-size: max(5vw);
   border-bottom: 1px solid $b-color;
+  border-left: 1px solid $b-color;
   background-color: get-color(primary, bright);
   padding: 3.2rem 1.6rem;
+
   @include phone {
-    position: absolute;
+    width: auto;
     top: 15%;
-    right: 0%;
     background: none;
     border: none;
-
     transform: translate(35%, 0%) rotate(-90deg);
     white-space: nowrap;
+    font-size: 40px;
   }
 }
 .story__text {
+  margin-top: 15rem;
   padding: 2.4rem 1.6rem;
   // overflow: hidden;
 
@@ -463,6 +548,7 @@ export default {
     @include phone {
       border-bottom: 1px solid $b-color;
       padding: 4.8rem 1.6rem;
+      // font-size: 30px;
     }
   }
   p {
@@ -483,6 +569,7 @@ export default {
   background-color: get-color(primary, bright);
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   width: 100%;
   @include phone {
     position: static;

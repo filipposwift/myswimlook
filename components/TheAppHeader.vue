@@ -23,25 +23,21 @@
     </div>
     <div v-if="isMobile" class="isMobile">
       <div class="header__hamburgher__wrapper">
-        <Menu :width="'100'">
-          <nuxt-link :to="localePath('/')" exact>
-            <span>Home</span>
-          </nuxt-link>
-
-          <nuxt-link :to="localePath('/styles')" exact>
-            <span>Styles</span>
-          </nuxt-link>
-
-          <nuxt-link :to="localePath('/designers')" exact>
-            <span>Designers</span>
-          </nuxt-link>
-          <nuxt-link :to="localePath('/stories')" exact>
-            <span>Stories</span>
-          </nuxt-link>
-          <nuxt-link :to="localePath('/people')" exact>
-            <span>People</span>
-          </nuxt-link>
-        </Menu>
+        <HamburgherMenu @toggleNav="navOpen = !navOpen" />
+        <TheMobileMenu :open="navOpen" @toggleNav="navOpen = !navOpen">
+          <transition-group appear name="fade">
+            <li
+              v-for="(route, index) in navRoutes"
+              :key="route.name"
+              class="nav__items"
+              :style="{ '--index': index }"
+            >
+              <nuxt-link :to="localePath(`/${route.slug}`)" exact>
+                {{ route.name }}
+              </nuxt-link>
+            </li>
+          </transition-group>
+        </TheMobileMenu>
       </div>
     </div>
   </header>
@@ -54,6 +50,31 @@ export default {
   data() {
     return {
       windowSize: null,
+      navOpen: false,
+      navRoutes: [
+        {
+          name: 'Home',
+          slug: '',
+        },
+        {
+          name: 'Styles',
+          slug: 'styles',
+        },
+        {
+          name: 'Designers',
+          slug: 'designers',
+        },
+        {
+          name: 'Stories',
+          slug: 'stories',
+        },
+        {
+          name: 'People',
+          slug: 'people',
+        },
+        { name: 'Contact', slug: 'contact' },
+        { name: 'Privacy Policy', slug: 'privacy' },
+      ],
     }
   },
 
@@ -61,9 +82,14 @@ export default {
     isMobile() {
       return this.windowSize <= 768
     },
+    routes() {
+      return this.$router.options.routes
+    },
   },
 
   mounted() {
+    this.windowSize = window.innerWidth
+
     window.addEventListener('resize', () => {
       this.windowSize = window.innerWidth
     })
@@ -75,14 +101,7 @@ export default {
     })
   },
 
-  methods: {
-    openMenu() {
-      this.$emit('openMenu')
-    },
-    closeMenu() {
-      this.$emit('closeMenu')
-    },
-  },
+  methods: {},
 }
 </script>
 
@@ -99,11 +118,11 @@ export default {
     color: get-color(basic, normal);
   }
 
-  span {
-    @extend %paragraph-20;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
+  // span {
+  //   @extend %paragraph-20;
+  //   font-weight: 300;
+  //   text-transform: uppercase;
+  // }
 }
 
 .header__hamburgher__wrapper {
@@ -172,14 +191,34 @@ export default {
     color: get-color(primary, bright);
     @extend %title-24;
     line-height: 49px;
-
-    // @include tablet {
-    //   font-size: 0.9rem;
-    // }
   }
 }
-// #item {
-//   @extend %paragraph-20;
-//   margin-left: 10px;
-// }
+
+.nav__items {
+  @extend %paragraph-20;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+  color: get-color(secondary, normal);
+
+  &:nth-child(6) {
+    padding-top: 70px;
+    padding-bottom: 10px;
+    font-size: 16px;
+  }
+
+  &:nth-child(7) {
+    font-size: 16px;
+  }
+}
+
+.fade {
+  &-enter {
+    transform: translateX(-100%);
+  }
+  &-enter-active {
+    transition: all 500ms ease-in-out;
+    transition-delay: calc(100ms * var(--index));
+  }
+}
 </style>

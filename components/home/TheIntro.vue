@@ -74,6 +74,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background-color: get-color(primary, normal);
+  margin-bottom: 20rem;
 }
 
 .intro__one {

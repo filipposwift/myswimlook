@@ -10,7 +10,6 @@
       <h1>{{ person.name }}</h1>
       <p>{{ person.description }}</p>
     </div>
-    <!-- <div v-if="getSwimsuit(ref.fields.reference)"></div> -->
     <div
       v-for="ref in person.socialMedia"
       :key="ref.fields.reference"
@@ -355,7 +354,7 @@ export default {
     margin-bottom: 3.2rem;
   }
   @include xs-phone {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 3 / 1 / 4 / 2;
   }
 }
 
@@ -411,7 +410,7 @@ export default {
   position: relative;
   border-left: 1px solid $b-color;
   @include xs-phone {
-    grid-area: 3 / 1 / 4 / 2;
+    grid-area: 2 / 1 / 3 / 2;
   }
 }
 
