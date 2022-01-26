@@ -22,9 +22,6 @@ export default {
   background-color: get-color(basic, normal);
   color: get-color(primary, bright);
   position: relative;
-  border-top: 1px solid $b-color;
-  border-left: 1px solid $b-color;
-  border-right: 1px solid $b-color;
   overflow: hidden;
   min-width: 40%;
   padding: 0.8rem;

@@ -124,7 +124,7 @@ export default {
           ease: 'none',
           scrollTrigger: {
             trigger: wrap,
-            start: '500px top',
+            start: 'top center',
             // invalidateOnRefresh: true,
             pin: false,
             scrub: 1,
@@ -144,6 +144,7 @@ export default {
   height: var(--tiles-height);
   position: relative;
   overflow: hidden;
+  margin-top: 16rem;
 }
 
 .tiles--rotated .tiles__wrap {

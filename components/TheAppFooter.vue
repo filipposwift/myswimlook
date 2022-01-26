@@ -54,13 +54,12 @@
       <div class="footer__item last">
         <h2>About us</h2>
         <p>
-          We’re a mix of fashion lovers and technical software delevoppers.
-          We're four women and one man (poor him!!), we act almsost as a family,
-          with strong passion for the sea, the sun and the environment. We’re
-          focused on ways technology and social media can help people to make a
-          more easy choice when buying the most compelling piece of dress. We
-          hope you enjoy the site and the passion who has drove us in building
-          myswimlook.
+          We are a team of fashion lovers and technical software delevopers
+          composed by three women and one (very lucky) man. Our passion for the
+          ocean, fashion and the environment is what drives Myswimwlook. We
+          focus on how technology and social media can help people make better
+          and easier choices. We hope you enjoy our website and share our
+          vision.
         </p>
       </div>
     </div>

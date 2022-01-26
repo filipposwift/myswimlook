@@ -49,7 +49,7 @@ export default {
 
   data() {
     return {
-      windowSize: null,
+      windowSize: 800,
       navOpen: false,
       navRoutes: [
         {

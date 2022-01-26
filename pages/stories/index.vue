@@ -5,9 +5,8 @@
       <template #title> Stories </template>
       <template #verticalTitle>Swimwear trends in a click</template>
       <template #header>
-        Stay up to date with the latest fashion trends in swimwear around the
-        world, discover emerging designers and learn what celebrities are
-        choosing
+        Stay up to date with the latest fashion trends, discover emerging
+        designers and learn what celebrities are choosing
       </template>
       <nuxt-img
         src="swimlook/styles/cover-styles"
@@ -111,18 +110,19 @@ export default {
 .stories__slider__wrapper {
   position: relative;
   overflow-x: scroll;
+  overflow-y: hidden;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
-  height: 20vw;
+  height: 35vw;
   width: 100vw;
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
   @include phone {
-    height: 40vh;
+    height: 50vw;
   }
   @include xs-phone {
-    height: 65vh;
+    height: 75vw;
   }
 }
 .stories__slider__wrapper::-webkit-scrollbar {
@@ -135,22 +135,23 @@ export default {
   position: absolute;
   width: auto;
 }
+
 .stories__slider__cell:last-of-type {
   margin-right: 10vw;
 }
 
 .stories__slider__cell {
-  width: 22.5vmax;
-  height: 20vmax;
+  width: 30vw;
+  height: 35vw;
   border-right: 1px solid $b-color;
   @include phone {
-    height: 40vh;
-    width: 35vh;
+    height: 50vw;
+    width: 60vw;
   }
 
   @include xs-phone {
-    height: 65vh;
-    width: 70vw;
+    height: 75vw;
+    width: 65vw;
   }
 
   &-text {
@@ -201,19 +202,23 @@ export default {
   height: 75%;
   position: relative;
   width: 100%;
-  transition: transform 0.7s ease-out;
+  transition: transform 1s ease-out;
   overflow: hidden;
+  @include xs-phone {
+    height: 65%;
+  }
 
-  // &:hover {
-  //   transform: scale(0.98);
-  // }
+  &:hover {
+    transform: scale(0.95);
+  }
 
   &-img {
     @extend %cover;
-    transition: transform 0.7s ease-out;
+    transition: transform 1s ease-out;
+    cursor: pointer;
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
   }
 }
@@ -223,9 +228,13 @@ export default {
   width: 100%;
   height: 25%;
   @extend %title-24;
+  border-top: 1px solid $b-color;
   @include phone {
     font-size: 20px;
     padding: 4rem 1.6rem;
+  }
+  @include xs-phone {
+    height: 35%;
   }
 
   h2 {

@@ -6,15 +6,15 @@
         <HomeTheTitle>Styles</HomeTheTitle>
         <div class="hc__text">
           <p>
-            Browse through our collection of curated swimwear looks and find
-            inspiration on how to mix and match a beach look that fits your
-            style.
+            Discover our personally curated collection of swimwear looks. We
+            have handpicked looks from some of the best fashion designers in the
+            world, and we are confident that our selection will give you plenty
+            of creativity.
           </p>
           <p class="second">
-            We want to help you find the perfect look for your body type. We
-            have selected looks from some of the best fashion designers in the
-            world, and we are confident that our style collections will give you
-            plenty of inspiration.
+            We want to help you find the perfect look: the one that makes you
+            feel comfortable and beautiful in your own skin. <br />Get inspired,
+            no one else can be you better than you!
           </p>
         </div>
         <div class="hc__slider__wrapper">
@@ -81,14 +81,14 @@
         <HomeTheTitle>Designers</HomeTheTitle>
         <div class="hc__text">
           <p>
-            Myswimlook is your guide to the best sustainable swimwear brands in
-            2022
+            Myswimlook is your guide to purchase the best, most sustainable
+            swimwear brands in 2022. Living a sustainable lifestyle is not
+            easy.<br />
+            We created this guide as a helping hand.
           </p>
           <p class="second">
             Here are some of our favorite eco-friendly swimwear brands that we
-            have handpicked to help you find the perfect one for your body type.
-            It was not an easy job and so we've created this guide on what makes
-            each brand unique
+            have picked just for you.
           </p>
         </div>
         <div class="hc__slider__wrapper">
@@ -127,14 +127,12 @@
         <HomeTheTitle>Stories</HomeTheTitle>
         <div class="hc__text">
           <p>
-            Get inspired by our weekly fashion articles covering everything you
-            need know about beachwear fashion
+            Our weekly fashion articles cover everything you need know about
+            beachwear fashion. <br />Stay up to date with the latest fashion
+            trends in swimwear around the world, discover emerging designers and
+            what celebrities are choosing.
           </p>
-          <p class="second">
-            Stay up to date with the latest fashion trends in swimwear around
-            the world, discover emerging designers and learn what celebrities
-            are choosing
-          </p>
+          <p class="second">So that you are never late to the party!</p>
         </div>
         <div class="hc__stories">
           <div class="story__wrapper">
@@ -174,13 +172,12 @@
         <HomeGallery />
         <div class="hc__text is-last">
           <p>
-            We believe that you can always find someone who has a style you
-            want. You just need to look at what they're wearing and take some
-            inspiration from their choices. We have searched for a wide spectrum
-            in terms of age and location; some people are influencers, content
-            creators or even just your average Mary. They all have their own
-            unique interests: some can make us feel good by being authentic
-            while others catch our attention with aesthetically pleasing images
+            We believe that there is always someone out there who can be of
+            inspiration. You just have to look in the right places. We have
+            searched for a wide spectrum of women in terms of age and location;
+            some people are influencers, content creators or even just the
+            average girl next door (who happens to have an amazing style). They
+            all have their own unique interests, what is yours?
           </p>
           <p class="second">
             Visit our instragram @myswimlook to share your ideas
@@ -209,7 +206,7 @@ export default {
         },
         intro: "What's your mood today?",
       },
-      windowSize: null,
+      windowSize: 800,
     }
   },
 
