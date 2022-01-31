@@ -61,7 +61,7 @@
     font-size: 4rem;
   }
   @include tablet {
-    font-size: 5rem;
+    font-size: 4.5rem;
   }
 }
 
@@ -122,9 +122,9 @@
   line-height: 0.82;
   color: get-color(secondary, normal);
 
-  // @include phone {
-  //   font-size: 120px;
-  // }
+  @include phone {
+    font-size: 12rem;
+  }
 }
 
 %title-200 {

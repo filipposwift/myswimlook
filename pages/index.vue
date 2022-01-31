@@ -367,6 +367,7 @@ export default {
 
   &:hover {
     transform: scale(0.95);
+    transform: translate3d(0, 0, 0);
   }
   @include phone {
     height: 95%;
@@ -425,6 +426,17 @@ export default {
   &.is-last {
     border-bottom: none;
   }
+
+  @include desktop {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+
+  @include tablet {
+    font-size: 4.5rem;
+    line-height: 5.5rem;
+  }
+
   @include phone {
     font-size: 18px;
     line-height: 1.4;
@@ -527,8 +539,11 @@ export default {
 
 .hc__stories {
   height: 80rem;
+  @include tablet {
+    height: 130rem;
+  }
   @include phone {
-    height: 800px;
+    // height: 800px;
   }
 }
 .story__wrapper {
@@ -548,7 +563,7 @@ export default {
   border: 1px solid $b-color;
   border-top: 0px;
   @include phone {
-    width: 90%;
+    width: 85%;
   }
 }
 .story__media-img {
@@ -561,6 +576,7 @@ export default {
 .story__text__inner {
   position: relative;
   max-width: 50%;
+  min-height: max-content;
   @include phone {
     position: static;
     max-width: 100%;
@@ -582,21 +598,23 @@ export default {
 
   @include phone {
     width: auto;
-    top: 15%;
+    // top: 0;
+    // left: 0;
     background: none;
     border: none;
-    transform: translate(35%, 0%) rotate(-90deg);
+    transform-origin: bottom right;
+    transform: translate(0%, 10%) rotate(-90deg);
     white-space: nowrap;
-    font-size: 40px;
+    font-size: 5.5rem;
   }
 }
 .story__text {
   margin-top: 15rem;
-  padding: 2.4rem 1.6rem;
-  // overflow: hidden;
+  padding: 2.4rem 1.6rem 50px 1.6rem;
 
   @include phone {
-    padding: none;
+    margin-top: 0;
+    padding: 0;
   }
   h3 {
     @extend %title-30;

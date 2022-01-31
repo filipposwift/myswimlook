@@ -35,6 +35,9 @@ export default {
 .section__heading {
   @extend %title-120;
   text-transform: uppercase;
+  @include phone {
+    font-size: 10rem;
+  }
   h1 {
     padding: 1.6rem;
   }
