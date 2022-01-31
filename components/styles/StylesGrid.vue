@@ -56,7 +56,7 @@ export default {
 
 .styles__grid__link {
   width: 100%;
-  height: 100%;
+  // height: 100%;
 }
 
 .styles__grid__media {
