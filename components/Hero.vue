@@ -92,6 +92,10 @@ export default {}
     z-index: 2;
     color: get-color(primary, bright);
     line-height: 15.5rem;
+    @include phone {
+      font-size: 15rem;
+      line-height: 7.5rem;
+    }
   }
 }
 

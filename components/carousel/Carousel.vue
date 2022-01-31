@@ -9,7 +9,7 @@
       </carousel-instagram>
     </div>
     <div class="carousel-indicators-panel">
-      <div class="carousel-text">
+      <div v-if="emptyName" class="carousel-text">
         <p>
           See who is wearing <span>{{ modelName }}</span> by
           <strong>{{ designer }}</strong>
@@ -55,6 +55,10 @@ export default {
       }
       return []
     },
+    emptyName() {
+      // eslint-disable-next-line no-unneeded-ternary
+      return this.modelName === '' ? false : true
+    },
   },
 
   methods: {
@@ -73,28 +77,41 @@ export default {
 .carousel {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  // border-top: 1px solid;
   background-color: get-color(primary, normal);
+  @include phone {
+    flex-direction: column-reverse;
+  }
 }
 .instagram-embed {
   height: 99.9%;
   width: 40%;
-  max-width: 40rem;
-  border-left: 1px solid $b-color;
+  min-width: 550px;
   overflow: hidden;
 
   @include desktop {
     width: 60%;
-    max-width: 50rem;
+  }
+  @include tablet {
+    min-width: 326px;
+  }
+
+  @include phone {
+    width: 100%;
+    max-width: none;
   }
 }
+
 .carousel-indicators-panel {
-  height: 50rem;
+  // height: 50rem;
   width: 60%;
   @include desktop {
     width: 40%;
+  }
+  @include phone {
+    width: 100%;
+    height: 100%;
   }
 }
 

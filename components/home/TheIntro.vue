@@ -102,6 +102,12 @@ h1 {
   margin-bottom: 10px;
   line-height: 0.85;
   font-weight: 400;
+  @include desktop {
+    font-size: 25rem;
+  }
+  @include phone {
+    font-size: 12.5rem;
+  }
 
   span {
     // color: #d6d6d6;

@@ -4,9 +4,9 @@
       <div class="tiles__line right">
         <div class="tiles__line-img"></div>
         <div class="tiles__line-img"></div>
-        <div class="tiles__line-img"></div>
+
         <div
-          v-for="image in images.slice(0, 2)"
+          v-for="image in images.slice(0, 3)"
           :key="image.public_id"
           class="tiles__line-img"
         >
@@ -19,11 +19,12 @@
           >
           </nuxt-img>
         </div>
+        <div class="tiles__line-img"></div>
       </div>
       <div class="tiles__line left">
         <!-- <div class="tiles__line-img"></div> -->
         <div
-          v-for="image in images.slice(0, 5)"
+          v-for="image in images.slice(4, 10)"
           :key="image.slug"
           class="tiles__line-img"
         >
@@ -39,7 +40,7 @@
       </div>
       <div class="tiles__line right">
         <div
-          v-for="image in images.slice(4, 11)"
+          v-for="image in images.slice(11, 15)"
           :key="image.slug"
           class="tiles__line-img"
         >
@@ -140,7 +141,7 @@ export default {
 
 <style lang="scss" scoped>
 .tiles {
-  --tiles-height: 50vh;
+  --tiles-height: 75vh;
   height: var(--tiles-height);
   position: relative;
   overflow: hidden;
@@ -155,7 +156,7 @@ export default {
 .tiles--rotated .tiles__line-img {
   --tile-margin: 0.5vw;
   width: calc(16.6666% - var(--tile-margin) * 2);
-  height: calc(var(--tileswrap-height) / 5 - (4 * var(--tile-margin) / 2));
+  height: calc(var(--tileswrap-height) / 3 - (4 * var(--tile-margin) / 2));
 }
 
 .tiles__wrap {

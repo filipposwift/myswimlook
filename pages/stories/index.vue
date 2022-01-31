@@ -30,7 +30,7 @@
           >
             <figure class="cell__image__media">
               <nuxt-img
-                :src="story.fields.images[0].public_id"
+                :src="story.fields.coverImage[0].public_id"
                 :alt="`Photo of article ${story.fields.title}`"
                 provider="cloudinary"
                 width="400"
@@ -43,6 +43,33 @@
           </nuxt-link>
           <div v-else class="stories__slider__cell-text">
             <h2>{{ story.intro }}</h2>
+            <div class="stories__slider__cell-swipe">
+              <svg
+                aria-hidden="true"
+                class="arrow_left"
+                width="50"
+                height="20"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  class="arrow_path"
+                  d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
+                ></path>
+              </svg>
+              <h3>Swipe to scroll</h3>
+              <svg
+                aria-hidden="true"
+                class="arrow_right"
+                width="50"
+                height="20"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  class="arrow_path"
+                  d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
+                ></path>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -112,8 +139,9 @@ export default {
   overflow-x: scroll;
   overflow-y: hidden;
   overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
   -ms-overflow-style: none;
-  height: 35vw;
+  height: 40vw;
   width: 100vw;
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
@@ -142,8 +170,11 @@ export default {
 
 .stories__slider__cell {
   width: 30vw;
-  height: 35vw;
+  height: 40vw;
   border-right: 1px solid $b-color;
+  @include tablet {
+    width: 40vw;
+  }
   @include phone {
     height: 50vw;
     width: 60vw;
@@ -153,27 +184,55 @@ export default {
     height: 75vw;
     width: 65vw;
   }
+}
 
-  &-text {
-    height: 100%;
-    width: 100%;
-    background-color: get-color(primary, bright);
-    padding-left: 10px;
-    h2 {
-      @extend %title-50;
-      line-height: 1.2;
-      font-size: max(5vw);
-      @include phone {
-        font-size: 50px;
-      }
+.stories__slider__cell-text {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: get-color(primary, bright);
+  padding-left: 10px;
+  h2 {
+    @extend %title-50;
+    line-height: 1.2;
+    font-size: max(5vw);
+    @include phone {
+      font-size: 50px;
     }
-    // &:nth-child(2) {
-    //   text-align: end;
-    // }
   }
 }
+
 .stories__slider__cell-txt:nth-child(2) {
   text-align: end;
+}
+
+.stories__slider__cell-swipe {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  h3 {
+    font-family: 'Work Sans', sans-serif;
+    color: #000000;
+    font-weight: 300;
+    line-height: 1.2;
+    font-size: max(2vw);
+    text-align: center;
+    @include phone {
+      font-size: 24px;
+    }
+    @include xs-phone {
+      font-size: 16px;
+    }
+  }
+}
+
+.arrow_left {
+  transform: rotate(180deg);
 }
 
 .stories__text {
@@ -238,7 +297,7 @@ export default {
   }
 
   h2 {
-    padding: 0.8rem;
+    padding: 3.2rem 1.6rem;
     transition: 0.2s;
     &:hover {
       color: get-color(basic, normal);

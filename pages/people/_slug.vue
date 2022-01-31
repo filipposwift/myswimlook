@@ -34,39 +34,7 @@
           />
         </div>
         <div class="person__swimsuit__left__back">
-          <button class="circle__back" @click="redirectToPeople">
-            <svg
-              aria-hidden="true"
-              class="progress"
-              width="70"
-              height="70"
-              viewbox="0 0 70 70"
-            >
-              <path
-                class="progress__circle"
-                d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"
-              />
-              <path
-                class="progress__path"
-                d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"
-                pathLength="1"
-              />
-            </svg>
-            <figure>
-              <svg
-                aria-hidden="true"
-                class="arrow"
-                width="120"
-                height="35"
-                viewBox="0 -10.5 36 35"
-              >
-                <path
-                  class="arrow_path"
-                  d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                ></path>
-              </svg>
-            </figure>
-          </button>
+          <ArrowLeftCircle link="people" />
           <nuxt-link :to="localePath('/people')" exact>
             <span>Back to people</span>
           </nuxt-link>
@@ -126,7 +94,7 @@ export default {
   },
   data() {
     return {
-      windowSize: null,
+      windowSize: 800,
     }
   },
 
@@ -183,6 +151,7 @@ export default {
   },
 
   mounted() {
+    this.windowSize = window.innerWidth
     window.addEventListener('resize', () => {
       this.windowSize = window.innerWidth
     })
@@ -211,68 +180,11 @@ export default {
       })
       return designer.website
     },
-    redirectToPeople() {
-      this.$router.push({ path: '/people' })
-    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.circle__back {
-  width: 120px;
-  height: 120px;
-  pointer-events: auto;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  -webkit-clip-path: circle(50% at 50% 50%);
-  clip-path: circle(50% at 50% 50%);
-}
-
-.arrow {
-  transform: rotate(180deg);
-}
-
-.arrow_path {
-  fill: get-color(secondary, normal);
-}
-
-.progress {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  top: calc(50% - 40px);
-  left: calc(50% - 40px);
-  transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-.circle__back:hover .progress {
-  transform: scale3d(1.05, 1.05, 1);
-}
-
-.progress__circle,
-.progress__path {
-  fill: none;
-  stroke: $b-color;
-  stroke-width: 1px;
-}
-
-.circle__back:focus-visible .progress__circle {
-  fill: rgba(252, 196, 63, 0.4);
-}
-
-.progress__path {
-  stroke: get-color(basic, normal);
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-.circle__back:hover .progress__path {
-  stroke-dashoffset: 0;
-}
-
 .person__intro {
   border-bottom: 1px solid $b-color;
   padding: 10rem 1.6rem;

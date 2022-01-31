@@ -3,7 +3,7 @@
     <SocialHead
       :title="story.title"
       :description="story.highLight"
-      :image="story.images[0].secure_url"
+      :image="story.coverImage[0].secure_url"
     />
     <section class="story__intro">
       <div class="story__intro__title">
@@ -13,12 +13,28 @@
       </div>
       <figure class="story__intro__media">
         <nuxt-img
-          :src="story.images[0].public_id"
-          alt="Hero image of woman in swimwear"
-          width="2000"
+          :src="story.coverImage[0].public_id"
+          :alt="
+            story.coverImage[0].context
+              ? story.coverImage[0].context.custom.alt
+              : 'Image of woman in swimsuit'
+          "
+          width="1000"
           provider="cloudinary"
           class="story__intro__media__image"
         ></nuxt-img>
+        <figcaption
+          :class="story.coverImage[0].context ? 'story__fig-caption' : ''"
+        >
+          <p>
+            Photo:
+            {{
+              story.coverImage[0].context
+                ? story.coverImage[0].context.custom.caption
+                : ''
+            }}
+          </p>
+        </figcaption>
       </figure>
       <div class="story__intro__subtitle">
         <p>
@@ -45,7 +61,7 @@
           </div>
           <figure class="story__intro__style-card__media">
             <nuxt-img
-              :src="itemCard.cloudinarySwimlook[5].public_id"
+              :src="itemCard.cloudinarySwimlook[2].public_id"
               alt="Hero image of woman in swimwear"
               width="800"
               provider="cloudinary"
@@ -65,30 +81,78 @@
     <section class="story__middle">
       <figure class="story__middle__reference__media-top">
         <nuxt-img
-          :src="story.images[2].public_id"
-          alt="Hero image of woman in swimwear"
+          :src="story.imagesVertical[0].public_id"
+          :alt="
+            story.imagesVertical[0].context
+              ? story.imagesVertical[0].context.custom.alt
+              : 'Image of woman in swimsuit'
+          "
           width="2000"
           provider="cloudinary"
           class="story__middle__reference__media__image"
         ></nuxt-img>
+        <figcaption
+          :class="story.imagesVertical[0].context ? 'story__fig-caption' : ''"
+        >
+          <p>
+            Photo:
+            {{
+              story.imagesVertical[0].context
+                ? story.imagesVertical[0].context.custom.caption
+                : ''
+            }}
+          </p>
+        </figcaption>
       </figure>
       <figure class="story__middle__reference__media-bottom">
         <nuxt-img
-          :src="story.images[3].public_id"
-          alt="Hero image of woman in swimwear"
+          :src="story.imagesVertical[1].public_id"
+          :alt="
+            story.imagesVertical[1].context
+              ? story.imagesVertical[1].context.custom.alt
+              : 'Image of woman in swimsuit'
+          "
           width="2000"
           provider="cloudinary"
           class="story__middle__reference__media__image"
         ></nuxt-img>
+        <figcaption
+          :class="story.imagesVertical[1].context ? 'story__fig-caption' : ''"
+        >
+          <p>
+            Photo:
+            {{
+              story.imagesVertical[1].context
+                ? story.imagesVertical[1].context.custom.caption
+                : ''
+            }}
+          </p>
+        </figcaption>
       </figure>
       <figure class="story__middle__reference__media-big">
         <nuxt-img
-          :src="story.images[1].public_id"
-          alt="Hero image of woman in swimwear"
-          width="2000"
+          :src="story.imageLandscape[0].public_id"
+          :alt="
+            story.imageLandscape[0].context
+              ? story.imageLandscape[0].context.custom.alt
+              : 'Image fo woman in swimsuit'
+          "
+          width="1000"
           provider="cloudinary"
           class="story__middle__reference__media__image"
         ></nuxt-img>
+        <figcaption
+          :class="story.imageLandscape[0].context ? 'story__fig-caption' : ''"
+        >
+          <p>
+            Photo:
+            {{
+              story.imageLandscape[0].context
+                ? story.imageLandscape[0].context.custom.caption
+                : ''
+            }}
+          </p>
+        </figcaption>
       </figure>
     </section>
     <section class="story__end">
@@ -99,6 +163,10 @@
           :mark-renderers="renderMarks()"
         />
       </div>
+    </section>
+    <section class="story__instagram">
+      <h2>Instagram references</h2>
+      <carousel :slides="slides" />
     </section>
   </div>
 </template>
@@ -150,6 +218,18 @@ export default {
       return this.story.swimsuits[0].fields
     },
 
+    slides() {
+      if (this.story.instagramReferences) {
+        const temp = this.story.instagramReferences.map(({ fields }) => ({
+          image: fields.image,
+          reference: fields.reference,
+          name: fields.name,
+        }))
+        return temp
+      }
+      return []
+    },
+
     designerUrl() {
       const tmp = this.$store.state.data.data.find(
         (designer) => designer.name === this.itemCard.designer
@@ -176,12 +256,14 @@ export default {
               key,
               attrs: {
                 src: node.data.target.fields.image[0].public_id,
+                alt: node.data.target.fields.image[0].context
+                  ? node.data.target.fields.image[0].context.custom.alt
+                  : 'Image',
                 provider: 'cloudinary',
                 width: '400',
                 class: 'story__image',
               },
             },
-
             next(node.content, key, h, next)
           ),
         [INLINES.EMBEDDED_ENTRY]: (node, key, h, next) =>
@@ -191,9 +273,12 @@ export default {
               key,
               attrs: {
                 src: node.data.target.fields.image[0].public_id,
+                alt: node.data.target.fields.image[0].context
+                  ? node.data.target.fields.image[0].context.custom.alt
+                  : 'Image',
                 provider: 'cloudinary',
                 width: '400',
-                class: 'story__image',
+                class: 'story__image-inline',
               },
             },
             next(node.content, key, h, next)
@@ -216,7 +301,9 @@ export default {
 .story__intro {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 16rem repeat(4, 1fr);
+  grid-template-rows:
+    16rem fit-content(40%) minmax(24rem, auto) minmax(48rem, auto) 16rem
+    64rem;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   @include phone {
@@ -254,7 +341,7 @@ export default {
   }
 }
 .story__intro__media {
-  grid-area: 1 / 5 / 5 / 13;
+  grid-area: 1 / 5 / 6 / 13;
   position: relative;
   border-left: 1px solid $b-color;
   @include phone {
@@ -302,7 +389,7 @@ export default {
   }
 }
 .story__intro__highlight {
-  grid-area: 5 / 1 / 6 / 9;
+  grid-area: 6 / 1 / 7 / 9;
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
   @extend %center;
@@ -317,6 +404,7 @@ export default {
 
   h3 {
     @extend %title-30;
+    line-height: 1.5;
 
     text-align: center;
     text-transform: uppercase;
@@ -332,7 +420,7 @@ export default {
 }
 
 .story__intro__style__card__wrapper {
-  grid-area: 4 / 9 / 6 / 13;
+  grid-area: 5 / 9 / 7 / 13;
   z-index: 1;
   border-bottom: 1px solid $b-color;
   border-top: 1px solid $b-color;
@@ -355,7 +443,7 @@ export default {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 0.2fr;
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 7rem 1fr 5rem;
   @include phone {
     grid-template-rows: 7rem 1fr 7rem;
   }
@@ -372,7 +460,7 @@ export default {
     @extend %title-30;
     font-family: 'Wok Sans', sans-serif;
     font-weight: 300;
-    line-height: 1.2;
+    line-height: 7rem;
     text-align: center;
     padding-top: 0.8rem;
     @include phone {
@@ -401,6 +489,9 @@ export default {
   h3 {
     @extend %title-30;
     @extend %vertical-titles;
+    @include desktop {
+      font-size: 4.5rem;
+    }
     @include xs-phone {
       font-size: 30px;
     }
@@ -452,9 +543,10 @@ export default {
 .story__middle {
   width: 100%;
   height: 75vh;
+  min-height: 100rem;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 5rem repeat(2, minmax(0, 1fr)) 5rem;
+  grid-template-rows: 10rem repeat(2, minmax(0, 1fr)) 10rem;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
@@ -502,21 +594,30 @@ export default {
   p {
     @extend %paragraph-16;
     line-height: 1.5;
+    padding-bottom: 1.6rem;
 
     a {
       color: get-color(basic, normal);
+    }
+  }
+
+  p:last-of-type {
+    margin-bottom: 150px;
+    @include phone {
+      margin-bottom: 50px;
     }
   }
 }
 
 .story__question {
   margin-top: 3.2rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 2.4rem;
   @extend %paragraph-16;
+  font-weight: 400;
+
   font-family: 'Work Sans', sans-serif;
   @include phone {
     margin-top: 5rem;
-    margin-bottom: 1.6rem;
   }
   @include xs-phone {
     margin-top: 30px;
@@ -535,6 +636,63 @@ export default {
     padding: 0;
     margin-top: 5rem;
     margin-bottom: 1.6rem;
+  }
+}
+
+.story__image-inline {
+  float: right;
+  padding-top: 1.6rem;
+  padding-left: 1.6rem;
+  padding-bottom: 1.6rem;
+  @include phone {
+    display: block;
+    float: none;
+    padding: 0;
+    margin-top: 5rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+.story__instagram {
+  border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
+  overflow: hidden;
+  width: 100%;
+
+  position: relative;
+  @extend %paragraph-20;
+  text-transform: uppercase;
+  margin-top: 10rem;
+  margin-bottom: 20rem;
+  @include phone {
+    margin-bottom: 40rem;
+  }
+  @include xs-phone {
+    margin-bottom: 60rem;
+  }
+  h2 {
+    @extend %title-30;
+    text-align: center;
+    padding: 3.2rem 1.6rem;
+    @include phone {
+      font-size: 24px;
+      padding: 5rem 1.6rem;
+    }
+  }
+}
+
+.story__fig-caption {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: get-color(primary, normal);
+  opacity: 0.5;
+  z-index: 5;
+  p {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 10px;
+    line-height: 1.1;
   }
 }
 </style>

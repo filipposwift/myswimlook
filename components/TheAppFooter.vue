@@ -30,7 +30,7 @@
         <h2>Get in touch</h2>
         <ul class="footerLinks">
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/contactPage')" exact
+            <nuxt-link :to="localePath('/contact')" exact
               ><span>Contact</span></nuxt-link
             >
           </li>
@@ -40,7 +40,7 @@
         <h2>Quick Links</h2>
         <ul class="footerLinks">
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/privacyPage')" exact
+            <nuxt-link :to="localePath('/privacy')" exact
               ><span>Privacy Policy</span></nuxt-link
             >
           </li>
@@ -87,7 +87,11 @@
             height="24"
           ></nuxt-img>
         </a>
-        <a href="" target="_blank" rel="nofollow noopener noreferrer">
+        <a
+          href="https://www.instagram.com/myswimlook/"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
           <nuxt-img
             src="/instagram.svg"
             alt="Logo instagram"

@@ -94,12 +94,32 @@ video {
   box-sizing: border-box;
 }
 
-html,
+html {
+  font-size: calc((100vw / 1920) * 10);
+
+  // @include xs-phone {
+  //   font-size: calc((100vw / 500) * 10);
+  // }
+
+  @include phone {
+    font-size: calc((100vw / 768) * 10);
+  }
+
+  // @include tablet {
+  //   font-size: calc((100vw / 1024) * 10);
+  // }
+
+  // @include desktop {
+  //   font-size: calc((100vw / 1440) * 10);
+
+  // }
+}
+
 body {
   background: get-color(primary, normal);
   color: get-color(secondary, dark);
   font-family: 'Work Sans', sans-serif;
-  font-size: calc((100vw / 1920) * 10);
+  // font-size: calc((100vw / 1920) * 10);
   overscroll-behavior-y: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -112,21 +132,21 @@ body {
     text-decoration: none;
   }
 
-  @include xs-phone {
-    font-size: calc((100vw / 500) * 10);
-  }
+  // @include xs-phone {
+  //   font-size: calc((100vw / 500) * 10);
+  // }
 
-  @include phone {
-    font-size: calc((100vw / 768) * 10);
-  }
+  // @include phone {
+  //   font-size: calc((100vw / 768) * 10);
+  // }
 
-  @include tablet {
-    font-size: calc((100vw / 1024) * 10);
-  }
+  // @include tablet {
+  //   font-size: calc((100vw / 1024) * 10);
+  // }
 
-  @include desktop {
-    font-size: calc((100vw / 1440) * 10);
-  }
+  // @include desktop {
+  //   font-size: calc((100vw / 1440) * 10);
+  // }
 }
 
 img,
@@ -136,6 +156,10 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+}
+
+figcaption {
+  display: none;
 }
 
 h1,

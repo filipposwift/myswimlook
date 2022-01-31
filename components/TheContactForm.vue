@@ -125,6 +125,15 @@ export default {
   margin-right: auto;
   margin-bottom: 1.4rem;
   line-height: 1.5;
+
+  @include desktop {
+    width: 70%;
+  }
+  
+  @include tablet {
+    width: 80%;
+  }
+  
   @include phone {
     width: 90%;
   }
@@ -141,6 +150,9 @@ export default {
   min-width: 70%;
   margin-left: auto;
   margin-right: auto;
+  @include desktop {
+    min-width: 80%;
+  }
   @include xs-phone {
     min-width: 90%;
   }

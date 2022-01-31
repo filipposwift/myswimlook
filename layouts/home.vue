@@ -89,13 +89,12 @@ export default {}
   text-transform: uppercase;
   position: relative;
   @extend %paragraph-menu;
-  // line-height: 4vw;
   height: 200px;
-  width: 100%;
+  // width: 100%;
   overflow: hidden;
-
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
+
   @include phone {
     display: none;
   }

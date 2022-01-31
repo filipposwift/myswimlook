@@ -161,6 +161,7 @@ export default {
 }
 
 .people__grid__cell__media-txt {
+  display: block;
   background-color: get-color(primary, normal);
   opacity: 0.65;
   position: absolute;

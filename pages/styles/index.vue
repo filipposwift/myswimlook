@@ -19,7 +19,7 @@
     ></hero>
     <div class="styles__container">
       <div
-        v-for="(n, num) in 7"
+        v-for="(n, num) in 9"
         :key="num"
         :class="`styles__box ${classLetter(num)}`"
       >
@@ -135,10 +135,11 @@ export default {
   width: 100%;
   height: calc(100vw - 128px);
   border-top: 1px solid $b-color;
-  @include xs-phone {
+  @include phone {
     display: flex;
     flex-direction: column;
-    height: 300vh;
+    // height: 300vh;
+    height: auto;
   }
 }
 
@@ -147,13 +148,17 @@ export default {
   z-index: 2;
   padding: 0.8rem;
   @extend %paragraph-16;
-  @include xs-phone {
+  @include phone {
     padding-top: 3.2rem;
     padding-bottom: 3.2rem;
   }
   p {
     @extend %paragraph-16;
     text-align: right;
+    @include phone {
+      font-size: 20px;
+      text-align: center;
+    }
     span {
       color: get-color(basic, normal);
     }
@@ -161,82 +166,86 @@ export default {
   &.one {
     grid-area: 9 / 1 / 10 / 5;
     border-top: 1px solid $b-color;
-    @include xs-phone {
+    border-right: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 2;
+      border-right: 0px;
     }
   }
   &.two {
-    grid-area: 2 / 5 / 3 / 8;
-    border-bottom: 1px solid $b-color;
-    border-left: 1px solid $b-color;
+    grid-area: 2 / 5 / 3 / 9;
     border-right: 1px solid $b-color;
-    @include xs-phone {
+    border-top: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 4;
+      border-right: 0px;
     }
   }
   &.three {
     grid-area: 8 / 9 / 9 / 13;
     background-color: get-color(primary, normal);
-    border-left: 1px solid $b-color;
-    @include xs-phone {
+    border-top: 1px solid $b-color;
+    border-bottom: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 6;
     }
   }
   &.four {
     grid-area: 16 / 9 / 17 / 13;
+    border-top: 1px solid $b-color;
     border-bottom: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-    @include xs-phone {
+    @include phone {
       width: 100%;
       order: 9;
     }
   }
   &.five {
     grid-area: 22 / 1 / 23 / 5;
-    border-bottom: 1px solid $b-color;
-    @include xs-phone {
+    border-top: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 11;
+      border-right: 0px;
     }
   }
   &.six {
     grid-area: 15 / 5 / 16 / 9;
     border-bottom: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-    @include xs-phone {
+    border-right: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 13;
+      border-right: 0px;
     }
   }
   &.seven {
     grid-area: 23 / 1 / 24 / 9;
     background-color: get-color(primary, normal);
     border-bottom: 1px solid $b-color;
-    @include xs-phone {
+    border-right: 1px solid $b-color;
+    border-top: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 15;
+      border-right: 0px;
     }
   }
   &.eight {
-    grid-area: none;
-    display: none;
-  }
-
-  &.nine {
-    grid-area: 1 / 1 / 2 / 8;
-    border-bottom: 1px solid $b-color;
-    border-right: 1px solid $b-color;
-    @include xs-phone {
+    grid-area: 24/ 9 / 25 / 13;
+    border-top: 1px solid $b-color;
+    @include phone {
       display: none;
     }
   }
-  &.ten {
-    grid-area: 1 / 8 / 3 / 9;
-    border-bottom: 1px solid $b-color;
-    @include xs-phone {
+
+  &.nine {
+    grid-area: 1 / 1 / 2 / 9;
+    border-right: 1px solid $b-color;
+    @include phone {
       display: none;
     }
   }
@@ -246,20 +255,23 @@ export default {
   grid-area: 10 / 1 / 15 / 9;
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
+  border-right: 1px solid $b-color;
   background-color: get-color(primary, normal);
   z-index: 2;
-  @include xs-phone {
+  @include phone {
     width: 100%;
     order: 7;
-    min-height: 300px;
+    min-height: 35vh;
+    border-top: 0px;
+    border-right: 0px;
   }
 
   &.one {
     height: 16rem;
     border: 0px;
-    @include xs-phone {
+    @include phone {
       width: 100%;
-      height: 300px;
+      min-height: 35vh;
     }
   }
 }
@@ -267,45 +279,51 @@ export default {
 .styles__titles {
   @extend %center;
   height: 100%;
+  @include phone {
+    min-height: 35vh;
+  }
   h2 {
     @extend %title-100;
     padding: 1.6rem;
     @include phone {
-      font-size: 10rem;
-      padding: 3.2rem 1.6rem;
-    }
-    @include xs-phone {
-      font-size: 60px;
-      padding: 3.2rem 1.6rem;
+      font-size: 8rem;
+      // padding: 3.2rem 1.6rem;
     }
   }
 }
 
 .styles__grid__box__wrapper {
+  @include phone {
+    height: 75vh;
+  }
   &.one {
     grid-area: 2 / 1 / 9 / 5;
-    @include xs-phone {
+    border-top: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 1;
+      border-top: 0px;
     }
   }
   &.two {
     grid-area: 3 / 5 / 10 / 9;
-    @include xs-phone {
+    border-top: 1px solid $b-color;
+    @include phone {
       width: 100%;
       order: 3;
     }
   }
   &.three {
     grid-area: 1 / 9 / 8 / 13;
-    @include xs-phone {
+    @include phone {
       width: 100%;
       order: 5;
+      border-top: 1px solid $b-color;
     }
   }
   &.four {
     grid-area: 9 / 9 / 16 / 13;
-    @include xs-phone {
+    @include phone {
       width: 100%;
       order: 8;
     }
@@ -313,21 +331,22 @@ export default {
 
   &.five {
     grid-area: 15 / 1 / 22 / 5;
-    @include xs-phone {
+    @include phone {
       width: 100%;
       order: 10;
     }
   }
   &.six {
     grid-area: 16 / 5 / 23 / 9;
-    @include xs-phone {
+    @include phone {
       width: 100%;
       order: 12;
+      border-top: 1px solid $b-color;
     }
   }
   &.seven {
     grid-area: 17 / 9 / 24 / 13;
-    @include xs-phone {
+    @include phone {
       width: 100%;
       order: 14;
     }

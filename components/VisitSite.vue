@@ -24,7 +24,7 @@ export default {
   position: relative;
   overflow: hidden;
   min-width: 40%;
-  padding: 0.8rem;
+  padding: 0.8rem 1.6rem;
 
   a {
     @extend %paragraph-20;

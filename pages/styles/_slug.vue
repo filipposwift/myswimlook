@@ -7,19 +7,19 @@
     />
     <div class="grid-container">
       <div class="left-icon-grid">
-        <nuxt-link :to="localePath(`/styles/${previousSlug}`)">
-          <div class="arrow-icon-wrapper">
-            <img
-              class="arrow-icon"
-              src="~/assets/img/arrow-left.svg"
-              alt="Left arrow icon"
-            />
-          </div>
-        </nuxt-link>
+        <ArrowLeftCircle :link="previousSlug" class="arrow-icon-wrapper" />
       </div>
+      <div class="right-icon-grid">
+        <ArrowRightCircle :link="nextSlug" class="arrow-icon-wrapper" />
+      </div>
+
       <div class="previous-title-grid">
         <h2 class="style-nav-item-number">{{ previousNumberOfItems }}</h2>
         <h2 class="style-nav-item">{{ previous }}</h2>
+      </div>
+      <div class="next-title-grid">
+        <h2 class="style-nav-item-number">{{ nextNumberOfItems }}</h2>
+        <h2 class="style-nav-item">{{ next }}</h2>
       </div>
       <div class="no-icon-grid"></div>
       <div class="current-title-grid">
@@ -37,22 +37,8 @@
           </div>
         </div>
       </div>
-      <div class="right-icon-grid">
-        <nuxt-link :to="localePath(`/styles/${nextSlug}`)">
-          <div class="arrow-icon-wrapper">
-            <img
-              class="arrow-icon"
-              src="~/assets/img/arrow-right.svg"
-              alt="Right arrow icon"
-            />
-          </div>
-        </nuxt-link>
-      </div>
-      <div class="next-title-grid">
-        <h2 class="style-nav-item-number">{{ nextNumberOfItems }}</h2>
-        <h2 class="style-nav-item">{{ next }}</h2>
-      </div>
-      <div class="spacer-nuovo"></div>
+
+      <!-- <div class="spacer-nuovo"></div> -->
     </div>
   </div>
 </template>
@@ -161,15 +147,17 @@ export default {
     previousSlug() {
       const getIndex = this.styles.map((e) => e.name).indexOf(this.name)
 
-      return this.styles[
-        getIndex - 1 >= 0 ? getIndex - 1 : this.styles.length - 1
-      ].slug
+      const slug =
+        this.styles[getIndex - 1 >= 0 ? getIndex - 1 : this.styles.length - 1]
+          .slug
+      return 'styles/' + slug
     },
 
     nextSlug() {
       const getIndex = this.styles.map((e) => e.name).indexOf(this.name)
-      return this.styles[getIndex + 1 < this.styles.length ? getIndex + 1 : 0]
-        .slug
+      const slug =
+        this.styles[getIndex + 1 < this.styles.length ? getIndex + 1 : 0].slug
+      return 'styles/' + slug
     },
   },
 
@@ -184,12 +172,24 @@ h2 {
   @extend %title-110;
   text-align: center;
   padding-top: 5rem;
+  @include phone {
+    font-size: 8rem;
+  }
 }
 
 .markdown-16 {
   @extend %title-30;
   white-space: pre-line;
   padding: 3rem;
+  @include desktop {
+    font-size: 3.4rem;
+  }
+  @include phone {
+    font-size: 2.4rem;
+  }
+  @include xs-phone {
+    font-size: 16px;
+  }
 }
 
 .grid-container {
@@ -199,6 +199,11 @@ h2 {
   grid-template-rows: 100px 1fr 100vh;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  @include phone {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .left-icon-grid {
@@ -207,14 +212,28 @@ h2 {
   border-right: 1px solid $b-color;
   display: flex;
   justify-content: center;
+  @include phone {
+    flex: 1 0 auto;
+    position: fixed;
+    left: 4vw;
+    z-index: 4;
+    background-color: get-color(primary, normal);
+    width: 20%;
+    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
+  }
 }
 
 .arrow-icon-wrapper {
   width: 100%;
+  height: 50px;
   position: sticky;
   top: 12rem;
   padding: 0.8rem;
-  z-index: 4; // Stay on top during scrolling
+  z-index: 4;
+  @include phone {
+    position: static;
+  }
 }
 
 .arrow-icon-wrapper-link {
@@ -236,15 +255,30 @@ h2 {
   border-left: 1px solid $b-color;
   display: flex;
   justify-content: center;
+  @include phone {
+    flex: 1 0 auto;
+    position: fixed;
+    right: 4vw;
+    z-index: 4;
+    background-color: get-color(primary, normal);
+    width: 20%;
+    border-bottom: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+  }
 }
 
 .previous-title-grid {
   grid-area: 2 / 1 / 4 / 2;
-  // border-right: 1px solid;
   position: relative;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: flex-start;
+  @include phone {
+    flex: 1 0 auto;
+    position: fixed;
+    left: 4vw;
+    top: 50px;
+    z-index: 5;
+    display: flex;
+    flex-direction: row-reverse;
+  }
 }
 
 .style-nav-item {
@@ -261,6 +295,16 @@ h2 {
   position: sticky;
   top: 34rem;
 
+  @include phone {
+    writing-mode: inherit;
+    transform: none;
+    height: 100%;
+    text-align: center;
+    position: static;
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+
   &.is-current {
     opacity: 1;
   }
@@ -274,11 +318,20 @@ h2 {
 
   padding: 5px;
   text-transform: uppercase;
-  height: 0.5%;
+  // height: 0.5%;
   text-align: right;
   opacity: 0.4;
   position: sticky;
   top: 29rem;
+  @include phone {
+    writing-mode: inherit;
+    transform: none;
+    height: 100%;
+    text-align: center;
+    position: static;
+    font-size: 16px;
+    line-height: 2rem;
+  }
 
   &.is-current {
     opacity: 1;
@@ -289,6 +342,9 @@ h2 {
   grid-area: 1 / 2 / 2 / 3;
   border-right: 1px solid $b-color;
   background-color: white;
+  @include phone {
+    display: none;
+  }
 }
 
 .current-title-grid {
@@ -296,6 +352,9 @@ h2 {
   border-right: 1px solid $b-color;
   background-color: white;
   position: relative;
+  @include phone {
+    display: none;
+  }
 }
 
 .content-grid {
@@ -306,6 +365,16 @@ h2 {
   grid-area: 2 / 12 / 4 / 13;
   border-left: 1px solid $b-color;
   position: relative;
+  @include phone {
+    flex: 1 0 auto;
+    position: fixed;
+    right: 4vw;
+    top: 50px;
+    z-index: 5;
+    display: flex;
+    flex-direction: row-reverse;
+    border-left: 0px;
+  }
 }
 
 .border-xs {

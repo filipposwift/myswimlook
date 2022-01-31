@@ -52,6 +52,12 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 20rem);
   }
+  @include phone {
+    // grid-template-rows: repeat(3, 40rem);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    margin-bottom: 5rem;
+  }
 }
 
 .hg__image {
@@ -59,7 +65,7 @@ export default {
   cursor: pointer;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 20rem;
   transition: transform 0.5s ease-out;
   overflow: hidden;
 

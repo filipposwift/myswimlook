@@ -1,40 +1,40 @@
 <template>
   <div class="layout__default">
     <nav class="left__navigation">
-      <ol>
+      <ul>
         <li class="nav__items">
           <nuxt-link :to="localePath('/styles')">
             <span>Styles</span>
           </nuxt-link>
         </li>
-        <li class="nav__items">
+        <li class="nav__items second">
           <nuxt-link :to="localePath('/designers')">
             <span>Designers</span>
           </nuxt-link>
         </li>
-      </ol>
-      <div class="spacer"></div>
+      </ul>
+      <!-- <div class="spacer"></div> -->
+    </nav>
+    <nav class="right__navigation">
+      <ul>
+        <li class="nav__items">
+          <nuxt-link :to="localePath('/stories')">
+            <span>Stories</span>
+          </nuxt-link>
+        </li>
+        <li class="nav__items second">
+          <nuxt-link :to="localePath('/people')">
+            <span>People</span>
+          </nuxt-link>
+        </li>
+      </ul>
+      <!-- <div class="spacer"></div> -->
     </nav>
     <main class="main__container">
       <TheAppHeader />
       <nuxt class="main__content" />
       <TheAppFooter />
     </main>
-    <div class="right__navigation">
-      <ol>
-        <li class="nav__items">
-          <nuxt-link :to="localePath('/stories')">
-            <span>Stories</span>
-          </nuxt-link>
-        </li>
-        <li class="nav__items">
-          <nuxt-link :to="localePath('/people')">
-            <span>People</span>
-          </nuxt-link>
-        </li>
-      </ol>
-      <div class="spacer"></div>
-    </div>
   </div>
 </template>
 
@@ -59,6 +59,7 @@ export default {}
 
 .main__container {
   grid-area: 1/2/2/12;
+  width: 100%;
 }
 
 .left__navigation {
@@ -68,11 +69,16 @@ export default {}
   justify-content: flex-start;
   position: fixed;
   top: 50px;
+  width: 4vw;
   background-color: get-color(primary, normal);
   z-index: 10;
-  border-right: 1px solid $b-color;
+  border-left: 1px solid $b-color;
+
   a.nuxt-link-active {
     color: get-color(basic, normal);
+  }
+  @include phone {
+    display: none;
   }
 }
 
@@ -80,13 +86,13 @@ export default {}
   text-transform: uppercase;
   position: relative;
   @extend %paragraph-menu;
-  line-height: 4vw;
-  height: 20rem;
-  width: 4vw;
+  // line-height: 4vw;
+  height: 200px;
+  width: 100%;
   overflow: hidden;
 
   border-top: 1px solid $b-color;
-  // border-bottom: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   @include phone {
     display: none;
   }
@@ -100,10 +106,20 @@ export default {}
       color: get-color(basic, normal);
     }
   }
+  &.second {
+    border-top: 0;
+  }
 }
 
 .main__content {
-  margin-top: 5rem;
+  margin-top: 50px;
+  width: 100%;
+  // overflow: hidden;
+  border-left: 1px solid $b-color;
+  border-right: 1px solid $b-color;
+  @include phone {
+    margin-top: 50px;
+  }
 }
 
 .right__navigation {
@@ -112,11 +128,12 @@ export default {}
   flex-direction: column;
   justify-content: flex-start;
   position: fixed;
+  width: 4vw;
   top: 50px;
   right: 0;
   background-color: get-color(primary, normal);
   z-index: 10;
-  border-left: 1px solid $b-color;
+  border-right: 1px solid $b-color;
 
   a.nuxt-link-active {
     color: get-color(basic, normal);

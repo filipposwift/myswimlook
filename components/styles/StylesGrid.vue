@@ -70,42 +70,42 @@ export default {
     transform: scale(0.95);
   }
 
-  &.one {
-    border-right: 1px solid $b-color;
-    // border-bottom: 1px solid $b-color;
-  }
+  // &.one {
+  //   // border-right: 1px solid $b-color;
+  //   // border-bottom: 1px solid $b-color;
+  // }
 
-  &.two {
-    border-right: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-  }
+  // &.two {
+  //   // border-right: 1px solid $b-color;
+  //   // border-left: 1px solid $b-color;
+  // }
 
-  &.three {
-    border-right: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-  }
+  // &.three {
+  //   // border-right: 1px solid $b-color;
+  //   // border-left: 1px solid $b-color;
+  // }
 
-  &.four {
-    border-top: 1px solid $b-color;
-    border-right: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-  }
+  // &.four {
+  //   // border-top: 1px solid $b-color;
+  //   // border-right: 1px solid $b-color;
+  //   // border-left: 1px solid $b-color;
+  // }
 
-  &.five {
-    border-right: 1px solid $b-color;
-    border-bottom: 1px solid $b-color;
-  }
+  // &.five {
+  //   // border-right: 1px solid $b-color;
+  //   // border-bottom: 1px solid $b-color;
+  // }
 
-  &.six {
-    border-right: 1px solid $b-color;
-    border-bottom: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-  }
+  // &.six {
+  //   // border-right: 1px solid $b-color;
+  //   // border-bottom: 1px solid $b-color;
+  //   // border-left: 1px solid $b-color;
+  // }
 
-  &.seven {
-    border-right: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-  }
+  // &.seven {
+  //   // border-right: 1px solid $b-color;
+  //   // border-left: 1px solid $b-color;
+  // }
 
   .styles__grid__media__image {
     @extend %cover;
@@ -134,25 +134,46 @@ export default {
       font-size: 40px;
     }
   }
+  &.one {
+    border-left: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include phone {
+      border-right: 0px;
+    }
+  }
+  &.two {
+    border-left: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include phone {
+      border-right: 0px;
+    }
+  }
   &.three {
-    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   &.four {
-    border-top: 1px solid $b-color;
-    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 
   &.five {
-    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include phone {
+      border-right: 0px;
+    }
   }
 
   &.six {
-    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
+    border-right: 1px solid $b-color;
+    @include phone {
+      border-right: 0px;
+    }
   }
 
   &.seven {
-    border-bottom: 1px solid $b-color;
+    border-left: 1px solid $b-color;
   }
 }
 .styles__grid__carousel__controls {

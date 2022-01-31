@@ -42,6 +42,9 @@ export default {
   margin: 10rem 10rem;
   padding: 3.2rem 1.6rem;
   border: 1px solid $b-color;
+  @include desktop {
+    margin: 15rem 8rem;
+  }
   @include xs-phone {
     margin: 20rem 2rem;
   }
@@ -52,9 +55,12 @@ export default {
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 10rem;
-    @include xs-phone {
+    @include desktop {
       font-size: 30px;
     }
+    // @include xs-phone {
+    //   font-size: 30px;
+    // }
   }
 }
 </style>

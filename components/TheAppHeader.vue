@@ -189,8 +189,14 @@ export default {
 
   h2 {
     color: get-color(primary, bright);
-    @extend %title-24;
+    @extend %title-30;
     line-height: 49px;
+    @include desktop {
+      font-size: 3.5rem;
+    }
+    @include tablet {
+      font-size: 4rem;
+    }
   }
 }
 

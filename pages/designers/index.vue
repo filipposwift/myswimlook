@@ -3,9 +3,9 @@
     <SocialHead :title="title" :description="description" :image="image" />
     <div class="designers__intro">
       <h1>
-        We have selected more than 70 different brands to inspire your awesome
-        look. We wanted to make sure that there was something for everyone and
-        we think we've succeeded!
+        We have selected more than 100 different bikinis and one-piece models
+        from top brands to inspire your awesome look. We wanted to make sure
+        that there was something for everyone and we think we've succeeded!
       </h1>
     </div>
     <div class="designers__grid__wrapper">
@@ -24,7 +24,7 @@
             :to="localePath(`/designers/${designer.slug}`)"
           >
             <li>
-              {{ designer.name }}
+              <p>{{ designer.name }}</p>
             </li>
           </nuxt-link>
         </ol>
@@ -73,9 +73,9 @@ export default {
         'Z',
       ],
       title:
-        'mySwimlook Designers - Browse our selection of more than 70 brands to inspire you this summer - Sustainable swimwear from A to Z - Swimsuit inspiration for 2022 - Your guide to the best sustainable swimwear brands in 2022',
+        'mySwimlook Designers - Browse our selection of more than 100 models from top brands to inspire you this summer - Sustainable swimwear from A to Z - Swimsuit inspiration for 2022 - Your guide to the best sustainable swimwear brands in 2022',
       description:
-        "Here are some of our favorite eco-friendly swimwear brands that we have handpicked to help you find the perfect one for your body type. It was not an easy job and so we've created this guide on what makes each brand unique",
+        "Here are some of our favorite swimwear brands that we have handpicked to help you find the perfect one for your body type. It was not an easy job and so we've created this guide on what makes each brand unique",
       image: 'https://myswimlook.com/social-media-card.jpg',
     }
   },
@@ -128,7 +128,15 @@ export default {
     font-size: 3rem;
     font-family: 'Work Sans', sans-serif;
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.5;
+    @include desktop {
+      font-size: 4rem;
+    }
+
+    @include tablet {
+      font-size: 5rem;
+    }
+
     @include phone {
       font-size: 18px;
     }
@@ -155,36 +163,45 @@ export default {
 
 .designers__letter {
   width: 100%;
-  height: 3.2rem;
+  // height: 3.2rem;
   padding-left: 1.6rem;
   @extend %title-30;
   border-bottom: 1px solid $b-color;
   background-color: get-color(primary, bright);
   @include phone {
     font-size: 24px;
-    height: 32px;
+    line-height: 1.1;
   }
   @include xs-phone {
     font-size: 20px;
-    height: 24px;
+    line-height: 1.1;
   }
 }
 
 .designers__letter__items {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   width: 100%;
-  height: 16rem;
-  padding-top: 1rem;
+  min-height: 16rem;
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
 
   li {
     @extend %paragraph-16;
+    flex: 1 0 25%;
     list-style: none;
-    padding-left: 1.5rem;
+    padding-left: 1.6rem;
     cursor: pointer;
-    transition: 0.2s;
-    &:hover {
-      color: get-color(basic, normal);
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+
+    p {
+      padding-right: 30px;
+      transition: 0.2s;
+      &:hover {
+        color: get-color(basic, normal);
+      }
     }
   }
 }

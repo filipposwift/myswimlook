@@ -19,12 +19,20 @@
       <div class="item__card__designer__left">
         <div class="item__card__designer__left-title">
           <div class="item__card__designer__left-title__inner">
-            <h1 :class="titleWordCount < 20 ? 'title80' : 'title60'">
+            <h1
+              :class="
+                titleWordCount < 20
+                  ? isMobile
+                    ? 'title50'
+                    : 'title80'
+                  : 'title60'
+              "
+            >
               {{ item.designer }}
             </h1>
             <p>{{ item.modelName }}</p>
             <div class="item__card__designer__left-price">
-              <h2>USD {{ item.price }}</h2>
+              <p>USD {{ item.price }}</p>
             </div>
             <div
               v-if="designerSite"
@@ -62,6 +70,12 @@ export default {
     },
   },
 
+  data() {
+    return {
+      windowSize: 800,
+    }
+  },
+
   computed: {
     titleWordCount() {
       return this.item.designer.length
@@ -82,6 +96,7 @@ export default {
       }
       return []
     },
+
     designerSite() {
       if (this.item.designer) {
         const tmp = this.$store.state.data.data.find(
@@ -94,6 +109,15 @@ export default {
       }
       return false
     },
+    isMobile() {
+      return this.windowSize <= 768 && this.titleWordCount > 10
+    },
+  },
+  mounted() {
+    this.windowSize = window.innerWidth
+    window.addEventListener('resize', () => {
+      this.windowSize = window.innerWidth
+    })
   },
 }
 </script>
@@ -102,7 +126,7 @@ export default {
 .item__card__wrapper {
   width: 100%;
   border-top: 1px solid $b-color;
-  z-index: 0;
+  // z-index: 0;
 }
 
 .item__card__designer {
@@ -110,6 +134,9 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   position: relative;
+  @include phone {
+    flex-direction: column-reverse;
+  }
 }
 
 .item__card__designer__right {
@@ -120,6 +147,16 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 100vh);
   border-left: 1px solid $b-color;
+  // z-index: 2;
+  @include desktop {
+    width: 50%;
+    max-width: none;
+  }
+
+  @include phone {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .item__card__designer__right__media {
@@ -131,41 +168,55 @@ export default {
 
 .item__card__designer__right__media-img {
   @extend %cover;
-  z-index: 0;
+  // z-index: 0;
 }
 
 .item__card__designer__left {
   width: 60%;
   height: 75vh;
-  position: relative;
-
+  min-height: fit-content;
   flex-grow: 1;
   position: sticky;
   top: 9rem;
+  @include desktop {
+    width: 50%;
+  }
+
+  @include phone {
+    width: 100%;
+    height: auto;
+    margin-bottom: 3.2rem;
+    top: 7rem;
+  }
 }
 
 .item__card__designer__left-title {
   width: 110%;
   background-color: get-color(primary, bright);
-  // border-top: 1px solid $b-color;
   border-right: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
-  // margin-top: 10rem;
-
   height: 25rem;
-  z-index: 2;
+  // z-index: 3;
+  @include desktop {
+    height: 35rem;
+  }
+  @include phone {
+    width: 100%;
+  }
 
   p {
     @extend %paragraph-20;
     text-transform: uppercase;
     text-align: center;
-    padding-bottom: 2.4rem;
+
+    padding: 2.4rem;
   }
 }
 
 .item__card__designer__left-title__inner {
   height: 100%;
   position: relative;
+  border-top: 1px solid $b-color;
 }
 
 .title80 {
@@ -182,6 +233,13 @@ export default {
   padding-bottom: 2rem;
 }
 
+.title50 {
+  @extend %title-50;
+  text-align: center;
+  padding-top: 2.4rem;
+  padding-bottom: 2rem;
+}
+
 .item__card__designer__left-price {
   @extend %center;
   width: 20%;
@@ -191,16 +249,24 @@ export default {
   bottom: 0;
   right: 0;
   background-color: get-color(primary, normal);
-  z-index: 2;
+  // z-index: 2;
+  @include desktop {
+    width: 30%;
+  }
+  @include tablet {
+    width: 40%;
+  }
 
-  h2 {
+  p {
     @extend %paragraph-20;
+    font-weight: 300;
     letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-    text-align: center;
     display: block;
+    padding: 0px;
+
+    @include phone {
+      font-size: 16px;
+    }
   }
 }
 
@@ -208,13 +274,25 @@ export default {
   position: absolute;
   bottom: 0;
   right: 20%;
-
   z-index: 2;
+  border-top: 1px solid $b-color;
+  border-left: 1px solid $b-color;
+  border-right: 1px solid $b-color;
+
+  @include desktop {
+    right: 30%;
+  }
+  @include tablet {
+    right: 40%;
+  }
 }
 
 .item__card__designer__left-description {
   @extend %paragraph-16;
   padding: 5rem 3.2rem;
+  @include phone {
+    display: none;
+  }
 }
 
 .item__card__instagram {

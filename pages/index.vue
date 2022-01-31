@@ -58,7 +58,7 @@
                       d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
                     ></path>
                   </svg>
-                  <h3>{{ style.message.text }}</h3>
+                  <h3>{{ style.text }}</h3>
                   <svg
                     aria-hidden="true"
                     class="arrow_right"
@@ -118,6 +118,34 @@
               </nuxt-link>
               <div v-else class="hc__slider__cell-text">
                 <h2>{{ designer.intro }}</h2>
+                <p>{{ designer.source }}</p>
+                <div class="hc__slider__cell-swipe">
+                  <svg
+                    aria-hidden="true"
+                    class="arrow_left"
+                    width="50"
+                    height="20"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      class="arrow_path"
+                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
+                    ></path>
+                  </svg>
+                  <h3>{{ designer.text }}</h3>
+                  <svg
+                    aria-hidden="true"
+                    class="arrow_right"
+                    width="50"
+                    height="20"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      class="arrow_path"
+                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
+                    ></path>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
@@ -138,9 +166,9 @@
           <div class="story__wrapper">
             <figure class="story__media">
               <nuxt-img
-                :src="lastStory.images[0].public_id"
+                :src="lastStory.coverImage[0].public_id"
                 provider="cloudinary"
-                width="400"
+                width="700"
                 class="story__media-img"
               ></nuxt-img>
             </figure>
@@ -149,7 +177,7 @@
               <div class="story__text">
                 <h3>{{ lastStory.title }}</h3>
                 <p>{{ lastStory.incipit }}</p>
-                <p v-if="!isMobile">{{ lastStory.highLight }}</p>
+                <!-- <p v-if="!isMobile">{{ lastStory.highLight }}</p> -->
               </div>
               <div class="story__text__cta">
                 <div class="cta__link">
@@ -197,13 +225,12 @@ export default {
   data() {
     return {
       designerIntro: {
-        intro: 'Featured designers to start your 2022',
+        text: 'Swipe to scroll',
+        intro: 'Sustainable brands to start your 2022',
+        source: '(source: good on you)',
       },
       stylesIntro: {
-        message: {
-          image: '',
-          text: 'Swipe to scroll',
-        },
+        text: 'Swipe to scroll',
         intro: "What's your mood today?",
       },
       windowSize: 800,
@@ -240,19 +267,22 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
-
+    // this.windowSize = window.innerWidth
+    // window.addEventListener('resize', () => {
+    //   this.windowSize = window.innerWidth
+    // })
+    this.initImageParallax()
     this.lineAnimation()
+    this.$ScrollTrigger.getById('parallax').enable()
     this.$ScrollTrigger.getById('item0').enable()
     this.$ScrollTrigger.getById('item1').enable()
   },
 
   destroyed() {
-    window.removeEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
+    // window.removeEventListener('resize', () => {
+    //   this.windowSize = window.innerWidth
+    // })
+    this.$ScrollTrigger.getById('parallax').disable()
     this.$ScrollTrigger.getById('item0').disable()
     this.$ScrollTrigger.getById('item1').disable()
   },
@@ -260,6 +290,26 @@ export default {
   methods: {
     getFeaturedImage(designer) {
       return designer[0].fields.cloudinarySwimlook[0].public_id
+    },
+
+    initImageParallax() {
+      const el = document.querySelector('.story__media')
+      const image = el.querySelector('.story__media-img')
+
+      this.$gsap.to(
+        image,
+        {
+          yPercent: 20,
+          ease: 'none',
+          scrollTrigger: {
+            id: 'parallax',
+            trigger: el,
+            start: 'top bottom',
+            scrub: true,
+          },
+        },
+        0
+      )
     },
 
     lineAnimation() {
@@ -394,6 +444,7 @@ export default {
   overflow-x: scroll;
   overflow-y: hidden;
   overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
   -ms-overflow-style: none;
   height: 35vw;
   width: 100vw;
@@ -455,6 +506,9 @@ export default {
         font-size: 16px;
       }
     }
+    p {
+      @extend %paragraph-16;
+    }
   }
 }
 .hc__slider__cell-txt:nth-child(2) {
@@ -489,6 +543,7 @@ export default {
 .story__media {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   position: relative;
   border: 1px solid $b-color;
   border-top: 0px;
@@ -498,6 +553,9 @@ export default {
 }
 .story__media-img {
   @extend %cover;
+  height: 120%;
+  // width: 120%;
+  top: -20%;
 }
 
 .story__text__inner {
@@ -549,7 +607,8 @@ export default {
     }
   }
   p {
-    @extend %paragraph-18;
+    @extend %paragraph-16;
+
     padding: 1.6rem;
     @include phone {
     }
