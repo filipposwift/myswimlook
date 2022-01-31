@@ -564,6 +564,7 @@ export default {
   border-top: 0px;
   @include phone {
     width: 85%;
+    min-height: 30vh;
   }
 }
 .story__media-img {
