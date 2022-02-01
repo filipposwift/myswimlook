@@ -130,7 +130,7 @@ export default {
             pin: false,
             scrub: 1,
             // markers: true,
-            end: () => '+=' + wrap.offsetWidth,
+            end: () => '+=' + wrap.offsetHeight,
           },
         })
       })
@@ -157,6 +157,10 @@ export default {
   --tile-margin: 0.5vw;
   width: calc(16.6666% - var(--tile-margin) * 2);
   height: calc(var(--tileswrap-height) / 3 - (4 * var(--tile-margin) / 2));
+  @include phone {
+    height: calc(var(--tileswrap-height) / 6 - (4 * var(--tile-margin) / 2));
+    width: calc(25% - var(--tile-margin) * 2);
+  }
 }
 
 .tiles__wrap {

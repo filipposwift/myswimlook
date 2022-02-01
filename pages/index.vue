@@ -542,8 +542,8 @@ export default {
   @include tablet {
     height: 130rem;
   }
-  @include phone {
-    // height: 800px;
+  @include xs-phone {
+    height: 165rem;
   }
 }
 .story__wrapper {
