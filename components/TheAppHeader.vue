@@ -156,6 +156,7 @@ export default {
   padding: 0.8rem;
   background-color: get-color(primary, bright);
   width: 20%;
+  cursor: pointer;
   @include phone {
     width: 50%;
     height: 50px;

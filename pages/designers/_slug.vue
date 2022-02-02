@@ -16,72 +16,54 @@
     <div
       v-for="item in models"
       :key="item.modelName"
-      class="designer__slider__wrapper"
+      class="designer__container"
     >
-      <div class="designer__slider__content">
-        <div class="designer__slider__cell sticky">
-          <div class="designer__slider__cell-text">
+      <h4>in {{ item.style }} Style</h4>
+      <div class="designer__slider__wrapper">
+        <div class="designer__slider__content">
+          <div class="designer__slider__cell sticky">
+            <div class="designer__slider__cell-text">
+              <nuxt-link
+                :to="{
+                  path: localePath(`/styles/${item.style.toLowerCase()}`),
+                  hash: `${item.modelName}`,
+                }"
+              >
+                <h3>in {{ item.style }} Style</h3>
+                <h2>{{ item.modelName }}</h2>
+              </nuxt-link>
+            </div>
+            <price-and-visit
+              :price="item.price"
+              :designer-site="designer.website"
+              class="designer__price-visit"
+            />
+          </div>
+          <div
+            v-for="(picture, index) in item.cloudinarySwimlook"
+            :key="index"
+            class="designer__slider__cell"
+          >
             <nuxt-link
               :to="{
                 path: localePath(`/styles/${item.style.toLowerCase()}`),
                 hash: `${item.modelName}`,
               }"
             >
-              <h3>in {{ item.style }} Style</h3>
-              <h2>{{ item.modelName }}</h2>
+              <figure class="designer__slider__cell__media">
+                <nuxt-img
+                  :src="picture.public_id"
+                  :alt="`Photo n. ${index} of ${item.modelName}`"
+                  provider="cloudinary"
+                  width="400"
+                  class="designer__slider__cell__media-img"
+                ></nuxt-img>
+              </figure>
             </nuxt-link>
           </div>
-          <div class="designer__slider__cell-swipe">
-            <svg
-              aria-hidden="true"
-              class="arrow_left"
-              width="50"
-              height="20"
-              viewBox="0 0 20 20"
-            >
-              <path
-                class="arrow_path"
-                d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-              ></path>
-            </svg>
-            <h3>Swipe to Scroll</h3>
-            <svg
-              aria-hidden="true"
-              class="arrow_right"
-              width="50"
-              height="20"
-              viewBox="0 0 20 20"
-            >
-              <path
-                class="arrow_path"
-                d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-              ></path>
-            </svg>
-          </div>
-        </div>
-        <div
-          v-for="(picture, index) in item.cloudinarySwimlook"
-          :key="index"
-          class="designer__slider__cell"
-        >
-          <nuxt-link
-            :to="{
-              path: localePath(`/styles/${item.style.toLowerCase()}`),
-              hash: `${item.modelName}`,
-            }"
-          >
-            <figure class="designer__slider__cell__media">
-              <nuxt-img
-                :src="picture.public_id"
-                :alt="`Photo n. ${index} of ${item.modelName}`"
-                provider="cloudinary"
-                width="400"
-                class="designer__slider__cell__media-img"
-              ></nuxt-img>
-            </figure>
-          </nuxt-link>
         </div>
       </div>
+      <swipe-to-scroll />
     </div>
     <div class="designer__end"></div>
   </div>
@@ -140,6 +122,11 @@ export default {
   min-height: 32rem;
   display: flex;
   border-bottom: 1px solid $b-color;
+  @include xs-phone {
+    flex-direction: column;
+    margin-top: 10rem;
+    margin-bottom: 20rem;
+  }
 }
 .designer__intro__left {
   position: relative;
@@ -147,6 +134,14 @@ export default {
   flex-shrink: 0;
   width: 30vw;
   padding: 1.6rem;
+  @include xs-phone {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10rem;
+    border-right: 0px;
+    border-bottom: 1px solid $b-color;
+  }
   h1 {
     @extend %title-50;
     @extend %translateCenter;
@@ -154,6 +149,12 @@ export default {
     @include phone {
       white-space: normal;
       text-align: center;
+    }
+    @include xs-phone {
+      flex-grow: 1;
+      text-align: left;
+      position: static;
+      transform: none;
     }
   }
 }
@@ -164,12 +165,16 @@ export default {
   right: 0;
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
+  @include xs-phone {
+    // position: static;
+    display: none;
+  }
 }
 
 .designer__intro__right {
   padding: 3.2rem 1.6rem;
   h2 {
-    @extend %title-30;
+    @extend %title-20;
     text-transform: uppercase;
     padding-bottom: 3.2rem;
   }
@@ -178,9 +183,26 @@ export default {
   }
 }
 
+.designer__container {
+  margin-top: 10rem;
+  h4 {
+    display: none;
+    @extend %title-30;
+    padding: 1.6rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: get-color(basic, normal);
+    }
+    @include phone {
+      display: block;
+    }
+  }
+}
+
 .designer__slider__wrapper {
   border-top: 1px solid $b-color;
-  margin-top: 10rem;
+
   position: relative;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -192,7 +214,7 @@ export default {
   border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
   @include phone {
-    height: 50vw;
+    height: 85vw;
   }
 }
 .designer__slider__wrapper::-webkit-scrollbar {
@@ -203,15 +225,26 @@ export default {
   display: flex;
   position: absolute;
   width: auto;
-  align-self: flex-start;
-  overflow: hidden;
+  // align-self: flex-start;
+  // overflow: hidden;
 }
 
 .designer__slider__cell:first-of-type {
   position: sticky;
+  align-self: flex-start;
   left: 0;
   z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   background-color: get-color(primary, bright);
+  @include phone {
+    width: 20vw;
+    height: 85vw;
+  }
+  @include xs-phone {
+    width: 25vw;
+  }
 }
 
 .designer__slider__cell:last-of-type {
@@ -225,16 +258,18 @@ export default {
   z-index: 1;
 
   @include phone {
-    width: 60vw;
-    height: 50vw;
+    width: 90vw;
+    height: 85vw;
   }
 }
 
 .designer__slider__cell-text {
+  @extend %center;
+  height: 80%;
+  width: 100%;
+  background-color: get-color(primary, bright);
+  padding-left: 10px;
   position: relative;
-
-  padding: 1.6rem;
-  margin: 4rem 0rem;
   h3 {
     @extend %title-30;
     padding-bottom: 8rem;
@@ -243,13 +278,15 @@ export default {
     &:hover {
       color: get-color(basic, normal);
     }
+    @include phone {
+      display: none;
+    }
   }
   h2 {
     font-family: 'Work Sans', sans-serif;
     font-size: 3rem;
     text-align: center;
     text-transform: uppercase;
-    color: get-color(secondary, dark);
 
     transition: all 0.3s ease-in-out;
     cursor: pointer;
@@ -257,40 +294,28 @@ export default {
       color: get-color(basic, normal);
     }
     @include desktop {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
     @include tablet {
-      font-size: 5rem;
+      font-size: 4rem;
     }
-  }
-}
-
-.designer__slider__cell-swipe {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  h3 {
-    font-family: 'Work Sans', sans-serif;
-    color: #000000;
-    font-weight: 300;
-    line-height: 1.2;
-    font-size: max(2vw);
-    text-align: center;
     @include phone {
-      font-size: 24px;
-    }
-    @include xs-phone {
-      font-size: 16px;
+      font-size: 2.5rem;
+      transform: rotate(-90deg);
+      width: 50vw;
+      line-height: 1.5;
     }
   }
 }
 
-.arrow_left {
-  transform: rotate(180deg);
+.designer__price-visit {
+  border-top: 1px solid $b-color;
+  border-left: 1px solid $b-color;
+  margin-left: auto;
+  width: fit-content;
+  @include phone {
+    border-left: 0px;
+  }
 }
 
 .designer__slider__cell__media {
@@ -301,6 +326,7 @@ export default {
   overflow: hidden;
 
   &:hover {
+    transform: translate3d(0, 0, 0);
     transform: scale(0.95);
   }
 

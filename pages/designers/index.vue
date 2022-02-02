@@ -179,25 +179,24 @@ export default {
 }
 
 .designers__letter__items {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
   min-height: 16rem;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
+  @include phone {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   li {
     @extend %paragraph-16;
-    flex: 1 0 25%;
     list-style: none;
-    padding-left: 1.6rem;
     cursor: pointer;
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
+    padding: 1.6rem;
 
     p {
-      padding-right: 30px;
       transition: 0.2s;
       &:hover {
         color: get-color(basic, normal);

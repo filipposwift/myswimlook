@@ -35,6 +35,18 @@
   font-family: 'FogtwoNo5', serif;
   font-size: 2rem;
   color: get-color(secondary, normal);
+  @include desktop {
+    font-size: 2.5rem;
+  }
+  @include tablet {
+    font-size: 3rem;
+  }
+  @include phone {
+    font-size: 2rem;
+  }
+  @include xs-phone {
+    font-size: 2.5rem;
+  }
 }
 
 %title-24 {
@@ -49,6 +61,10 @@
   @include tablet {
     font-size: 4rem;
   }
+
+  @include phone {
+    font-size: 2.4rem;
+  }
 }
 
 %title-30 {
@@ -62,6 +78,9 @@
   }
   @include tablet {
     font-size: 4.5rem;
+  }
+  @include phone {
+    font-size: 3rem;
   }
 }
 
@@ -88,7 +107,7 @@
     font-size: 6rem;
   }
   @include tablet {
-    font-size: 7rem;
+    font-size: 6.5rem;
   }
 }
 
@@ -194,6 +213,9 @@
 
   @include phone {
     font-size: 20px;
+  }
+  @include xs-phone {
+    font-size: 18px;
   }
 }
 

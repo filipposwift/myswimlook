@@ -45,7 +45,7 @@
               </nuxt-link>
               <div v-else class="hc__slider__cell-text">
                 <h2>{{ style.intro }}</h2>
-                <div class="hc__slider__cell-swipe">
+                <!-- <div class="hc__slider__cell-swipe">
                   <svg
                     aria-hidden="true"
                     class="arrow_left"
@@ -71,11 +71,12 @@
                       d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
                     ></path>
                   </svg>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
+        <swipe-to-scroll />
       </section>
       <section class="home__section home__designers">
         <HomeTheTitle>Designers</HomeTheTitle>
@@ -119,7 +120,7 @@
               <div v-else class="hc__slider__cell-text">
                 <h2>{{ designer.intro }}</h2>
                 <p>{{ designer.source }}</p>
-                <div class="hc__slider__cell-swipe">
+                <!-- <div class="hc__slider__cell-swipe">
                   <svg
                     aria-hidden="true"
                     class="arrow_left"
@@ -145,11 +146,12 @@
                       d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
                     ></path>
                   </svg>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
+        <swipe-to-scroll />
       </section>
       <section class="home__section home__stories">
         <HomeTheTitle>Stories</HomeTheTitle>
@@ -177,7 +179,6 @@
               <div class="story__text">
                 <h3>{{ lastStory.title }}</h3>
                 <p>{{ lastStory.incipit }}</p>
-                <!-- <p v-if="!isMobile">{{ lastStory.highLight }}</p> -->
               </div>
               <div class="story__text__cta">
                 <div class="cta__link">
@@ -218,6 +219,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+
 export default {
   name: 'HomePage',
   layout: 'home',
@@ -233,7 +235,6 @@ export default {
         text: 'Swipe to scroll',
         intro: "What's your mood today?",
       },
-      windowSize: 800,
     }
   },
 
@@ -267,10 +268,6 @@ export default {
     },
   },
   mounted() {
-    // this.windowSize = window.innerWidth
-    // window.addEventListener('resize', () => {
-    //   this.windowSize = window.innerWidth
-    // })
     this.initImageParallax()
     this.lineAnimation()
     this.$ScrollTrigger.getById('parallax').enable()
@@ -279,9 +276,6 @@ export default {
   },
 
   destroyed() {
-    // window.removeEventListener('resize', () => {
-    //   this.windowSize = window.innerWidth
-    // })
     this.$ScrollTrigger.getById('parallax').disable()
     this.$ScrollTrigger.getById('item0').disable()
     this.$ScrollTrigger.getById('item1').disable()
@@ -329,7 +323,6 @@ export default {
             id: 'item' + i,
             trigger: item,
             start: 'center 80%',
-            // markers: true,
             onEnter: () => anim.play(),
           })
 
@@ -366,12 +359,8 @@ export default {
   overflow: hidden;
 
   &:hover {
-    transform: scale(0.95);
     transform: translate3d(0, 0, 0);
-  }
-  @include phone {
-    height: 95%;
-    margin-top: 16px;
+    transform: scale(0.95);
   }
 
   &-img {
@@ -394,17 +383,13 @@ export default {
   h2 {
     @extend %vertical-titles;
     transition: 0.2s;
-    @include phone {
-      font-size: 24px;
-    }
+    // @include phone {
+    //   font-size: 24px;
+    // }
     &:hover {
       color: get-color(basic, normal);
     }
   }
-}
-
-.arrow_left {
-  transform: rotate(180deg);
 }
 
 .home__content {
@@ -463,7 +448,7 @@ export default {
   border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
   @include phone {
-    height: 50vw;
+    height: 75vw;
   }
 }
 .hc__slider__wrapper::-webkit-scrollbar {
@@ -475,6 +460,7 @@ export default {
   overflow: hidden;
   position: absolute;
   width: auto;
+  align-self: flex-start;
 }
 .hc__slider__cell:last-of-type {
   margin-right: 10vw;
@@ -486,73 +472,58 @@ export default {
   border-right: 1px solid $b-color;
 
   @include phone {
-    width: 60vw;
-    height: 50vw;
-  }
-
-  &-text {
-    height: 100%;
-    width: 100%;
-    background-color: get-color(primary, bright);
-    padding-left: 10px;
-    position: relative;
-    h2 {
-      @extend %title-50;
-      line-height: 1.2;
-      font-size: max(5vw);
-      @include phone {
-        font-size: 32px;
-      }
-    }
-    h3 {
-      font-family: 'Work Sans', sans-serif;
-      color: #000000;
-      font-weight: 300;
-      line-height: 1.2;
-      font-size: max(2vw);
-      text-align: center;
-      @include phone {
-        font-size: 24px;
-      }
-      @include xs-phone {
-        font-size: 16px;
-      }
-    }
-    p {
-      @extend %paragraph-16;
-    }
+    width: 90vw;
+    height: 75vw;
   }
 }
-.hc__slider__cell-txt:nth-child(2) {
-  text-align: end;
-}
 
-.hc__slider__cell-swipe {
+.hc__slider__cell-text {
+  @extend %center;
+  height: 100%;
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  background-color: get-color(primary, bright);
+  padding-left: 10px;
+  position: relative;
+  h2 {
+    @extend %title-50;
+    line-height: 1.2;
+    font-size: max(5vw);
+    @include phone {
+      font-size: 7rem;
+    }
+  }
+  h3 {
+    font-family: 'Work Sans', sans-serif;
+    color: #000000;
+    font-weight: 300;
+    line-height: 1.2;
+    font-size: max(2vw);
+    text-align: center;
+    @include phone {
+      font-size: 24px;
+    }
+    @include xs-phone {
+      font-size: 16px;
+    }
+  }
+
+  p {
+    @extend %paragraph-16;
+
+    position: absolute;
+    left: 16px;
+    bottom: 32px;
+  }
 }
 
-.hc__stories {
-  height: 80rem;
-  @include tablet {
-    height: 130rem;
-  }
-  @include xs-phone {
-    height: 165rem;
-  }
-}
 .story__wrapper {
   display: flex;
-  height: 100%;
+  height: 40vw;
   @include phone {
     flex-direction: column;
     position: relative;
     width: 100%;
+    height: auto;
   }
 }
 .story__media {
@@ -564,7 +535,10 @@ export default {
   border-top: 0px;
   @include phone {
     width: 85%;
-    min-height: 30vh;
+    min-height: 60vh;
+  }
+  @include xs-phone {
+    min-height: 40vh;
   }
 }
 .story__media-img {
@@ -577,7 +551,6 @@ export default {
 .story__text__inner {
   position: relative;
   max-width: 50%;
-  min-height: max-content;
   @include phone {
     position: static;
     max-width: 100%;
@@ -604,14 +577,14 @@ export default {
     background: none;
     border: none;
     transform-origin: bottom right;
-    transform: translate(0%, 10%) rotate(-90deg);
+    transform: translate(0%, -50%) rotate(-90deg);
     white-space: nowrap;
-    font-size: 5.5rem;
+    font-size: 4.5rem;
   }
 }
 .story__text {
   margin-top: 15rem;
-  padding: 2.4rem 1.6rem 50px 1.6rem;
+  padding: 2.4rem 1.6rem;
 
   @include phone {
     margin-top: 0;
@@ -627,9 +600,17 @@ export default {
   }
   p {
     @extend %paragraph-16;
+    max-height: 38rem;
+    line-height: 4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: calc(100%);
+    min-width: 0;
 
     padding: 1.6rem;
-    @include phone {
+    @include xs-phone {
+      line-height: 5rem;
     }
   }
 }
@@ -661,8 +642,8 @@ export default {
   color: get-color(primary, bright);
   position: relative;
   span {
-    @extend %paragraph-20;
-    font-weight: 300;
+    @extend %paragraph-20-light;
+    // font-weight: 300;
     line-height: 50px;
     text-transform: uppercase;
     white-space: nowrap;

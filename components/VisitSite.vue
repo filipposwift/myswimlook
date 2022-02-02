@@ -23,11 +23,12 @@ export default {
   color: get-color(primary, bright);
   position: relative;
   overflow: hidden;
-  min-width: 40%;
+  width: 100%;
+  // min-width: 40%;
   padding: 0.8rem 1.6rem;
 
   a {
-    @extend %paragraph-20;
+    @extend %paragraph-20-light;
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
@@ -46,7 +47,7 @@ export default {
     text-transform: uppercase;
     cursor: pointer;
     padding: 0.8rem;
-    @extend %paragraph-20;
+    @extend %paragraph-20-light;
     top: 0;
     left: 0;
     width: 100%;

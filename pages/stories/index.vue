@@ -43,37 +43,11 @@
           </nuxt-link>
           <div v-else class="stories__slider__cell-text">
             <h2>{{ story.intro }}</h2>
-            <div class="stories__slider__cell-swipe">
-              <svg
-                aria-hidden="true"
-                class="arrow_left"
-                width="50"
-                height="20"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  class="arrow_path"
-                  d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                ></path>
-              </svg>
-              <h3>Swipe to scroll</h3>
-              <svg
-                aria-hidden="true"
-                class="arrow_right"
-                width="50"
-                height="20"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  class="arrow_path"
-                  d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                ></path>
-              </svg>
-            </div>
           </div>
         </div>
       </div>
     </div>
+    <swipe-to-scroll />
     <div class="stories__text">
       <p>Visit our instragram @myswimlook to share your ideas</p>
     </div>
@@ -147,10 +121,7 @@ export default {
   border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
   @include phone {
-    height: 50vw;
-  }
-  @include xs-phone {
-    height: 75vw;
+    height: 80vw;
   }
 }
 .stories__slider__wrapper::-webkit-scrollbar {
@@ -176,45 +147,26 @@ export default {
     width: 40vw;
   }
   @include phone {
-    height: 50vw;
-    width: 60vw;
-  }
-
-  @include xs-phone {
-    height: 75vw;
-    width: 65vw;
+    height: 80vw;
+    width: 90vw;
   }
 }
 
 .stories__slider__cell-text {
-  position: relative;
+  @extend %center;
   height: 100%;
   width: 100%;
   background-color: get-color(primary, bright);
   padding-left: 10px;
+  position: relative;
   h2 {
     @extend %title-50;
     line-height: 1.2;
     font-size: max(5vw);
     @include phone {
-      font-size: 50px;
+      font-size: 7rem;
     }
   }
-}
-
-.stories__slider__cell-txt:nth-child(2) {
-  text-align: end;
-}
-
-.stories__slider__cell-swipe {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
   h3 {
     font-family: 'Work Sans', sans-serif;
     color: #000000;
@@ -229,10 +181,14 @@ export default {
       font-size: 16px;
     }
   }
-}
 
-.arrow_left {
-  transform: rotate(180deg);
+  p {
+    @extend %paragraph-16;
+
+    position: absolute;
+    left: 16px;
+    bottom: 32px;
+  }
 }
 
 .stories__text {
@@ -258,16 +214,14 @@ export default {
 }
 
 .cell__image__media {
-  height: 75%;
+  height: 80%;
   position: relative;
   width: 100%;
   transition: transform 1s ease-out;
   overflow: hidden;
-  @include xs-phone {
-    height: 65%;
-  }
 
   &:hover {
+    transform: translate3d(0, 0, 0);
     transform: scale(0.95);
   }
 
@@ -285,7 +239,7 @@ export default {
 .cell__title {
   position: relative;
   width: 100%;
-  height: 25%;
+  height: 20%;
   @extend %title-24;
   border-top: 1px solid $b-color;
   @include phone {
@@ -297,7 +251,7 @@ export default {
   }
 
   h2 {
-    padding: 3.2rem 1.6rem;
+    // padding: 3.2rem 1.6rem;
     transition: 0.2s;
     &:hover {
       color: get-color(basic, normal);

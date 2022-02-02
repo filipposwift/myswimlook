@@ -40,6 +40,7 @@
         <p>
           {{ story.subtitle }}
         </p>
+        <h6 v-if="story.author">by {{ story.author }}</h6>
       </div>
       <div class="story__intro__incipit">
         <p>
@@ -306,11 +307,11 @@ export default {
     64rem;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  // @include phone {
+  //   grid-template-rows: none;
+  //   grid-auto-rows: minmax(16rem, auto);
+  // }
   @include phone {
-    grid-template-rows: none;
-    grid-auto-rows: minmax(16rem, auto);
-  }
-  @include xs-phone {
     display: flex;
     flex-direction: column;
   }
@@ -322,10 +323,10 @@ export default {
   border-bottom: 1px solid $b-color;
   border-right: 1px solid $b-color;
   background-color: get-color(primary, bright);
+  // @include phone {
+  //   grid-area: 2 / 1 / 3 / 8;
+  // }
   @include phone {
-    grid-area: 2 / 1 / 3 / 8;
-  }
-  @include xs-phone {
     order: 1;
     border-top: 0px;
     border-right: 0px;
@@ -333,7 +334,7 @@ export default {
   h1 {
     @extend %title-60;
     padding: 3.2rem 1.6rem;
-    @include xs-phone {
+    @include phone {
       font-size: 24px;
       line-height: 1.1;
       padding: 5rem 1.6rem;
@@ -344,10 +345,10 @@ export default {
   grid-area: 1 / 5 / 6 / 13;
   position: relative;
   border-left: 1px solid $b-color;
+  // @include phone {
+  //   grid-area: 1 / 3 / 7 / 13;
+  // }
   @include phone {
-    grid-area: 1 / 3 / 7 / 13;
-  }
-  @include xs-phone {
     order: 2;
     height: 50vh;
   }
@@ -359,10 +360,10 @@ export default {
 .story__intro__subtitle {
   grid-area: 3 / 1 / 4 / 5;
   margin: 4rem;
+  // @include phone {
+  //   grid-area: 7 / 1 / 8 / 8;
+  // }
   @include phone {
-    grid-area: 7 / 1 / 8 / 8;
-  }
-  @include xs-phone {
     order: 3;
   }
   p {
@@ -370,14 +371,20 @@ export default {
     font-weight: 300;
     text-align: center;
   }
+  h6 {
+    @extend %paragraph-16;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 3.2rem 0;
+  }
 }
 .story__intro__incipit {
   grid-area: 4 / 1 / 5 / 5;
-  @include phone {
-    grid-area: 8 / 1 / 9 / 8;
-  }
+  // @include phone {
+  //   grid-area: 8 / 1 / 9 / 8;
+  // }
 
-  @include xs-phone {
+  @include phone {
     order: 4;
   }
 
@@ -394,11 +401,11 @@ export default {
   border-bottom: 1px solid $b-color;
   @extend %center;
 
-  @include phone {
-    grid-area: 9 / 1 / 10 / 13;
-  }
+  // @include phone {
+  //   grid-area: 9 / 1 / 10 / 13;
+  // }
 
-  @include xs-phone {
+  @include phone {
     order: 6;
   }
 
@@ -409,15 +416,16 @@ export default {
     text-align: center;
     text-transform: uppercase;
     padding: 3.2rem 1.6rem;
+    // @include phone {
+    //   font-size: 20px;
+    //   line-height: 1.1;
     @include phone {
-      font-size: 20px;
-      line-height: 1.1;
-      @include xs-phone {
-        padding: 40px 1.6rem;
-      }
+      font-size: 2.4rem;
+      padding: 40px 1.6rem;
     }
   }
 }
+// }
 
 .story__intro__style__card__wrapper {
   grid-area: 5 / 9 / 7 / 13;
@@ -425,11 +433,11 @@ export default {
   border-bottom: 1px solid $b-color;
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
+  // @include phone {
+  //   grid-area: 6 / 8 / 9 / 13;
+  //   border-bottom: 0px;
+  // }
   @include phone {
-    grid-area: 6 / 8 / 9 / 13;
-    border-bottom: 0px;
-  }
-  @include xs-phone {
     order: 5;
     border-bottom: 0px;
     border-left: 0px;
@@ -447,9 +455,9 @@ export default {
   @include phone {
     grid-template-rows: 7rem 1fr 7rem;
   }
-  @include xs-phone {
-    grid-template-rows: 14rem 1fr 14rem;
-  }
+  // @include xs-phone {
+  //   grid-template-rows: 14rem 1fr 14rem;
+  // }
 }
 
 .story__intro__style-card__hashtag {
@@ -492,7 +500,7 @@ export default {
     @include desktop {
       font-size: 4.5rem;
     }
-    @include xs-phone {
+    @include phone {
       font-size: 30px;
     }
   }
@@ -513,16 +521,18 @@ export default {
     line-height: 5rem;
     border-right: 1px solid $b-color;
     @include phone {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 7rem;
+      letter-spacing: 2px;
+      flex-grow: 1;
     }
-    @include xs-phone {
-      line-height: 14rem;
-    }
+    // @include xs-phone {
+    //   line-height: 14rem;
+    // }
   }
   .visit {
-    flex-grow: 1;
-    @include xs-phone {
+    // flex-grow: 1;
+    @include phone {
       align-items: center;
       display: flex;
       justify-content: center;
@@ -549,21 +559,33 @@ export default {
   grid-template-rows: 10rem repeat(2, minmax(0, 1fr)) 10rem;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  @include phone {
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
 .story__middle__reference__media {
   &-top {
     grid-area: 1 / 1 / 3 / 4;
     position: relative;
+    @include phone {
+      grid-area: 1 / 1 / 2 / 7;
+    }
   }
 
   &-bottom {
     grid-area: 3 / 1 / 5 / 4;
     position: relative;
+    @include phone {
+      grid-area: 1 / 7 / 2 / 13;
+    }
   }
 
   &-big {
     grid-area: 2 / 4 / 5 / 13;
     position: relative;
+    @include phone {
+      grid-area: 2 / 1 / 3 / 13;
+    }
   }
 }
 
