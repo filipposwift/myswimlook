@@ -10,7 +10,7 @@
         <ArrowLeftCircle :link="previousSlug" class="arrow-icon-wrapper" />
       </div>
       <div class="right-icon-grid">
-        <ArrowRightCircle :link="nextSlug" class="arrow-icon-wrapper" />
+        <ArrowRightCircle :link="nextSlug" class="arrow-icon-wrapper right" />
       </div>
 
       <div class="previous-title-grid">
@@ -49,6 +49,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'StylePage',
+  // layout: 'home',
   validate({ params, store }) {
     return store.state.styles.data.some((el) => el.fields.slug === params.slug)
   },
@@ -185,10 +186,11 @@ h2 {
     font-size: 3.4rem;
   }
   @include phone {
-    font-size: 2.4rem;
-  }
-  @include xs-phone {
     font-size: 16px;
+    line-height: 1.3;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    color: get-color(secondary, dark);
   }
 }
 
@@ -217,8 +219,9 @@ h2 {
     position: fixed;
     left: 4vw;
     z-index: 4;
-    background-color: get-color(primary, normal);
+    background-color: get-color(primary, bright);
     width: 20%;
+    height: 60px;
     border-bottom: 1px solid $b-color;
     border-left: 1px solid $b-color;
   }
@@ -233,20 +236,11 @@ h2 {
   z-index: 4;
   @include phone {
     position: static;
+    display: flex;
+    justify-content: flex-start;
   }
-}
-
-.arrow-icon-wrapper-link {
-  width: 100%;
-  height: 100%;
-}
-
-.arrow-icon {
-  transition: 0.2s;
-  cursor: pointer;
-  &:hover {
-    filter: invert(41%) sepia(84%) saturate(2937%) hue-rotate(346deg)
-      brightness(104%) contrast(97%);
+  &.right {
+    justify-content: flex-end;
   }
 }
 
@@ -260,8 +254,9 @@ h2 {
     position: fixed;
     right: 4vw;
     z-index: 4;
-    background-color: get-color(primary, normal);
+    background-color: get-color(primary, bright);
     width: 20%;
+    height: 60px;
     border-bottom: 1px solid $b-color;
     border-right: 1px solid $b-color;
   }
@@ -329,7 +324,7 @@ h2 {
     height: 100%;
     text-align: center;
     position: static;
-    font-size: 16px;
+    font-size: 1.8rem;
     line-height: 2rem;
   }
 

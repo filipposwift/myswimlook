@@ -59,9 +59,9 @@ export default {
   //   pointer-events: auto;
   cursor: pointer;
   position: relative;
-  // display: inline-block;
-  // -webkit-clip-path: circle(50% at 50% 50%);
-  // clip-path: circle(50% at 50% 50%);
+  display: inline-block;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
 }
 
 .progress__wrapper {
@@ -83,10 +83,6 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  @include phone {
-    width: 50%;
-    height: 50%;
-  }
 }
 .arrow {
   @extend %ab-center;

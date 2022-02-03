@@ -15,27 +15,28 @@
           />
         </figure>
       </div>
-
-      <div class="item__card__designer__left">
+      <div class="item__card__designer__left sticky">
         <div class="item__card__designer__left-title">
           <div class="item__card__designer__left-title__inner">
             <h1
               :class="
                 titleWordCount < 20
                   ? isMobile
-                    ? 'title50'
+                    ? 'title30'
                     : 'title80'
+                  : isMobile
+                  ? 'title30'
                   : 'title60'
               "
             >
               {{ item.designer }}
             </h1>
             <p>{{ item.modelName }}</p>
-            <div class="item__card__designer__left-price">
+            <div v-if="isNewMobile" class="item__card__designer__left-price">
               <p>USD {{ item.price }}</p>
             </div>
             <div
-              v-if="designerSite"
+              v-if="designerSite && isNewMobile"
               class="item__card__designer__left-visit-site"
             >
               <VisitSite :url="designerSite" />
@@ -112,6 +113,9 @@ export default {
     isMobile() {
       return this.windowSize <= 768 && this.titleWordCount > 10
     },
+    isNewMobile() {
+      return this.windowSize > 768
+    },
   },
   mounted() {
     this.windowSize = window.innerWidth
@@ -131,6 +135,7 @@ export default {
 
 .item__card__designer {
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row-reverse;
   position: relative;
@@ -173,11 +178,10 @@ export default {
 
 .item__card__designer__left {
   width: 60%;
-  height: 75vh;
-  min-height: fit-content;
+  height: 50vh;
+  // min-height: fit-content;
   flex-grow: 1;
-  position: sticky;
-  top: 9rem;
+
   @include desktop {
     width: 50%;
   }
@@ -186,7 +190,17 @@ export default {
     width: 100%;
     height: auto;
     margin-bottom: 3.2rem;
-    top: 7rem;
+    // display: none;
+    top: 2rem;
+  }
+  &.sticky {
+    align-self: flex-start;
+    position: sticky;
+    top: 10rem;
+    overflow: hidden;
+    @include phone {
+      top: 50px;
+    }
   }
 }
 
@@ -201,15 +215,23 @@ export default {
     height: 35rem;
   }
   @include phone {
+    background-color: transparent;
     width: 100%;
+    height: 100px;
   }
 
   p {
     @extend %paragraph-20;
     text-transform: uppercase;
     text-align: center;
-
     padding: 2.4rem;
+    @include phone {
+      dispaly: block;
+      width: 100%;
+      background-color: get-color(primary, bright);
+      font-size: 16px;
+      line-height: 1.2;
+    }
   }
 }
 
@@ -233,11 +255,12 @@ export default {
   padding-bottom: 2rem;
 }
 
-.title50 {
-  @extend %title-50;
+.title30 {
+  @extend %title-30;
   text-align: center;
   padding-top: 2.4rem;
   padding-bottom: 2rem;
+  background-color: get-color(primary, bright);
 }
 
 .item__card__designer__left-price {

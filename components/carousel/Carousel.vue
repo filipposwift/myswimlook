@@ -121,6 +121,12 @@ export default {
   padding: 1.6rem;
   pointer-events: none;
   cursor: default;
+  @include phone {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+    text-align: center;
+  }
   p {
     span {
       color: get-color(basic, normal);

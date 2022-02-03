@@ -56,12 +56,11 @@ export default {
 .circle__back {
   width: 70px;
   height: 70px;
-  //   pointer-events: auto;
   cursor: pointer;
   position: relative;
-  //   display: inline-block;
-  //   -webkit-clip-path: circle(50% at 50% 50%);
-  //   clip-path: circle(50% at 50% 50%);
+  display: inline-block;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
 }
 
 .progress__wrapper {
@@ -84,8 +83,8 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   @include phone {
-    width: 50%;
-    height: 50%;
+    // width: 50%;
+    // height: 50%;
   }
 }
 .arrow {
