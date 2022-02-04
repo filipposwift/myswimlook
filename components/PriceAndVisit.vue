@@ -48,7 +48,6 @@ export default {
   }
 
   @extend %center;
-  border-right: 1px solid $b-color;
 
   p {
     @extend %paragraph-20-light;
@@ -61,10 +60,16 @@ export default {
       font-size: 16px;
       padding: 0.8rem;
     }
+    @include xs-phone {
+      font-size: 14px;
+      padding: 0.8rem;
+      letter-spacing: 1px;
+    }
   }
 }
 
 .price {
   background-color: get-color(primary, normal);
+  border-right: 1px solid $b-color;
 }
 </style>

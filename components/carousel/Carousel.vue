@@ -16,7 +16,7 @@
         </p>
       </div>
       <carousel-indicators
-        v-if="slides.length > 0"
+        v-if="slides.length > 1"
         :slides="slides"
         :current-index="currentSlide"
         @switch="switchSlide($event)"
@@ -116,7 +116,7 @@ export default {
 }
 
 .carousel-text {
-  @extend %paragraph-20;
+  @extend %paragraph-20-light;
   text-transform: uppercase;
   padding: 1.6rem;
   pointer-events: none;
@@ -126,6 +126,7 @@ export default {
     font-weight: 300;
     line-height: 1.4;
     text-align: center;
+    padding: 3.2rem 0.8rem;
   }
   p {
     span {

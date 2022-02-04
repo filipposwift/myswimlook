@@ -184,6 +184,7 @@ h2 {
   padding: 3rem;
   @include desktop {
     font-size: 3.4rem;
+    line-height: 1.3;
   }
   @include phone {
     font-size: 16px;

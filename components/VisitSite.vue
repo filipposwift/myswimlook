@@ -36,6 +36,10 @@ export default {
     @include phone {
       font-size: 16px;
     }
+    @include xs-phone {
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
   }
 
   &::before {
@@ -45,6 +49,7 @@ export default {
     display: block;
     text-align: center;
     text-transform: uppercase;
+    pointer-events: none;
     cursor: pointer;
     padding: 0.8rem;
     @extend %paragraph-20-light;

@@ -13,6 +13,12 @@
             :src="`${image.public_id}`"
             width="800"
           />
+          <PriceAndVisit
+            v-if="isMobile"
+            :price="item.price"
+            :designer-site="designerSite"
+            class="item__card__price-visit"
+          />
         </figure>
       </div>
       <div class="item__card__designer__left sticky">
@@ -22,24 +28,22 @@
               :class="
                 titleWordCount < 20
                   ? isMobile
-                    ? 'title30'
+                    ? 'title50'
                     : 'title80'
-                  : isMobile
-                  ? 'title30'
-                  : 'title60'
+                  : 'title50'
               "
             >
               {{ item.designer }}
             </h1>
             <p>{{ item.modelName }}</p>
-            <div v-if="isNewMobile" class="item__card__designer__left-price">
-              <p>USD {{ item.price }}</p>
-            </div>
             <div
-              v-if="designerSite && isNewMobile"
+              v-if="designerSite && !isMobile"
               class="item__card__designer__left-visit-site"
             >
-              <VisitSite :url="designerSite" />
+              <PriceAndVisit
+                :price="item.price"
+                :designer-site="designerSite"
+              />
             </div>
           </div>
         </div>
@@ -111,11 +115,11 @@ export default {
       return false
     },
     isMobile() {
-      return this.windowSize <= 768 && this.titleWordCount > 10
+      return this.windowSize <= 768
     },
-    isNewMobile() {
-      return this.windowSize > 768
-    },
+    // isNewMobile() {
+    //   return this.windowSize > 768
+    // },
   },
   mounted() {
     this.windowSize = window.innerWidth
@@ -176,6 +180,13 @@ export default {
   // z-index: 0;
 }
 
+.item__card__price-visit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  // z-index: 5;
+}
+
 .item__card__designer__left {
   width: 60%;
   height: 50vh;
@@ -197,7 +208,7 @@ export default {
     align-self: flex-start;
     position: sticky;
     top: 10rem;
-    overflow: hidden;
+
     @include phone {
       top: 50px;
     }
@@ -218,6 +229,7 @@ export default {
     background-color: transparent;
     width: 100%;
     height: 100px;
+    border-bottom: 0px;
   }
 
   p {
@@ -246,13 +258,15 @@ export default {
   text-align: center;
   padding-top: 2.4rem;
   padding-bottom: 2rem;
+  background-color: get-color(primary, bright);
 }
 
-.title60 {
-  @extend %title-60;
+.title50 {
+  @extend %title-50;
   text-align: center;
   padding-top: 2.4rem;
   padding-bottom: 2rem;
+  background-color: get-color(primary, bright);
 }
 
 .title30 {
@@ -263,51 +277,13 @@ export default {
   background-color: get-color(primary, bright);
 }
 
-.item__card__designer__left-price {
-  @extend %center;
-  width: 20%;
-  padding: 0.8rem;
-  border-top: 1px solid $b-color;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: get-color(primary, normal);
-  // z-index: 2;
-  @include desktop {
-    width: 30%;
-  }
-  @include tablet {
-    width: 40%;
-  }
-
-  p {
-    @extend %paragraph-20;
-    font-weight: 300;
-    letter-spacing: 2px;
-    display: block;
-    padding: 0px;
-
-    @include phone {
-      font-size: 16px;
-    }
-  }
-}
-
 .item__card__designer__left-visit-site {
   position: absolute;
   bottom: 0;
-  right: 20%;
+  right: 0;
   z-index: 2;
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
-  border-right: 1px solid $b-color;
-
-  @include desktop {
-    right: 30%;
-  }
-  @include tablet {
-    right: 40%;
-  }
 }
 
 .item__card__designer__left-description {

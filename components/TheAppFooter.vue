@@ -56,10 +56,9 @@
         <p>
           We are a team of fashion lovers and technical software delevopers
           composed by three women and one (very lucky) man. Our passion for the
-          ocean, fashion and the environment is what drives Myswimwlook. We
-          focus on how technology and social media can help people make better
-          and easier choices. We hope you enjoy our website and share our
-          vision.
+          ocean, fashion and the environment is what drives Myswimlook. We focus
+          on how technology and social media can help people make better and
+          easier choices. We hope you enjoy our website and share our vision.
         </p>
       </div>
     </div>
