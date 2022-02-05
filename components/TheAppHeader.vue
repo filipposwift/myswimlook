@@ -21,7 +21,7 @@
         </h2>
       </div>
     </div>
-    <div v-if="isMobile" class="isMobile">
+    <div class="isMobile">
       <div class="header__hamburgher__wrapper">
         <HamburgherMenu @toggleNav="navOpen = !navOpen" />
         <TheMobileMenu :open="navOpen" @toggleNav="navOpen = !navOpen">
@@ -79,27 +79,27 @@ export default {
   },
 
   computed: {
-    isMobile() {
-      return this.windowSize <= 768
-    },
+    // isMobile() {
+    //   return this.windowSize <= 768
+    // },
     routes() {
       return this.$router.options.routes
     },
   },
 
-  mounted() {
-    this.windowSize = window.innerWidth
+  // mounted() {
+  //   this.windowSize = window.innerWidth
 
-    window.addEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
-  },
+  //   window.addEventListener('resize', () => {
+  //     this.windowSize = window.innerWidth
+  //   })
+  // },
 
-  destroyed() {
-    window.removeEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
-  },
+  // destroyed() {
+  //   window.removeEventListener('resize', () => {
+  //     this.windowSize = window.innerWidth
+  //   })
+  // },
 
   methods: {},
 }
@@ -107,23 +107,37 @@ export default {
 
 <style lang="scss" scoped>
 .isMobile {
-  width: 20%;
-  height: 50px;
-  flex: 1;
-  position: relative;
-  border-bottom: 1px solid $b-color;
-  border-right: 1px solid $b-color;
+  display: none;
+  @include phone {
+    display: block;
+    width: 20%;
+    height: 50px;
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid $b-color;
+    border-right: 1px solid $b-color;
 
-  .linkExactActiveClass {
-    color: get-color(basic, normal);
+    .linkExactActiveClass {
+      color: get-color(basic, normal);
+    }
   }
+  // width: 20%;
+  // height: 50px;
+  // flex: 1;
+  // position: relative;
+  // border-bottom: 1px solid $b-color;
+  // border-right: 1px solid $b-color;
 
-  // span {
-  //   @extend %paragraph-20;
-  //   font-weight: 300;
-  //   text-transform: uppercase;
-  // }
+  // .linkExactActiveClass {
+  //   color: get-color(basic, normal);
 }
+
+// span {
+//   @extend %paragraph-20;
+//   font-weight: 300;
+//   text-transform: uppercase;
+// }
+// }
 
 .header__hamburgher__wrapper {
   position: absolute;

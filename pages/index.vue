@@ -24,7 +24,6 @@
               :key="index"
               class="hc__slider__cell"
             >
-              <!-- <div v-if="index !== 0" class="cell__spacer"></div> -->
               <nuxt-link
                 v-if="index !== 0"
                 :to="localePath(`/styles/${style.slug}`)"
@@ -45,38 +44,19 @@
               </nuxt-link>
               <div v-else class="hc__slider__cell-text">
                 <h2>{{ style.intro }}</h2>
-                <!-- <div class="hc__slider__cell-swipe">
-                  <svg
-                    aria-hidden="true"
-                    class="arrow_left"
-                    width="50"
-                    height="20"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      class="arrow_path"
-                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                    ></path>
-                  </svg>
-                  <h3>{{ style.text }}</h3>
-                  <svg
-                    aria-hidden="true"
-                    class="arrow_right"
-                    width="50"
-                    height="20"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      class="arrow_path"
-                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                    ></path>
-                  </svg>
-                </div> -->
               </div>
             </div>
           </div>
         </div>
-        <swipe-to-scroll />
+        <div class="hc__slider__photo-credits">
+          <swipe-to-scroll />
+          <p @click="showStyleCredits = true">Photo Credits</p>
+          <PhotoCredits
+            v-show="showStyleCredits"
+            :items="styles"
+            @closeCredits="showStyleCredits = false"
+          />
+        </div>
       </section>
       <section class="home__section home__designers">
         <HomeTheTitle>Designers</HomeTheTitle>
@@ -120,33 +100,6 @@
               <div v-else class="hc__slider__cell-text">
                 <h2>{{ designer.intro }}</h2>
                 <p>{{ designer.source }}</p>
-                <!-- <div class="hc__slider__cell-swipe">
-                  <svg
-                    aria-hidden="true"
-                    class="arrow_left"
-                    width="50"
-                    height="20"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      class="arrow_path"
-                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                    ></path>
-                  </svg>
-                  <h3>{{ designer.text }}</h3>
-                  <svg
-                    aria-hidden="true"
-                    class="arrow_right"
-                    width="50"
-                    height="20"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      class="arrow_path"
-                      d="M23.4198 0H22.1506C22.1506 3.8 25.3235 7.09333 29.8926 8.86667H0V10.1333H29.7657C25.1966 11.9067 22.0237 15.2 22.0237 19H23.2928C23.2928 14.06 29.3849 10.1333 37 10.1333V8.86667C29.5118 8.86667 23.4198 4.94 23.4198 0Z"
-                    ></path>
-                  </svg>
-                </div> -->
               </div>
             </div>
           </div>
@@ -169,6 +122,7 @@
             <figure class="story__media">
               <nuxt-img
                 :src="lastStory.coverImage[0].public_id"
+                :alt="`Image of article ${lastStory.title}`"
                 provider="cloudinary"
                 width="700"
                 class="story__media-img"
@@ -199,6 +153,14 @@
       <section class="home__section home__people">
         <HomeTheTitle>People</HomeTheTitle>
         <HomeGallery />
+        <div class="hc__gallery__photo-credits">
+          <p @click="showGalleryCredits = true">Photo Credits</p>
+          <PhotoCredits
+            v-show="showGalleryCredits"
+            :items="galleryCredits"
+            @closeCredits="showGalleryCredits = false"
+          />
+        </div>
         <div class="hc__text is-last">
           <p>
             We believe that there is always someone out there who can be of
@@ -235,6 +197,57 @@ export default {
         text: 'Swipe to scroll',
         intro: "What's your mood today?",
       },
+      showStyleCredits: false,
+      showGalleryCredits: false,
+      galleryCredits: [
+        {
+          name: 'green bikini - first row',
+          photoName: 'Shutterstock',
+          photoLink: 'https://shutterstock.com',
+        },
+
+        {
+          name: 'black swimsuit - first row',
+          photoName: 'Patrick Perkins',
+          photoLink:
+            'https://unsplash.com/@patrickperkins?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+        },
+        {
+          name: 'red bikini - second row',
+          photoName: 'Simona Sergi',
+          photoLink:
+            'https://unsplash.com/@i_am_simoesse?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+        },
+        {
+          name: 'white swimsuit - second row',
+          photoName: 'Brand Custype',
+          photoLink:
+            'https://unsplash.com/@brandcustpe?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+        },
+        {
+          name: 'black swimsuit - second row',
+          photoName: 'Hunter Newton',
+          photoLink:
+            'https://unsplash.com/@h7creatives?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+        },
+        {
+          name: 'printed bikini - second row',
+          photoName: 'Shutterstock',
+          photoLink: 'https://shutterstock.com',
+        },
+        {
+          name: 'black swimsuit - third row',
+          photoName: 'Felix Uresti',
+          photoLink:
+            'https://unsplash.com/@felixurestiv?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+        },
+        {
+          name: 'printed bikini - third row',
+          photoName: 'Henrique Nery',
+          photoLink:
+            'https://unsplash.com/@neryhenrique?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+        },
+      ],
     }
   },
 
@@ -263,9 +276,9 @@ export default {
       return this.stories.story[0].fields
     },
 
-    isMobile() {
-      return this.windowSize <= 768
-    },
+    // isMobile() {
+    //   return this.windowSize <= 768
+    // },
   },
   mounted() {
     this.initImageParallax()
@@ -513,6 +526,38 @@ export default {
     position: absolute;
     left: 16px;
     bottom: 32px;
+  }
+}
+
+.hc__slider__photo-credits {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  p {
+    @extend %paragraph-16;
+    font-size: 14px;
+    padding-right: 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: get-color(basic, normal);
+    }
+  }
+}
+
+.hc__gallery__photo-credits {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  p {
+    @extend %paragraph-16;
+    font-size: 14px;
+    padding-right: 1.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: get-color(basic, normal);
+    }
   }
 }
 

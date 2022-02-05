@@ -19,6 +19,10 @@
       <div class="styles__hero__square__box-one"></div>
       <div class="styles__hero__square__box-two"></div>
       <div class="styles__hero__square__box-three"></div>
+      <div class="styles__hero__square__box-four">
+        <p>Photo:</p>
+        <slot name="credit"></slot>
+      </div>
 
       <!-- <div class="styles__hero__description"></div> -->
     </div>
@@ -143,6 +147,24 @@ export default {}
   border-bottom: 1px solid $b-color;
   @include phone {
     display: none;
+  }
+}
+.styles__hero__square__box-four {
+  grid-area: 6 / 8 / 7 / 13;
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid $b-color;
+  display: flex;
+  justify-content: flex-end;
+  p {
+    @extend %paragraph-16;
+    font-size: 14px;
+
+    padding-right: 0.8rem;
+  }
+  @include phone {
+    grid-area: 5 / 1 / 6 / 13;
+    border-bottom: 0px;
   }
 }
 </style>

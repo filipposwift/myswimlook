@@ -21,7 +21,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      // { hid: 'description', name: 'description', content: '' },
       {
         hid: 'description',
         name: 'description',
@@ -49,7 +49,7 @@ export default {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'Discover who is wearing the last trending swimsuits, check prices from over 100 different brands ando more the 300 models',
+          'Discover who is wearing the last trending swimsuits, check prices from over 40 different brands ando more the 100 models',
       },
       {
         hid: 'og:image',
@@ -107,6 +107,7 @@ export default {
     '@nuxt/image',
     'nuxt-gsap-module',
     'nuxt-font-loader',
+    '@nuxtjs/svg',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -115,6 +116,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     '@nuxtjs/markdownit',
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -122,6 +124,13 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: 'https://cdn.contentful.com',
   },
+
+  sitemap: {
+    hostname: 'https://myswimlook.com',
+    gzip: true,
+    exclude: ['/thank-you', '/newProva'],
+  },
+
   markdownit: {
     preset: 'default',
     runtime: true,

@@ -64,6 +64,10 @@ export default {
     @include phone {
       font-size: 16px;
     }
+    @include xs-phone {
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
   }
 
   &:hover::before {

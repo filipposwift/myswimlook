@@ -19,19 +19,26 @@
         v-if="getSwimsuit(ref.fields.reference)"
         class="person__swimsuit__left__text"
       >
-        <h2>
-          {{ getSwimsuit(ref.fields.reference).designer }}
-        </h2>
-        <h3>
-          {{ getSwimsuit(ref.fields.reference).modelName }}
-        </h3>
-        <div class="person__swimsuit__left__info">
-          <div class="person__swimsuit__left__info__price">
-            <p>USD {{ getSwimsuit(ref.fields.reference).price }}</p>
+        <div class="person__swimsuit__left__text__container">
+          <h2>
+            {{ getSwimsuit(ref.fields.reference).designer }}
+          </h2>
+          <h3>
+            {{ getSwimsuit(ref.fields.reference).modelName }}
+          </h3>
+
+          <div class="person__swimsuit__price-visit">
+            <PriceAndVisit
+              :price="getSwimsuit(ref.fields.reference).price"
+              :designer-site="
+                getDesignerSite(getSwimsuit(ref.fields.reference).designer)
+              "
+            />
+            <!-- <p>USD {{ getSwimsuit(ref.fields.reference).price }}</p> -->
           </div>
-          <VisitSite
+          <!-- <VisitSite
             :url="getDesignerSite(getSwimsuit(ref.fields.reference).designer)"
-          />
+          /> -->
         </div>
         <div class="person__swimsuit__left__back">
           <ArrowLeftCircle link="people" />
@@ -48,17 +55,20 @@
             <nuxt-img
               :src="image.public_id"
               provider="cloudinary"
-              width="400"
+              width="600"
+              alt="product image"
               class="person__left__swimsuit__image"
             >
             </nuxt-img>
           </figure>
-          <p>Product image(s) may be referred to a different color or print</p>
+          <p v-if="ref.fields.productImage">
+            Product image(s) may be referred to a different color or print
+          </p>
         </div>
       </div>
 
       <div
-        v-if="getSwimsuit(ref.fields.reference) && !isMobile"
+        v-if="getSwimsuit(ref.fields.reference)"
         class="person__left__style__name"
       >
         <h2>{{ getSwimsuit(ref.fields.reference).style }} Style</h2>
@@ -91,11 +101,6 @@ export default {
   layout: 'home',
   validate({ params, store }) {
     return store.state.people.data.some((el) => el.slug === params.slug)
-  },
-  data() {
-    return {
-      windowSize: 800,
-    }
   },
 
   head() {
@@ -140,27 +145,6 @@ export default {
       )
       return temp
     },
-
-    designerSite() {
-      return 'prova'
-    },
-
-    isMobile() {
-      return this.windowSize <= 768
-    },
-  },
-
-  mounted() {
-    this.windowSize = window.innerWidth
-    window.addEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
-  },
-
-  destroyed() {
-    window.removeEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
   },
 
   methods: {
@@ -224,8 +208,13 @@ export default {
 .person__left__style__name {
   grid-area: 1 / 1 / 2/ 2;
   border-right: 1px solid $b-color;
+  border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   @extend %center;
   position: relative;
+  @include phone {
+    display: none;
+  }
   h2 {
     @extend %title-50;
     line-height: 1.2;
@@ -239,9 +228,9 @@ export default {
   flex-direction: column;
   padding-top: 5rem;
   border-right: 1px solid $b-color;
-  @include xs-phone {
-    border-left: 1px solid $b-color;
-    border-bottom: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
+  @include phone {
+    border: 0;
   }
 
   p {
@@ -253,6 +242,7 @@ export default {
 
 .person__left__swimsuit__media {
   width: 100%;
+  max-width: 60rem;
   padding-bottom: 100%;
   position: relative;
 }
@@ -263,41 +253,45 @@ export default {
 
 .person__swimsuit__left__text {
   grid-area: 2 / 1 / 3 / 2;
-  padding: 1.6rem;
+  // padding: 1.6rem;
 
   h2 {
     @extend %title-80;
     text-align: center;
     padding: 10rem 0;
-  }
-  h3 {
-    @extend %paragraph-20;
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 3.2rem;
     @include phone {
       font-size: 6rem;
     }
+  }
+  h3 {
+    @extend %title-30;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+    margin-bottom: 15rem;
+    @include phone {
+      font-size: 3rem;
+    }
     @include xs-phone {
       font-size: 24px;
-      margin-bottom: 48px;
     }
   }
   @include xs-phone {
     order: 3;
-    margin-top: -360px;
+    margin-top: -200px;
     border-top: 1px solid $b-color;
     margin-bottom: 40px;
   }
 }
 
-.person__swimsuit__left__info {
+.person__swimsuit__left__text__container {
   width: 100%;
   display: flex;
-
+  flex-direction: column;
+  position: relative;
+  border-right: 1px solid $b-color;
   justify-content: center;
   @include phone {
-    flex-direction: column;
+    border: 0;
   }
 }
 
@@ -305,13 +299,18 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid $b-color;
+  border-top: 1px solid $b-color;
+  border-right: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   justify-content: center;
   align-items: center;
   padding: 1.6rem;
+  @include phone {
+    border-right: 0;
+  }
 
   span {
-    @extend %paragraph-20;
+    @extend %paragraph-20-light;
     display: block;
     text-align: center;
     text-transform: uppercase;
@@ -323,22 +322,23 @@ export default {
   }
 }
 
-.person__swimsuit__left__info__price {
-  background-color: get-color(primary, bright);
+.person__swimsuit__price-visit {
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 
-  width: 40%;
-  padding: 0.8rem;
-  @include phone {
-    width: 100%;
-    border-right: 1px solid $b-color;
-  }
-  p {
-    @extend %paragraph-20;
-    font-weight: 300;
-    text-align: center;
-  }
+  // padding: 0.8rem;
+  // @include phone {
+  //   width: 100%;
+  //   border-right: 1px solid $b-color;
+  // }
+  // p {
+  //   @extend %paragraph-20;
+  //   font-weight: 300;
+  //   text-align: center;
+  // }
 }
 
 .person__right {
@@ -346,10 +346,9 @@ export default {
   grid-area: 2 / 2 / 3 / 3;
   width: 100%;
   position: relative;
-  border-left: 1px solid $b-color;
+
   @include xs-phone {
     order: 2;
-    border-left: 0px;
   }
 }
 
@@ -362,7 +361,11 @@ export default {
 .person__hashtag {
   grid-area: 1 / 2 / 2 / 3;
   border-top: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
   @extend %center;
+  @include phone {
+    border: 0;
+  }
   @include xs-phone {
     order: 1;
     border-top: 0px;
@@ -370,15 +373,13 @@ export default {
   }
 
   h3 {
-    @extend %title-50;
+    @extend %title-30;
     font-family: 'Wok Sans', sans-serif;
     font-weight: 300;
     line-height: 1.2;
     text-align: center;
     padding-top: 0.8rem;
-    @include phone {
-      font-size: 24px;
-    }
+
     span {
       color: get-color(basic, normal);
     }

@@ -77,36 +77,44 @@
         </nuxt-link>
       </div>
       <div class="footer__social__links">
-        <a href="" target="_blank" rel="nofollow noopener noreferrer">
-          <nuxt-img
+        <a
+          href=""
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          aria-label="facebook"
+        >
+          <!-- <nuxt-img
             src="/facebook.svg"
             alt="Logo facebook"
             class="social__logo"
             width="24"
             height="24"
-          ></nuxt-img>
+          ></nuxt-img> -->
+          <IconFacebook class="social__logo" />
         </a>
         <a
           href="https://www.instagram.com/myswimlook/"
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <nuxt-img
+          <!-- <nuxt-img
             src="/instagram.svg"
             alt="Logo instagram"
             class="social__logo"
             width="24"
             height="24"
-          ></nuxt-img>
+          ></nuxt-img> -->
+          <IconInstagram class="social__logo" />
         </a>
         <a href="" target="_blank" rel="nofollow noopener noreferrer">
-          <nuxt-img
+          <!-- <nuxt-img
             src="/pinterest.svg"
             alt="Logo pinterest"
             class="social__logo"
             width="24"
             height="24"
-          ></nuxt-img>
+          ></nuxt-img> -->
+          <IconPinterest class="social__logo" />
         </a>
       </div>
       <div class="footer__copyright">
@@ -117,7 +125,16 @@
 </template>
 
 <script>
-export default {}
+import IconFacebook from '@/assets/img/facebook.svg?inline'
+import IconInstagram from '@/assets/img/instagram.svg?inline'
+import IconPinterest from '@/assets/img/pinterest.svg?inline'
+export default {
+  components: {
+    IconFacebook,
+    IconInstagram,
+    IconPinterest,
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -241,5 +258,9 @@ export default {}
   @include xs-phone {
     font-size: 10px;
   }
+}
+.social__logo {
+  height: 24px;
+  width: 24px;
 }
 </style>

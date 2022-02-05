@@ -9,6 +9,15 @@
         that will help you decide what image people see when they think of
         yooou!
       </template>
+      <template #credit>
+        <a
+          href="https://shutterstock.com"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          class="credit"
+          >Shutterstock</a
+        >
+      </template>
       <nuxt-img
         src="swimlook/Home%20Page/Styles-1.jpg"
         alt="Hero image of woman in swimwear"
@@ -126,6 +135,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.credit {
+  @extend %paragraph-16;
+  font-size: 14px;
+  color: get-color(secondary, normal);
+  transition: all 0.3s ease-in-out;
+  padding-right: 1.6rem;
+  &:hover {
+    color: get-color(basic, normal);
+  }
+}
 .styles__container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

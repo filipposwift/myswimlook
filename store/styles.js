@@ -13,6 +13,8 @@ export const getters = {
       slug: fields.slug,
       description: fields.description,
       image: fields.image,
+      photoName: fields.photoName,
+      photoLink: fields.photoLink,
     }))
   },
 }

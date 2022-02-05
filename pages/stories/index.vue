@@ -8,6 +8,22 @@
         Stay up to date with the latest fashion trends, discover emerging
         designers and learn what celebrities are choosing
       </template>
+      <template #credit>
+        <a
+          href="https://unsplash.com/@shotbythegypsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          class="credit"
+          >Emily Goodhart</a
+        ><span> on </span
+        ><a
+          href="https://unsplash.com/"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+          class="credit"
+          >Unsplash</a
+        >
+      </template>
       <nuxt-img
         src="swimlook/styles/cover-styles"
         alt="Hero image of woman in swimwear"
@@ -108,6 +124,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+span {
+  @extend %paragraph-16;
+  font-size: 14px;
+  padding-right: 0.8rem;
+}
+.credit {
+  @extend %paragraph-16;
+  font-size: 14px;
+  color: get-color(secondary, normal);
+  transition: all 0.3s ease-in-out;
+  padding-right: 0.8rem;
+  &:hover {
+    color: get-color(basic, normal);
+  }
+}
+
 .stories__slider__wrapper {
   position: relative;
   overflow-x: scroll;
