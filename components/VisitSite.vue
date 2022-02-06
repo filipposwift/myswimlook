@@ -33,6 +33,9 @@ export default {
     text-transform: uppercase;
     text-align: center;
     display: block;
+    @include tablet {
+      letter-spacing: 1px;
+    }
     @include phone {
       font-size: 16px;
     }

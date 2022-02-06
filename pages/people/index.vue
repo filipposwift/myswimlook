@@ -35,10 +35,12 @@
 <script>
 import { mapState } from 'vuex'
 import _shuffle from 'lodash/shuffle'
+import { slideLeft } from '@/utils/transitions'
 export default {
   name: 'PeoplePage',
   layout: 'home',
   scrollToTop: true,
+  transition: slideLeft,
 
   data() {
     return {

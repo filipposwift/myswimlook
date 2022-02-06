@@ -125,11 +125,11 @@ export default {
     baseURL: 'https://cdn.contentful.com',
   },
 
-  sitemap: {
-    hostname: 'https://myswimlook.com',
-    gzip: true,
-    exclude: ['/thank-you', '/newProva'],
-  },
+  // sitemap: {
+  //   hostname: 'https://myswimlook.com',
+  //   gzip: true,
+  //   exclude: ['/thank-you', '/newProva'],
+  // },
 
   markdownit: {
     preset: 'default',

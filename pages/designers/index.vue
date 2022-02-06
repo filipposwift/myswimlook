@@ -36,11 +36,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import { slideRight } from '@/utils/transitions'
 export default {
   name: 'DesignersPage',
   layout: 'home',
   scrollToTop: true,
-  transition: 'slide-right',
+  transition: slideRight,
 
   data() {
     return {

@@ -41,11 +41,11 @@ export default {
     width: 26rem;
   }
   @include phone {
-    width: 20vw;
-  }
-  @include xs-phone {
     width: 25vw;
   }
+  // @include xs-phone {
+  //   width: 25vw;
+  // }
 
   @extend %center;
 

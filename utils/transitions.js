@@ -1,35 +1,23 @@
 export const slideRight = {
   name: 'slide-right',
-  mode: 'in-out',
+  mode: 'out-in',
   css: false,
-  appear: true,
-  beforeEnter(el) {
-    this.$gsap.set(el, {
-      scaleX: 0,
-      opacity: 0,
-    })
-  },
 
   enter(el, done) {
-    this.$gsap.to(el, {
-      transformOrigin: 'right',
-      scaleX: 1,
-      //   scale: 1,
-      opacity: 1,
-      duration: 0.6,
-      //   delay: 2,
-      ease: 'sine.out',
+    this.$gsap.from(el, {
+      x: '-100%',
+      opacity: 0,
+      duration: 1,
+      ease: 'power4.out',
       onComplete: done,
     })
   },
 
   leave(el, done) {
     this.$gsap.to(el, {
-      //   delay: 2,
-      scaleX: 0,
-      transformOrigin: 'left',
-      duration: 0.4,
-      ease: 'sine.out',
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power4.in',
       onComplete: done,
     })
   },
@@ -37,36 +25,24 @@ export const slideRight = {
 
 export const slideLeft = {
   name: 'slide-left',
-  mode: 'in-out',
+  mode: 'out-in',
   css: false,
-  appear: true,
-  beforeEnter(el) {
-    this.$gsap.set(el, {
-      scaleX: 0,
-      opacity: 0,
-    })
-  },
 
   enter(el, done) {
-    this.$gsap.to(el, {
-      transformOrigin: 'left',
-      scaleX: 1,
-      //   scale: 1,
-      opacity: 1,
-      duration: 0.6,
-      //   delay: 2,
-      ease: 'sine.out',
+    this.$gsap.from(el, {
+      x: '100%',
+      opacity: 0,
+      duration: 1,
+      ease: 'power4.out',
       onComplete: done,
     })
   },
 
   leave(el, done) {
     this.$gsap.to(el, {
-      //   delay: 2,
-      scaleX: 0,
-      transformOrigin: 'right',
+      opacity: 0,
       duration: 0.5,
-      ease: 'sine.out',
+      ease: 'power4.in',
       onComplete: done,
     })
   },

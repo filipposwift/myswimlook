@@ -72,11 +72,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import { slideLeft } from '@/utils/transitions'
 export default {
   name: 'StoriesPage',
   layout: 'home',
   scrollToTop: true,
-  transition: 'slide-left',
+  transition: slideLeft,
   data() {
     return {
       storiesIntro: {

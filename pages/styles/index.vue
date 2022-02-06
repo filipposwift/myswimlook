@@ -64,7 +64,6 @@ export default {
   name: 'StylesPage',
   layout: 'home',
   scrollToTop: true,
-
   transition: slideRight,
 
   data() {

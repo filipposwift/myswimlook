@@ -73,8 +73,13 @@
             <h3>{{ itemCard.designer }}</h3>
           </div>
           <div class="story__intro__style-card__title__price">
-            <p>USD {{ itemCard.price }}</p>
-            <VisitSite :url="designerUrl" class="visit" />
+            <PriceAndVisit
+              :price="itemCard.price"
+              :designer-site="designerUrl"
+              class="story__visit"
+            />
+            <!-- <p>USD {{ itemCard.price }}</p>
+            <VisitSite :url="designerUrl" class="visit" /> -->
           </div>
         </div>
       </div>
@@ -447,14 +452,15 @@ export default {
 }
 
 .story__intro__style-card {
+  position: relative;
   width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 0.2fr;
-  grid-template-rows: 7rem 1fr 5rem;
-  @include phone {
-    grid-template-rows: 7rem 1fr 7rem;
-  }
+  grid-template-rows: 7rem 1fr 4rem;
+  // @include phone {
+  //   grid-template-rows: 7rem 1fr 7rem;
+  // }
   // @include xs-phone {
   //   grid-template-rows: 14rem 1fr 14rem;
   // }
@@ -491,7 +497,7 @@ export default {
   background-color: get-color(primary, bright);
   border-left: 1px solid $b-color;
 
-  z-index: 3;
+  // z-index: 3;
   position: relative;
 
   h3 {
@@ -507,40 +513,44 @@ export default {
 }
 
 .story__intro__style-card__title__price {
-  grid-area: 3 / 1 / 5 / 3;
-  display: flex;
-  background-color: get-color(primary, normal);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  // display: flex;
+  // justify-content: flex-end;
+  // background-color: get-color(primary, normal);
   z-index: 2;
   border-top: 1px solid $b-color;
 
-  p {
-    display: block;
-    width: 50%;
-    @extend %paragraph-20-light;
-    text-align: center;
-    line-height: 5rem;
-    border-right: 1px solid $b-color;
-    @include phone {
-      font-size: 16px;
-      line-height: 7rem;
-      letter-spacing: 2px;
-      flex-grow: 1;
-    }
-    // @include xs-phone {
-    //   line-height: 14rem;
-    // }
-  }
-  .visit {
-    // flex-grow: 1;
-    @include phone {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-    }
-  }
+  // p {
+  //   display: block;
+  //   width: 50%;
+  //   @extend %paragraph-20-light;
+  //   text-align: center;
+  //   line-height: 5rem;
+  //   border-right: 1px solid $b-color;
+  // @include phone {
+  //   font-size: 16px;
+  //   line-height: 7rem;
+  //   letter-spacing: 2px;
+  //   flex-grow: 1;
+  // }
+  // @include xs-phone {
+  //   line-height: 14rem;
+  // }
 }
+.story__visit {
+  // flex-grow: 1;
+  border-left: 1px solid $b-color;
+  // @include phone {
+  //   align-items: center;
+  //   display: flex;
+  //   justify-content: center;
+  // }
+}
+// }
 .story__intro__style-card__media {
-  grid-area: 2 / 1 / 2 / 3;
+  grid-area: 2 / 1 / 4 / 3;
   height: 100%;
   width: 100%;
   position: relative;
