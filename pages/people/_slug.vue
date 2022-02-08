@@ -379,6 +379,9 @@ export default {
     line-height: 1.2;
     text-align: center;
     padding-top: 0.8rem;
+    @include xs-phone {
+      font-size: 2.4rem;
+    }
 
     span {
       color: get-color(basic, normal);

@@ -1,44 +1,46 @@
 <template>
-  <div class="photo__credits">
-    <div class="credits__wrapper">
-      <div v-for="item in items" :key="item.name" class="credits">
-        <span>
-          <strong>{{ item.name }}</strong
-          >: </span
-        ><a
-          :href="item.photoLink"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          >{{ item.photoName }}</a
-        ><span v-if="item.photoName !== 'Shutterstock'"> on </span
-        ><a
-          v-if="item.photoName !== 'Shutterstock'"
-          href="https://unsplash.com/"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          >Unsplash</a
-        >
+  <transition name="show">
+    <div class="photo__credits">
+      <div class="credits__wrapper">
+        <div v-for="item in items" :key="item.name" class="credits">
+          <span>
+            <strong>{{ item.name }}</strong
+            >: </span
+          ><a
+            :href="item.photoLink"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            >{{ item.photoName }}</a
+          ><span v-if="item.photoName !== 'Shutterstock'"> on </span
+          ><a
+            v-if="item.photoName !== 'Shutterstock'"
+            href="https://unsplash.com/"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            >Unsplash</a
+          >
+        </div>
       </div>
-    </div>
 
-    <button
-      class="mobile__cross-button cross-style"
-      @click="$emit('closeCredits')"
-    >
-      <span
-        v-for="(x, index) in 2"
-        :key="x"
-        class="mobile__cross"
-        :style="{
-          position: 'absolute',
-          width: '2px',
-          height: '16px',
-          transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)',
-        }"
+      <button
+        class="mobile__cross-button cross-style"
+        @click="$emit('closeCredits')"
       >
-      </span>
-    </button>
-  </div>
+        <span
+          v-for="(x, index) in 2"
+          :key="x"
+          class="mobile__cross"
+          :style="{
+            position: 'absolute',
+            width: '2px',
+            height: '16px',
+            transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)',
+          }"
+        >
+        </span>
+      </button>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -64,9 +66,11 @@ export default {
   border-left: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
   display: flex;
+  transition: 0.7s;
 }
 .credits__wrapper {
   padding: 50px 1.6rem;
+  // transition: 0.7s;
 }
 
 .credits {
@@ -103,5 +107,16 @@ export default {
   top: 1.6px;
   right: 10.8px;
   cursor: pointer;
+}
+
+.show {
+  &-enter,
+  &-leave-to {
+    transform: translateX(100%);
+  }
+  &-enter-active,
+  &-leave-active {
+    transition: transform 0.7s easeOutCubic;
+  }
 }
 </style>

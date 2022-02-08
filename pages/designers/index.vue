@@ -169,14 +169,6 @@ export default {
   @extend %title-30;
   border-bottom: 1px solid $b-color;
   background-color: get-color(primary, bright);
-  @include phone {
-    font-size: 24px;
-    line-height: 1.1;
-  }
-  @include xs-phone {
-    font-size: 20px;
-    line-height: 1.1;
-  }
 }
 
 .designers__letter__items {

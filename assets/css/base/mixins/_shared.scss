@@ -81,6 +81,10 @@
   }
   @include phone {
     font-size: 3rem;
+    line-height: 1.1;
+  }
+  @include xs-phone {
+    font-size: 20px;
   }
 }
 

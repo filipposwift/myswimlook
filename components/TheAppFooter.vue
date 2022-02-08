@@ -78,7 +78,7 @@
       </div>
       <div class="footer__social__links">
         <a
-          href=""
+          href="https://www.facebook.com/myswimlook/"
           target="_blank"
           rel="nofollow noopener noreferrer"
           aria-label="facebook"

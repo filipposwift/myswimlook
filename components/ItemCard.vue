@@ -269,14 +269,6 @@ export default {
   background-color: get-color(primary, bright);
 }
 
-.title30 {
-  @extend %title-30;
-  text-align: center;
-  padding-top: 2.4rem;
-  padding-bottom: 2rem;
-  background-color: get-color(primary, bright);
-}
-
 .item__card__designer__left-visit-site {
   position: absolute;
   bottom: 0;

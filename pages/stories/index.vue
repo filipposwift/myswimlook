@@ -264,6 +264,7 @@ span {
     cursor: pointer;
 
     &:hover {
+      transform: translate3d(0, 0, 0);
       transform: scale(1.2);
     }
   }

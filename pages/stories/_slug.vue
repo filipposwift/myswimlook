@@ -428,6 +428,9 @@ export default {
       font-size: 2.4rem;
       padding: 40px 1.6rem;
     }
+    @include xs-phone {
+      font-size: 14px;
+    }
   }
 }
 // }
