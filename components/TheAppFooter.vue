@@ -66,7 +66,14 @@
       <div class="footer__logo">
         <nuxt-link :to="localePath('/')" exact>
           <figure class="footer__logo__media">
-            <LogoWhite class="footer__logo__media__image" />
+            <img
+              src="~/assets/img/Logowhite.svg"
+              alt="Logo myswimllok"
+              width="250"
+              height="70"
+              class="footer__logo__media__image"
+            />
+            <!-- <LogoWhite class="footer__logo__media__image" /> -->
           </figure>
         </nuxt-link>
       </div>
@@ -101,13 +108,12 @@
 import IconFacebook from '@/assets/img/facebook.svg?inline'
 import IconInstagram from '@/assets/img/instagram.svg?inline'
 import IconPinterest from '@/assets/img/pinterest.svg?inline'
-import LogoWhite from '@/assets/img/logowhite.svg?inline'
+// import LogoWhite from '@/assets/img/logowhite.svg?inline'
 export default {
   components: {
     IconFacebook,
     IconInstagram,
     IconPinterest,
-    LogoWhite,
   },
 }
 </script>
