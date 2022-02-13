@@ -5,41 +5,46 @@
       :description="currentStyle.description"
       :image="currentStyle.image[0].secure_url"
     />
-    <div class="grid-container">
-      <div class="left-icon-grid">
-        <ArrowLeftCircle :link="previousSlug" class="arrow-icon-wrapper" />
+    <!-- <div class="grid__container"> -->
+    <div class="style__title__box">
+      <h2>{{ name }}</h2>
+    </div>
+    <div class="previous__circle">
+      <NewArrowLeftCircle :link="previousSlug" class="arrow-icon-wrapper" />
+    </div>
+    <div class="style__numbers__box">
+      <h2>{{ swimsuits.length }}<span>swimsuits</span></h2>
+    </div>
+    <div class="next__circle">
+      <NewArrowRightCircle :link="nextSlug" class="arrow-icon-wrapper" />
+    </div>
+    <div class="previous__bar-left">
+      <div class="previous__bar__inner">
+        <p>{{ previousNumberOfItems }}</p>
+        <h2>{{ previous }}</h2>
       </div>
-      <div class="right-icon-grid">
-        <ArrowRightCircle :link="nextSlug" class="arrow-icon-wrapper right" />
+    </div>
+    <div class="next__bar-right">
+      <div class="next__bar__inner">
+        <p>{{ nextNumberOfItems }}</p>
+        <h2>{{ next }}</h2>
       </div>
+    </div>
+    <div class="style__items__wrapper">
+      <h1>{{ name }}</h1>
+      <div v-dompurify-html="$md.render(description)" class="markdown-16"></div>
 
-      <div class="previous-title-grid">
-        <h2 class="style-nav-item-number">{{ previousNumberOfItems }}</h2>
-        <h2 class="style-nav-item">{{ previous }}</h2>
-      </div>
-      <div class="next-title-grid">
-        <h2 class="style-nav-item-number">{{ nextNumberOfItems }}</h2>
-        <h2 class="style-nav-item">{{ next }}</h2>
-      </div>
-      <div class="no-icon-grid"></div>
-      <div class="current-title-grid">
-        <h2 class="style-nav-item-number is-current">{{ swimsuits.length }}</h2>
-        <h2 class="style-nav-item is-current">{{ name }}</h2>
-      </div>
-
-      <div class="content-grid">
-        <h2>{{ name }}</h2>
-        <div class="markdown-16" v-html="$md.render(description)"></div>
-
-        <div class="items">
-          <div v-for="swimsuit in swimsuits" :key="swimsuit.name" class="item">
-            <item-card :item="swimsuit" />
-          </div>
+      <div class="items">
+        <div
+          v-for="(swimsuit, index) in swimsuits"
+          :key="swimsuit.name"
+          class="item"
+        >
+          <new-item-card :item="swimsuit" :number="index + 1" />
         </div>
       </div>
-
-      <!-- <div class="spacer-nuovo"></div> -->
     </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -169,12 +174,192 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
-  @extend %title-110;
-  text-align: center;
-  padding-top: 5rem;
+.style {
+  transform: none;
+}
+
+.style__title__box {
+  @extend %center;
+  border-right: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
+  background-color: get-color(primary, bright);
+  position: fixed;
+  height: calc(92vw / 12 * 0.75);
+  width: calc(92vw / 4);
+  top: 50px;
+  z-index: 3;
+  h2 {
+    @extend %title-50;
+    letter-spacing: 2px;
+    padding: 10px;
+    text-transform: uppercase;
+    @include phone {
+      font-size: 3rem;
+    }
+  }
+
   @include phone {
-    font-size: 8rem;
+    height: calc(92vw / 6 * 0.75);
+    border-top: 1px solid $b-color;
+  }
+}
+
+.style__numbers__box {
+  @extend %center;
+  border-left: 1px solid $b-color;
+  border-bottom: 1px solid $b-color;
+  background-color: get-color(primary, bright);
+  position: fixed;
+  height: calc(92vw / 12 * 0.75);
+  width: calc(92vw / 6);
+  top: 50px;
+  right: calc(4vw + 2px);
+  z-index: 3;
+
+  h2 {
+    @extend %title-50;
+    padding: 10px;
+    text-transform: uppercase;
+    @include phone {
+      font-size: 3rem;
+    }
+    span {
+      @extend %title-24;
+      padding-left: 0.8rem;
+      @include xs-phone {
+        font-size: 12px;
+      }
+    }
+  }
+  p {
+    @extend %title-24;
+    padding-right: 1.6rem;
+  }
+
+  @include phone {
+    height: calc(92vw / 6 * 0.75);
+    width: calc(92vw / 4);
+    right: 0;
+    border-top: 1px solid $b-color;
+  }
+}
+
+.previous__circle {
+  // grid-area: 2 / 1 / 3 / 2;
+  width: calc(92vw / 12 * 0.75);
+  height: calc(92vw / 12 * 0.75);
+  position: fixed;
+  top: calc((92vw / 12 * 0.75) + 49px);
+  z-index: 4;
+  border-bottom: 1px solid $b-color;
+  border-top: 1px solid $b-color;
+  background-color: get-color(primary, normal);
+  left: calc(4vw + 2px);
+  @include phone {
+    width: calc(92vw / 6 * 0.75);
+    height: calc(92vw / 6 * 0.75);
+    top: calc((92vw / 6 * 0.75) + 49px);
+    left: 0;
+    border-right: 1px solid $b-color;
+  }
+  @include xs-phone {
+    width: calc(92vw / 5 * 0.75);
+    height: calc(92vw / 5 * 0.75);
+  }
+}
+
+.next__circle {
+  width: calc(92vw / 12 * 0.75);
+  height: calc(92vw / 12 * 0.75);
+  position: fixed;
+  top: calc((92vw / 12 * 0.75) + 49px);
+  z-index: 4;
+  border-bottom: 1px solid $b-color;
+  border-top: 1px solid $b-color;
+  background-color: get-color(primary, normal);
+  right: calc(4vw + 2px);
+  @include phone {
+    width: calc(92vw / 6 * 0.75);
+    height: calc(92vw / 6 * 0.75);
+    top: calc((92vw / 6 * 0.75) + 49px);
+    right: 0;
+    border-left: 1px solid $b-color;
+  }
+  @include xs-phone {
+    width: calc(92vw / 5 * 0.75);
+    height: calc(92vw / 5 * 0.75);
+  }
+}
+
+.arrow-icon-wrapper {
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.previous__bar-left {
+  position: fixed;
+  width: calc(92vw / 12 * 0.75);
+  top: calc(92vw / 6);
+  left: calc(4vw + 2px);
+  @include phone {
+    left: 0;
+    padding-left: 5px;
+  }
+}
+
+.next__bar-right {
+  position: fixed;
+  width: calc(92vw / 12 * 0.75);
+  top: calc(92vw / 6);
+  right: calc(4vw + 2px);
+  @include phone {
+    right: 0;
+    padding-right: 5px;
+  }
+}
+
+.previous__bar__inner,
+.next__bar__inner {
+  position: relative;
+  height: 500px;
+  h2 {
+    @extend %title-50;
+    @extend %vertical-titles;
+    text-transform: uppercase;
+    top: 35%;
+
+    @include phone {
+      font-size: 24px;
+      top: 40%;
+    }
+  }
+  p {
+    @extend %title-30;
+    @extend %vertical-titles;
+    top: 10%;
+    left: 25%;
+    @include phone {
+      top: 25%;
+      left: 30%;
+      font-size: 20px;
+    }
+  }
+}
+
+.style__items__wrapper {
+  // grid-area: 1 / 2 / 4 / 12;
+  margin: 0 calc((92vw / 12 * 0.75) + 2px);
+  border-left: 1px solid $b-color;
+  border-right: 1px solid $b-color;
+
+  h1 {
+    @extend %title-110;
+    text-align: center;
+    padding-top: 5rem;
+    @include phone {
+      font-size: 8rem;
+    }
   }
 }
 
@@ -192,195 +377,7 @@ h2 {
     font-family: 'Work Sans', sans-serif;
     font-weight: 300;
     color: get-color(secondary, dark);
+    padding: 3rem 7rem;
   }
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 0.75fr 0.75fr repeat(9, minmax(0, 1fr)) 0.75fr;
-  // grid-auto-columns: minmax(auto, calc((100vw - 128px) / 12));
-  grid-template-rows: 100px 1fr 100vh;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  @include phone {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
-
-.left-icon-grid {
-  grid-area: 1 / 1 / 4 / 2;
-  // height: 100%;
-  border-right: 1px solid $b-color;
-  display: flex;
-  justify-content: center;
-  @include phone {
-    flex: 1 0 auto;
-    position: fixed;
-    left: 4vw;
-    z-index: 4;
-    background-color: get-color(primary, bright);
-    width: 20%;
-    height: 60px;
-    border-bottom: 1px solid $b-color;
-    border-left: 1px solid $b-color;
-  }
-}
-
-.arrow-icon-wrapper {
-  width: 100%;
-  height: 50px;
-  position: sticky;
-  top: 12rem;
-  padding: 0.8rem;
-  z-index: 4;
-  @include phone {
-    position: static;
-    display: flex;
-    justify-content: flex-start;
-  }
-  &.right {
-    justify-content: flex-end;
-  }
-}
-
-.right-icon-grid {
-  grid-area: 1 / 12 / 4 / 13;
-  border-left: 1px solid $b-color;
-  display: flex;
-  justify-content: center;
-  @include phone {
-    flex: 1 0 auto;
-    position: fixed;
-    right: 4vw;
-    z-index: 4;
-    background-color: get-color(primary, bright);
-    width: 20%;
-    height: 60px;
-    border-bottom: 1px solid $b-color;
-    border-right: 1px solid $b-color;
-  }
-}
-
-.previous-title-grid {
-  grid-area: 2 / 1 / 4 / 2;
-  position: relative;
-  @include phone {
-    flex: 1 0 auto;
-    position: fixed;
-    left: 4vw;
-    top: 50px;
-    z-index: 5;
-    display: flex;
-    flex-direction: row-reverse;
-  }
-}
-
-.style-nav-item {
-  @extend %title-50;
-
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  overflow-wrap: normal;
-  padding: 10px;
-  text-transform: uppercase;
-  height: 50%;
-  text-align: right;
-  opacity: 0.4;
-  position: sticky;
-  top: 34rem;
-
-  @include phone {
-    writing-mode: inherit;
-    transform: none;
-    height: 100%;
-    text-align: center;
-    position: static;
-    font-size: 2rem;
-    line-height: 2rem;
-  }
-
-  &.is-current {
-    opacity: 1;
-  }
-}
-
-.style-nav-item-number {
-  @extend %title-30;
-
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-
-  padding: 5px;
-  text-transform: uppercase;
-  // height: 0.5%;
-  text-align: right;
-  opacity: 0.4;
-  position: sticky;
-  top: 29rem;
-  @include phone {
-    writing-mode: inherit;
-    transform: none;
-    height: 100%;
-    text-align: center;
-    position: static;
-    font-size: 1.8rem;
-    line-height: 2rem;
-  }
-
-  &.is-current {
-    opacity: 1;
-  }
-}
-
-.no-icon-grid {
-  grid-area: 1 / 2 / 2 / 3;
-  border-right: 1px solid $b-color;
-  background-color: white;
-  @include phone {
-    display: none;
-  }
-}
-
-.current-title-grid {
-  grid-area: 2 / 2 / 4 / 3;
-  border-right: 1px solid $b-color;
-  background-color: white;
-  position: relative;
-  @include phone {
-    display: none;
-  }
-}
-
-.content-grid {
-  grid-area: 1 / 3 / 3 / 12;
-}
-
-.next-title-grid {
-  grid-area: 2 / 12 / 4 / 13;
-  border-left: 1px solid $b-color;
-  position: relative;
-  @include phone {
-    flex: 1 0 auto;
-    position: fixed;
-    right: 4vw;
-    top: 50px;
-    z-index: 5;
-    display: flex;
-    flex-direction: row-reverse;
-    border-left: 0px;
-  }
-}
-
-.border-xs {
-  border-left: 1px solid;
-  border-right: 1px solid;
-}
-
-.spacer-nuovo {
-  grid-area: 3 / 3 / 4 / 12;
-  height: 100vh;
-  border-top: 1px solid;
 }
 </style>

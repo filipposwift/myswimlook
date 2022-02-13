@@ -132,7 +132,10 @@
               <div class="story__text__intro"><h2>Latest Article</h2></div>
               <div class="story__text">
                 <h3>{{ lastStory.title }}</h3>
-                <p>{{ lastStory.incipit }}</p>
+                <div
+                  v-dompurify-html="$md.render(lastStory.incipit)"
+                  class="story__text__incipit"
+                ></div>
               </div>
               <div class="story__text__cta">
                 <div class="cta__link">
@@ -140,7 +143,7 @@
                     ><span>Read More</span></nuxt-link
                   >
                 </div>
-                <div class="cta__link no__border-right">
+                <div class="cta__link-inverse">
                   <nuxt-link :to="localePath('/stories')"
                     ><span>All Articles</span></nuxt-link
                   >
@@ -275,10 +278,6 @@ export default {
     lastStory() {
       return this.stories.story[0].fields
     },
-
-    // isMobile() {
-    //   return this.windowSize <= 768
-    // },
   },
   mounted() {
     this.initImageParallax()
@@ -564,7 +563,7 @@ export default {
 
 .story__wrapper {
   display: flex;
-  height: 40vw;
+  height: 50vw;
   @include phone {
     flex-direction: column;
     position: relative;
@@ -638,26 +637,38 @@ export default {
   }
   h3 {
     @extend %title-30;
+    padding: 3.2rem 1.6rem;
     @include phone {
       border-bottom: 1px solid $b-color;
       padding: 4.8rem 1.6rem;
-      // font-size: 30px;
     }
   }
-  p {
-    @extend %paragraph-16;
-    max-height: 38rem;
-    line-height: 4rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    width: calc(100%);
-    min-width: 0;
+}
 
-    padding: 1.6rem;
-    @include xs-phone {
-      line-height: 5rem;
-    }
+.story__text__incipit {
+  @extend %paragraph-16;
+  max-height: 12.6em;
+  line-height: 1.4;
+  overflow: hidden;
+  margin: 3.2rem 1.6rem;
+
+  padding-right: 1.6rem;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '...';
+    bottom: 0; /* "bottom" */
+    right: 0; /* "right" */
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0; /* "right" */
+    width: 1rem;
+    height: 1rem;
+    background-color: get-color(primary, normal);
   }
 }
 
@@ -684,12 +695,12 @@ export default {
   border-right: 1px solid $b-color;
   overflow: hidden;
   text-align: center;
-  background-color: get-color(secondary, normal);
+  background-color: get-color(primary, normal);
   color: get-color(primary, bright);
   position: relative;
   span {
-    @extend %paragraph-20-light;
-    // font-weight: 300;
+    @extend %paragraph-20;
+
     line-height: 50px;
     text-transform: uppercase;
     white-space: nowrap;
@@ -702,7 +713,7 @@ export default {
     width: 100%;
     height: 100%;
     content: '';
-    background: get-color(primary, bright);
+    background: get-color(secondary, normal);
     transition: transform 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     transform-origin: 0% 50%;
   }
@@ -720,7 +731,44 @@ export default {
   }
 }
 
-.no__border-right {
-  border-right: 0px;
+.cta__link-inverse {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  text-align: center;
+  background-color: get-color(secondary, normal);
+  color: get-color(primary, bright);
+  position: relative;
+  span {
+    @extend %paragraph-20;
+    // font-weight: 300;
+    line-height: 50px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    mix-blend-mode: difference;
+  }
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: get-color(primary, normal);
+    transition: transform 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transform-origin: 0% 50%;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover::before {
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+  }
 }
 </style>

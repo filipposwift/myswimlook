@@ -66,13 +66,7 @@
       <div class="footer__logo">
         <nuxt-link :to="localePath('/')" exact>
           <figure class="footer__logo__media">
-            <img
-              src="~/assets/img/Logowhite.svg"
-              alt="Logo myswimllok"
-              width="250"
-              height="70"
-              class="footer__logo__media__image"
-            />
+            <Logowhite class="footer__logo__media__image" />
           </figure>
         </nuxt-link>
       </div>
@@ -83,13 +77,6 @@
           rel="nofollow noopener noreferrer"
           aria-label="facebook"
         >
-          <!-- <nuxt-img
-            src="/facebook.svg"
-            alt="Logo facebook"
-            class="social__logo"
-            width="24"
-            height="24"
-          ></nuxt-img> -->
           <IconFacebook class="social__logo" />
         </a>
         <a
@@ -97,23 +84,9 @@
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <!-- <nuxt-img
-            src="/instagram.svg"
-            alt="Logo instagram"
-            class="social__logo"
-            width="24"
-            height="24"
-          ></nuxt-img> -->
           <IconInstagram class="social__logo" />
         </a>
         <a href="" target="_blank" rel="nofollow noopener noreferrer">
-          <!-- <nuxt-img
-            src="/pinterest.svg"
-            alt="Logo pinterest"
-            class="social__logo"
-            width="24"
-            height="24"
-          ></nuxt-img> -->
           <IconPinterest class="social__logo" />
         </a>
       </div>
@@ -128,11 +101,13 @@
 import IconFacebook from '@/assets/img/facebook.svg?inline'
 import IconInstagram from '@/assets/img/instagram.svg?inline'
 import IconPinterest from '@/assets/img/pinterest.svg?inline'
+import Logowhite from '@/assets/img/logowhite.svg?inline'
 export default {
   components: {
     IconFacebook,
     IconInstagram,
     IconPinterest,
+    Logowhite,
   },
 }
 </script>

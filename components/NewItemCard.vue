@@ -1,11 +1,22 @@
 <template>
   <div :id="`${item.modelName}`" class="item__card__wrapper">
+    <div class="item__card__title sticky">
+      <div class="item__card__title__inner">
+        <p class="is-mobile">{{ number }}</p>
+        <h1>
+          <span>{{ number }} - </span> {{ item.designer }}
+        </h1>
+        <p>{{ item.modelName }}</p>
+      </div>
+    </div>
     <div class="item__card__designer">
       <div class="item__card__designer__right">
         <figure
-          v-for="image in images"
+          v-for="(image, index) in images"
           :key="image.public_id"
-          class="item__card__designer__right__media"
+          :class="`item__card__designer__right__media top-${returnLetter(
+            index
+          )}`"
         >
           <nuxt-img
             class="item__card__designer__right__media-img"
@@ -14,39 +25,14 @@
             width="800"
           />
           <PriceAndVisit
-            v-if="isMobile"
+            v-if="designerSite"
             :price="item.price"
             :designer-site="designerSite"
-            class="item__card__price-visit"
+            class="item__card__visit-site"
           />
         </figure>
       </div>
       <div class="item__card__designer__left sticky">
-        <div class="item__card__designer__left-title">
-          <div class="item__card__designer__left-title__inner">
-            <h1
-              :class="
-                titleWordCount < 20
-                  ? isMobile
-                    ? 'title50'
-                    : 'title80'
-                  : 'title50'
-              "
-            >
-              {{ item.designer }}
-            </h1>
-            <p>{{ item.modelName }}</p>
-            <div
-              v-if="designerSite && !isMobile"
-              class="item__card__designer__left-visit-site"
-            >
-              <PriceAndVisit
-                :price="item.price"
-                :designer-site="designerSite"
-              />
-            </div>
-          </div>
-        </div>
         <div
           v-dompurify-html="$md.render(item.description)"
           class="item__card__designer__left-description"
@@ -73,12 +59,10 @@ export default {
       type: Object,
       required: true,
     },
-  },
-
-  data() {
-    return {
-      windowSize: 800,
-    }
+    number: {
+      type: Number,
+      required: true,
+    },
   },
 
   computed: {
@@ -114,18 +98,15 @@ export default {
       }
       return false
     },
-    isMobile() {
-      return this.windowSize <= 768
-    },
-    // isNewMobile() {
-    //   return this.windowSize > 768
-    // },
   },
-  mounted() {
-    this.windowSize = window.innerWidth
-    window.addEventListener('resize', () => {
-      this.windowSize = window.innerWidth
-    })
+  mounted() {},
+  methods: {
+    returnLetter(index) {
+      if (index === 0) {
+        return 'one'
+      }
+      return 'none'
+    },
   },
 }
 </script>
@@ -133,7 +114,7 @@ export default {
 <style lang="scss" scoped>
 .item__card__wrapper {
   width: 100%;
-  border-top: 1px solid $b-color;
+
   // z-index: 0;
 }
 
@@ -154,8 +135,9 @@ export default {
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 100vh);
+  grid-template-rows: repeat(2, 75vh);
   border-left: 1px solid $b-color;
+
   // z-index: 2;
   @include desktop {
     width: 50%;
@@ -172,7 +154,10 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
-  border-bottom: 1px solid $b-color;
+
+  &.top-one {
+    border-bottom: 1px solid $b-color;
+  }
 }
 
 .item__card__designer__right__media-img {
@@ -180,17 +165,9 @@ export default {
   // z-index: 0;
 }
 
-.item__card__price-visit {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  // z-index: 5;
-}
-
 .item__card__designer__left {
   width: 60%;
   height: 50vh;
-  // min-height: fit-content;
   flex-grow: 1;
 
   @include desktop {
@@ -200,14 +177,13 @@ export default {
   @include phone {
     width: 100%;
     height: auto;
-    margin-bottom: 3.2rem;
-    // display: none;
+    margin-bottom: 0;
     top: 2rem;
   }
   &.sticky {
     align-self: flex-start;
     position: sticky;
-    top: 10rem;
+    top: calc(51px + 35rem);
 
     @include phone {
       top: 50px;
@@ -215,67 +191,87 @@ export default {
   }
 }
 
-.item__card__designer__left-title {
-  width: 110%;
+.item__card__title {
+  width: 100%;
   background-color: get-color(primary, bright);
-  border-right: 1px solid $b-color;
+  z-index: 2;
   border-bottom: 1px solid $b-color;
-  height: 25rem;
-  // z-index: 3;
-  @include desktop {
-    height: 35rem;
-  }
+  height: calc((92vw / 12 * 0.75 * 2) - 1px);
   @include phone {
-    background-color: transparent;
-    width: 100%;
-    height: 100px;
-    border-bottom: 0px;
+    height: 25rem;
+  }
+
+  &.sticky {
+    align-self: flex-start;
+    position: sticky;
+    top: 50px;
+  }
+}
+
+.item__card__title__inner {
+  height: 100%;
+  position: relative;
+  border-top: 1px solid $b-color;
+  background-color: get-color(primary, bright);
+
+  h1 {
+    @extend %title-80;
+    text-align: center;
+    padding-top: 2.4rem;
+    padding-bottom: 2rem;
+    @include phone {
+      font-size: 5rem;
+      padding-top: 0;
+    }
+    span {
+      @include phone {
+        display: none;
+      }
+    }
   }
 
   p {
     @extend %paragraph-20;
     text-transform: uppercase;
     text-align: center;
-    padding: 2.4rem;
+    padding: 0 2.4rem;
+    @include tablet {
+      font-size: 3rem;
+    }
     @include phone {
-      dispaly: block;
-      width: 100%;
-      background-color: get-color(primary, bright);
+      font-size: 20px;
+      line-height: 1.4;
+    }
+    @include xs-phone {
       font-size: 16px;
+      font-weight: 300;
       line-height: 1.2;
+      padding: 0 7rem;
+    }
+    &.is-mobile {
+      display: none;
+      @include phone {
+        display: block;
+        font-family: 'FogtwoNo5', serif;
+        font-size: 4rem;
+        line-height: 1;
+        color: get-color(secondary, normal);
+        padding-top: 1.6rem;
+      }
     }
   }
 }
 
-.item__card__designer__left-title__inner {
-  height: 100%;
-  position: relative;
-  border-top: 1px solid $b-color;
-}
-
-.title80 {
-  @extend %title-80;
-  text-align: center;
-  padding-top: 2.4rem;
-  padding-bottom: 2rem;
-  background-color: get-color(primary, bright);
-}
-
-.title50 {
-  @extend %title-50;
-  text-align: center;
-  padding-top: 2.4rem;
-  padding-bottom: 2rem;
-  background-color: get-color(primary, bright);
-}
-
-.item__card__designer__left-visit-site {
+.item__card__visit-site {
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 2;
+  // z-index: 2;
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
+  // @include phone {
+  //   display: none;
+  // }
 }
 
 .item__card__designer__left-description {

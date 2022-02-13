@@ -34,14 +34,10 @@
                 getDesignerSite(getSwimsuit(ref.fields.reference).designer)
               "
             />
-            <!-- <p>USD {{ getSwimsuit(ref.fields.reference).price }}</p> -->
           </div>
-          <!-- <VisitSite
-            :url="getDesignerSite(getSwimsuit(ref.fields.reference).designer)"
-          /> -->
         </div>
         <div class="person__swimsuit__left__back">
-          <ArrowLeftCircle link="people" />
+          <ArrowBackCircle link="people" />
           <nuxt-link :to="localePath('/people')" exact>
             <span>Back to people</span>
           </nuxt-link>
@@ -328,17 +324,6 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-
-  // padding: 0.8rem;
-  // @include phone {
-  //   width: 100%;
-  //   border-right: 1px solid $b-color;
-  // }
-  // p {
-  //   @extend %paragraph-20;
-  //   font-weight: 300;
-  //   text-align: center;
-  // }
 }
 
 .person__right {
@@ -351,12 +336,6 @@ export default {
     order: 2;
   }
 }
-
-// .person__right__inner {
-//   position: absolute;
-//   top: -20%;
-//   right: 0;
-// }
 
 .person__hashtag {
   grid-area: 1 / 2 / 2 / 3;

@@ -3,13 +3,7 @@
     <div class="header__logo">
       <nuxt-link :to="localePath('/')" exact>
         <figure class="header__logo__media">
-          <img
-            src="~/assets/img/Logo.svg"
-            alt="Logo myswimlook"
-            class="header__logo__media__image"
-            width="332"
-            height="48"
-          />
+          <Logo class="header__logo__media__image" />
         </figure>
       </nuxt-link>
     </div>
@@ -44,8 +38,12 @@
 </template>
 
 <script>
+import Logo from '@/assets/img/logo.svg?inline'
 export default {
   name: 'TheAppHeader',
+  components: {
+    Logo,
+  },
 
   data() {
     return {

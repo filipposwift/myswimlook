@@ -42,16 +42,14 @@
         </p>
         <h6 v-if="story.author">by {{ story.author }}</h6>
       </div>
-      <div class="story__intro__incipit">
-        <p>
-          {{ story.incipit }}
-        </p>
-      </div>
-      <div class="story__intro__highlight">
-        <h3>
-          {{ story.highLight }}
-        </h3>
-      </div>
+      <div
+        v-dompurify-html="$md.render(story.incipit)"
+        class="story__intro__incipit"
+      ></div>
+      <div
+        v-dompurify-html="$md.render(story.highLight)"
+        class="story__intro__highlight"
+      ></div>
       <div class="story__intro__style__card__wrapper">
         <div class="story__intro__style-card">
           <div class="story__intro__style-card__hashtag">
@@ -385,19 +383,13 @@ export default {
 }
 .story__intro__incipit {
   grid-area: 4 / 1 / 5 / 5;
-  // @include phone {
-  //   grid-area: 8 / 1 / 9 / 8;
-  // }
+  @extend %paragraph-16;
+  padding: 1.6rem;
+  line-height: 1.5;
+  text-align: justify;
 
   @include phone {
     order: 4;
-  }
-
-  p {
-    @extend %paragraph-16;
-    padding: 1.6rem;
-    line-height: 1.5;
-    text-align: justify;
   }
 }
 .story__intro__highlight {
@@ -405,35 +397,22 @@ export default {
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
   @extend %center;
+  @extend %title-30;
+  line-height: 1.5;
 
-  // @include phone {
-  //   grid-area: 9 / 1 / 10 / 13;
-  // }
+  text-align: center;
+  text-transform: uppercase;
+  padding: 3.2rem 1.6rem;
 
   @include phone {
     order: 6;
+    font-size: 2.4rem;
+    padding: 40px 1.6rem;
   }
-
-  h3 {
-    @extend %title-30;
-    line-height: 1.5;
-
-    text-align: center;
-    text-transform: uppercase;
-    padding: 3.2rem 1.6rem;
-    // @include phone {
-    //   font-size: 20px;
-    //   line-height: 1.1;
-    @include phone {
-      font-size: 2.4rem;
-      padding: 40px 1.6rem;
-    }
-    @include xs-phone {
-      font-size: 14px;
-    }
+  @include xs-phone {
+    font-size: 14px;
   }
 }
-// }
 
 .story__intro__style__card__wrapper {
   grid-area: 5 / 9 / 7 / 13;

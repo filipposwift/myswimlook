@@ -1,0 +1,14 @@
+ <svg
+          aria-hidden="true"
+          class="arrow"
+          width="70"
+          height="35"
+          viewBox="0 0 70 35"
+        >
+          <path
+            d="M0 17.5L70 17.5M70 17.5C60.7042 17.6387 52.787 26.5741 52.787 35M70 17.5C60.4644 17.5 52.7363 8.42593 52.7363 -9.22768e-07"
+            class="arrow__path"
+            stroke-width="1.5"
+            fill="none"
+          />
+        </svg>

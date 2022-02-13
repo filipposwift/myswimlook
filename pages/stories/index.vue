@@ -276,6 +276,7 @@ span {
   height: 20%;
   @extend %title-24;
   border-top: 1px solid $b-color;
+  padding: 4rem 1.6rem;
   @include phone {
     font-size: 20px;
     padding: 4rem 1.6rem;

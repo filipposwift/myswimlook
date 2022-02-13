@@ -13,7 +13,6 @@
           </nuxt-link>
         </li>
       </ul>
-      <!-- <div class="spacer"></div> -->
     </nav>
     <nav class="right__navigation">
       <ul>
@@ -28,7 +27,6 @@
           </nuxt-link>
         </li>
       </ul>
-      <!-- <div class="spacer"></div> -->
     </nav>
     <main class="main__container">
       <TheAppHeader />
@@ -48,13 +46,9 @@ export default {}
   grid-template-columns: 4vw repeat(10, 1fr) 4vw;
   grid-auto-rows: 1fr;
   grid-column-gap: 0px;
-}
-.spacer {
-  height: calc(100vh - 55rem);
-  background-color: get-color(primary, normal);
-  overflow: hidden;
-  border-top: 1px solid $b-color;
-  border-bottom: 1px solid $b-color;
+  @include phone {
+    display: block;
+  }
 }
 
 .main__container {
@@ -114,12 +108,8 @@ export default {}
 .main__content {
   margin-top: 50px;
   width: 100%;
-  // overflow: hidden;
   border-left: 1px solid $b-color;
   border-right: 1px solid $b-color;
-  @include phone {
-    margin-top: 50px;
-  }
 }
 
 .right__navigation {
@@ -137,6 +127,9 @@ export default {}
 
   a.nuxt-link-active {
     color: get-color(basic, normal);
+  }
+  @include phone {
+    display: none;
   }
 }
 </style>
