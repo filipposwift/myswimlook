@@ -29,6 +29,12 @@ export default {
         content:
           'Be inspired by the best swimsuit designers, discover stylish swimwear, share your look',
       },
+
+      {
+        name: 'facebook-domain-verification',
+        content: '2xmkd1wqtbivo729p1dbsbt9k323o9',
+      },
+
       {
         property: 'fb:app_id',
         content: '2298068076999981',
