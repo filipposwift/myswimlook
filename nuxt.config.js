@@ -1,5 +1,6 @@
 // import path from 'path'
 // import fs from 'fs'
+// import { createSEOMeta } from './utils/seo'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -28,6 +29,11 @@ export default {
         content:
           'Be inspired by the best swimsuit designers, discover stylish swimwear, share your look',
       },
+      {
+        property: 'fb:app_id',
+        content: '2298068076999981',
+      },
+
       {
         property: 'og:site_name',
         content:

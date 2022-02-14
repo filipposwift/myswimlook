@@ -178,7 +178,7 @@
 <script>
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types'
 import RichTextRenderer from 'contentful-rich-text-vue-renderer'
-
+// import createSEOMeta from '@/utils/seo.js'
 export default {
   name: 'StoryPage',
 
@@ -210,6 +210,11 @@ export default {
         },
       ],
     }
+    // const { title, subtitle } = this.story
+    // return {
+    //   title,
+    //   meta: createSEOMeta({ subtitle }),
+    // }
   },
 
   computed: {
