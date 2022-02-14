@@ -54,7 +54,7 @@ export default {
         "mySwimlook People - See what your favorite influencers are wearing - We'll help you find the best swimsuit for any occasion and style - Search for people who have similar style tastes as you - Share your style with friends and celebrities",
       description:
         'We have searched for a wide spectrum of women in terms of age and location; some people are influencers, content creators or even just the average girl next door (who happens to have an amazing style). They all have their own unique interests, what is yours?',
-      image: 'https://myswimlook.com/social-media-card.jpg',
+      image: 'https://www.myswimlook.com/social-media-card.jpg',
 
       adjustedPeople: null,
     }
@@ -74,7 +74,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://myswimlook.com/people',
+          href: 'https://www.myswimlook.com/people',
         },
       ],
     }

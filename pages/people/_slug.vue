@@ -113,7 +113,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://myswimlook.com/people/${this.$route.params.slug}`,
+          href: `https://www.myswimlook.com/people/${this.$route.params.slug}`,
         },
       ],
     }

@@ -49,7 +49,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://myswimlook.com',
+        content: 'https://www.myswimlook.com',
       },
       {
         hid: 'og:title',
@@ -66,7 +66,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://myswimlook.com/social-media-card.jpg',
+        content: 'https://www.myswimlook.com/social-media-card.jpg',
       },
       { hid: 'og:image:height', property: 'og:image:height', content: '630' },
       { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
@@ -96,7 +96,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { hid: 'canonical', rel: 'canonical', href: 'https://myswimlook.com' },
+      {
+        hid: 'canonical',
+        rel: 'canonical',
+        href: 'https://www.myswimlook.com',
+      },
     ],
   },
 

@@ -106,7 +106,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://myswimlook.com/stories',
+          href: 'https://www.myswimlook.com/stories',
         },
       ],
     }

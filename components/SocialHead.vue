@@ -15,7 +15,7 @@ export default {
     },
     image: {
       type: String,
-      default: 'https://myswimlook.com/social-media-card.jpg',
+      default: 'https://www.myswimlook.com/social-media-card.jpg',
     },
   },
 

@@ -29,7 +29,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://myswimlook.com/contact`,
+          href: `https://www.myswimlook.com/contact`,
         },
       ],
     }

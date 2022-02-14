@@ -77,7 +77,7 @@ export default {
         'mySwimlook Designers - Browse our selection of more than 100 models from top brands to inspire you this summer - Sustainable swimwear from A to Z - Swimsuit inspiration for 2022 - Your guide to the best sustainable swimwear brands in 2022',
       description:
         "Here are some of our favorite swimwear brands that we have handpicked to help you find the perfect one for your body type. It was not an easy job and so we've created this guide on what makes each brand unique",
-      image: 'https://myswimlook.com/social-media-card.jpg',
+      image: 'https://www.myswimlook.com/social-media-card.jpg',
     }
   },
   head() {
@@ -94,7 +94,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://myswimlook.com/designers',
+          href: 'https://www.myswimlook.com/designers',
         },
       ],
     }

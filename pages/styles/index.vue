@@ -91,7 +91,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://myswimlook.com/styles',
+          href: 'https://www.myswimlook.com/styles',
         },
       ],
     }
