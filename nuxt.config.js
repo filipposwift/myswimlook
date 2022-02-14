@@ -43,7 +43,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://myswimlook.com/',
+        content: 'https://myswimlook.com',
       },
       {
         hid: 'og:title',
@@ -88,7 +88,10 @@ export default {
         content: '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { hid: 'canonical', rel: 'canonical', href: 'https://myswimlook.com' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
