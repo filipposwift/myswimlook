@@ -1,6 +1,11 @@
 <template>
   <div class="page__wrapper designers">
-    <SocialHead :title="title" :description="description" :image="image" />
+    <SocialHead
+      :title="title"
+      :description="description"
+      :image="image"
+      :url="url"
+    />
     <div class="designers__intro">
       <h1>
         We have selected more than 100 different bikinis and one-piece models
@@ -78,6 +83,7 @@ export default {
       description:
         "Here are some of our favorite swimwear brands that we have handpicked to help you find the perfect one for your body type. It was not an easy job and so we've created this guide on what makes each brand unique",
       image: 'https://www.myswimlook.com/social-media-card.jpg',
+      url: 'https://www.myswimlook.com/designers',
     }
   },
   head() {
@@ -85,6 +91,7 @@ export default {
       title: this.title,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.description,
@@ -92,6 +99,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: 'https://www.myswimlook.com/designers',

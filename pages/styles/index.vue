@@ -1,6 +1,11 @@
 <template>
   <div class="page__wrapper styles">
-    <SocialHead :title="title" :description="description" :image="image" />
+    <SocialHead
+      :title="title"
+      :description="description"
+      :image="image"
+      :url="url"
+    />
     <hero>
       <template #title> Styles </template>
       <template #verticalTitle> Style isn't what you wear </template>
@@ -74,6 +79,7 @@ export default {
         'We want to help you find the perfect look for your body type. We have selected looks from some of the best fashion designers in the world, and we are confident that our style collection will give you plenty of inspiration.',
       image:
         'https://res.cloudinary.com/swimlook/image/upload/v1642171165/swimlook/Home%20Page/Styles-1.jpg',
+      url: 'https://www.myswimlook.com/styles',
     }
   },
 
@@ -82,6 +88,7 @@ export default {
       title: this.title,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.description,
@@ -89,6 +96,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: 'https://www.myswimlook.com/styles',

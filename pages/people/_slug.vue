@@ -4,6 +4,7 @@
       :title="person.name"
       :description="person.description"
       :image="person.socialMedia[0].fields.image[0].secure_url"
+      :url="`https://www.myswimlook.com/people/${$route.params.slug}`"
     />
 
     <div class="person__intro">
@@ -104,6 +105,7 @@ export default {
       title: this.person.name,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.person.description,
@@ -111,6 +113,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: `https://www.myswimlook.com/people/${this.$route.params.slug}`,

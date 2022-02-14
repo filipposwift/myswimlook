@@ -1,6 +1,11 @@
 <template>
   <div class="page__wrapper people">
-    <SocialHead :title="title" :description="description" :image="image" />
+    <SocialHead
+      :title="title"
+      :description="description"
+      :image="image"
+      :url="url"
+    />
     <div class="people__grid people__grid--large">
       <div
         v-for="(person, index) in adjustedPeople"
@@ -55,6 +60,7 @@ export default {
       description:
         'We have searched for a wide spectrum of women in terms of age and location; some people are influencers, content creators or even just the average girl next door (who happens to have an amazing style). They all have their own unique interests, what is yours?',
       image: 'https://www.myswimlook.com/social-media-card.jpg',
+      url: 'https://www.myswimlook.com/people',
 
       adjustedPeople: null,
     }
@@ -65,6 +71,7 @@ export default {
       title: this.title,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.description,
@@ -72,6 +79,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: 'https://www.myswimlook.com/people',

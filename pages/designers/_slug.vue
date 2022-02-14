@@ -1,6 +1,10 @@
 <template>
   <div class="page__wrapper designer">
-    <SocialHead :title="designer.name" :description="designer.description" />
+    <SocialHead
+      :title="designer.name"
+      :description="designer.description"
+      :url="`https://www.myswimlook.com/designers/${$route.params.slug}`"
+    />
     <div class="designer__intro">
       <div class="designer__intro__left">
         <h1>{{ designer.name }}</h1>
@@ -83,6 +87,7 @@ export default {
       title: this.designer.name,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.designer.description,
@@ -90,6 +95,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: `https://www.myswimlook.com/designers/${this.$route.params.slug}`,

@@ -17,6 +17,10 @@ export default {
       type: String,
       default: 'https://www.myswimlook.com/social-media-card.jpg',
     },
+    url: {
+      type: String,
+      default: 'https://www.myswimlook.com',
+    },
   },
 
   head() {
@@ -43,26 +47,38 @@ export default {
           content: this.title,
         },
         {
+          vmid: 'og:title',
           hid: 'og:title',
           property: 'og:title',
           content: this.title,
         },
         {
+          vmid: 'og:url',
+          hid: 'og:url',
+          property: 'og:url',
+          content: this.url,
+        },
+
+        {
+          vmid: 'og:description',
           hid: 'og:description',
           property: 'og:description',
           content: this.description,
         },
         {
+          vmid: 'og:image',
           hid: 'og:image',
           property: 'og:image',
           content: this.image,
         },
         {
+          vmid: 'og:image:secure_url',
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
           content: this.image,
         },
         {
+          vmid: 'og:image:alt',
           hid: 'og:image:alt',
           property: 'og:image:alt',
           content: this.title,

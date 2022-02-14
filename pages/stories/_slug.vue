@@ -4,6 +4,7 @@
       :title="story.title"
       :description="story.highLight"
       :image="story.coverImage[0].secure_url"
+      :url="`https://www.myswimlook.com/stories/${$route.params.slug}`"
     />
     <section class="story__intro">
       <div class="story__intro__title">
@@ -197,6 +198,7 @@ export default {
       title: this.story.title,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.story.highLight,
@@ -204,6 +206,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: `https://www.myswimlook.com/stories/${this.$route.params.slug}`,

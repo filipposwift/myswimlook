@@ -24,6 +24,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       // { hid: 'description', name: 'description', content: '' },
       {
+        vmid: 'description',
         hid: 'description',
         name: 'description',
         content:
@@ -47,23 +48,27 @@ export default {
       },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       {
+        vmid: 'og: url',
         hid: 'og:url',
         property: 'og:url',
         content: 'https://www.myswimlook.com',
       },
       {
+        vmid: 'og:title',
         hid: 'og:title',
         property: 'og:title',
         content:
           'Be inspired by the best swimsuit designers, discover stylish swimwear, share your look',
       },
       {
+        vmid: 'og:description',
         hid: 'og:description',
         property: 'og:description',
         content:
           'Discover who is wearing the last trending swimsuits, check prices from over 40 different brands ando more the 100 models',
       },
       {
+        vmid: 'og:image',
         hid: 'og:image',
         property: 'og:image',
         content: 'https://www.myswimlook.com/social-media-card.jpg',
@@ -97,6 +102,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
+        vmid: 'canonical',
         hid: 'canonical',
         rel: 'canonical',
         href: 'https://www.myswimlook.com',

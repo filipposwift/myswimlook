@@ -20,6 +20,7 @@ export default {
       title: this.title,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.description,
@@ -27,6 +28,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: `https://www.myswimlook.com/contact`,

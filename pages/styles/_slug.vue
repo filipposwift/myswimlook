@@ -4,6 +4,7 @@
       :title="`my${currentStyle.name}Swimlook`"
       :description="currentStyle.description"
       :image="currentStyle.image[0].secure_url"
+      :url="`https://www.myswimlook.com/styles/${$route.params.slug}`"
     />
     <!-- <div class="grid__container"> -->
     <div class="style__title__box">
@@ -93,6 +94,7 @@ export default {
       title: `my ${this.currentStyle.name} Swimlook`,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.currentStyle.description,
@@ -100,6 +102,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: `https://www.myswimlook.com/styles/${this.$route.params.slug}`,

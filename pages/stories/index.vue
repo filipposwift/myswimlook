@@ -1,6 +1,11 @@
 <template>
   <div class="page__wrapper stories">
-    <SocialHead :title="title" :description="description" :image="image" />
+    <SocialHead
+      :title="title"
+      :description="description"
+      :image="image"
+      :url="url"
+    />
     <hero>
       <template #title> Stories </template>
       <template #verticalTitle>Swimwear trends in a click</template>
@@ -89,6 +94,7 @@ export default {
         'Stay up to date with the latest fashion trends in swimwear around the world, discover emerging designers and learn what celebrities are choosing. Get inspired by browsing our curated selection of articles who cover everything you need know about beachwear fashion',
       image:
         'https://res.cloudinary.com/swimlook/image/upload/v1639078741/swimlook/styles/cover-styles.jpg',
+      url: 'https://www.myswimlook.com/stories',
     }
   },
 
@@ -97,6 +103,7 @@ export default {
       title: this.title,
       meta: [
         {
+          vmid: 'description',
           hid: 'description',
           name: 'description',
           content: this.description,
@@ -104,6 +111,7 @@ export default {
       ],
       link: [
         {
+          vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
           href: 'https://www.myswimlook.com/stories',
