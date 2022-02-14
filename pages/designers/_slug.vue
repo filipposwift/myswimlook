@@ -92,7 +92,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://www.myswimlook.com/designers/${this.$route.params.slug}`,
+          href: `https://myswimlook.com/designers/${this.$route.params.slug}`,
         },
       ],
     }

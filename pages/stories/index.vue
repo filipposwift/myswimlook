@@ -87,7 +87,8 @@ export default {
         "mySwimlook Stories - The world's swimwear trends in a click - Be the first to know about new arrivals - Get inspired by our weekly fashion articles - Share your style with friends and celebrities",
       description:
         'Stay up to date with the latest fashion trends in swimwear around the world, discover emerging designers and learn what celebrities are choosing. Get inspired by browsing our curated selection of articles who cover everything you need know about beachwear fashion',
-      image: 'https://myswimlook.com/social-media-card.jpg',
+      image:
+        'https://res.cloudinary.com/swimlook/image/upload/v1639078741/swimlook/styles/cover-styles.jpg',
     }
   },
 
@@ -105,7 +106,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://myswimlook.com/styles',
+          href: 'https://myswimlook.com/stories',
         },
       ],
     }

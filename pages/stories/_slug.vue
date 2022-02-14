@@ -206,7 +206,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://www.myswimlook.com/stories/${this.$route.params.slug}`,
+          href: `https://myswimlook.com/stories/${this.$route.params.slug}`,
         },
       ],
     }

@@ -53,10 +53,30 @@ export default {
       title:
         "mySwimlook People - See what your favorite influencers are wearing - We'll help you find the best swimsuit for any occasion and style - Search for people who have similar style tastes as you - Share your style with friends and celebrities",
       description:
-        "We believe that you can always find someone who has a style you want. You just need to look at what they're wearing and take some inspiration from their choices. There's a wide spectrum in terms of age and location; some people are influencers, content creators or even just your average Mary. They all have their own unique interests: some can make us feel good by being authentic while others catch our attention with aesthetically pleasing images",
+        'We have searched for a wide spectrum of women in terms of age and location; some people are influencers, content creators or even just the average girl next door (who happens to have an amazing style). They all have their own unique interests, what is yours?',
       image: 'https://myswimlook.com/social-media-card.jpg',
 
       adjustedPeople: null,
+    }
+  },
+
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description,
+        },
+      ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: 'https://myswimlook.com/people',
+        },
+      ],
     }
   },
 

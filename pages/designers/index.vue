@@ -94,7 +94,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://myswimlook.com/styles',
+          href: 'https://myswimlook.com/designers',
         },
       ],
     }

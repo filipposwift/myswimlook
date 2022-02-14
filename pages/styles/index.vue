@@ -72,7 +72,8 @@ export default {
         'mySwimlook Styles - Browse through our collection of curated swimwear looks and find inspiration on how to mix and match a beach look that fits your style.',
       description:
         'We want to help you find the perfect look for your body type. We have selected looks from some of the best fashion designers in the world, and we are confident that our style collection will give you plenty of inspiration.',
-      image: 'https://myswimlook.com/social-media-card.jpg',
+      image:
+        'https://res.cloudinary.com/swimlook/image/upload/v1642171165/swimlook/Home%20Page/Styles-1.jpg',
     }
   },
 
