@@ -13,8 +13,12 @@
         </div>
       </div>
       <div class="designer__intro__right">
-        <h2>From {{ designer.name }} website:</h2>
-        <p>{{ designer.description }}</p>
+        <h2 v-if="!designer.original">From {{ designer.name }} website:</h2>
+        <div
+          v-dompurify-html="$md.render(designer.description)"
+          class="description"
+        ></div>
+        <!-- <p>{{ designer.description }}</p> -->
       </div>
     </div>
     <div
@@ -184,8 +188,10 @@ export default {
     text-transform: uppercase;
     padding-bottom: 3.2rem;
   }
-  p {
+
+  .description {
     @extend %paragraph-16;
+    white-space: pre-line;
   }
 }
 

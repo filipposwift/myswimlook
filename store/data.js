@@ -18,12 +18,16 @@ export const getters = {
     return newtemp
   },
   getDesigners: (state) => {
-    return state.data.map(({ name, slug, description, featured }) => ({
-      name,
-      slug,
-      description,
-      featured,
-    }))
+    return state.data.map(
+      ({ name, slug, description, featured, original, website }) => ({
+        name,
+        slug,
+        description,
+        featured,
+        original,
+        website,
+      })
+    )
   },
 }
 
@@ -51,6 +55,7 @@ export const actions = {
         slug: fields.slug,
         featured: fields.featured,
         description: fields.description,
+        original: fields.original,
         website: fields.website,
         logo: fields.logo,
         items: fields.swimsuit,

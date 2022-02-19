@@ -56,7 +56,7 @@
         <p>
           We are a team of fashion lovers and technical software delevopers
           composed by three women and one (very lucky) man. Our passion for the
-          ocean, fashion and the environment is what drives Myswimlook. We focus
+          ocean, fashion and the environment is what drives MySwimLook. We focus
           on how technology and social media can help people make better and
           easier choices. We hope you enjoy our website and share our vision.
         </p>
@@ -66,14 +66,14 @@
       <div class="footer__logo">
         <nuxt-link :to="localePath('/')" exact>
           <figure class="footer__logo__media">
-            <img
-              src="~/assets/img/Logowhite.svg"
+            <!-- <img
+              src="~/assets/img/Logowhite.svg?data"
               alt="Logo myswimllok"
               width="250"
               height="70"
               class="footer__logo__media__image"
-            />
-            <!-- <LogoWhite class="footer__logo__media__image" /> -->
+            /> -->
+            <LogoWhite class="footer__logo__media__image" />
           </figure>
         </nuxt-link>
       </div>
@@ -122,6 +122,7 @@ export default {
 .footer__container {
   width: 100%;
   z-index: 10;
+  position: relative;
   border: 1px solid $b-color;
   background-color: get-color(primary, bright);
   @include phone {

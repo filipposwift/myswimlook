@@ -3,14 +3,14 @@
     <div class="header__logo">
       <nuxt-link :to="localePath('/')" exact>
         <figure class="header__logo__media">
-          <img
+          <!-- <img
             src="~/assets/img/Logo.svg"
             alt="Logo myswimlook"
             class="header__logo__media__image"
             width="332"
             height="48"
-          />
-          <!-- <LogoNormal class="header__logo__media__image" /> -->
+          /> -->
+          <LogoBlue class="header__logo__media__image" />
         </figure>
       </nuxt-link>
     </div>

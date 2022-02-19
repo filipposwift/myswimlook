@@ -456,6 +456,7 @@ export default {
   overflow: -moz-scrollbars-none;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  // scroll-snap-type: x mandatory; //prova snap
   height: 35vw;
   width: 100vw;
   border-bottom: 1px solid $b-color;
@@ -472,6 +473,7 @@ export default {
   display: flex;
   overflow: hidden;
   position: absolute;
+  // scroll-snap-align: start; //prova snap
   width: auto;
   align-self: flex-start;
 }
@@ -480,6 +482,7 @@ export default {
 }
 
 .hc__slider__cell {
+  // scroll-snap-align: start; //prova snap
   width: 30vw;
   height: 35vw;
   border-right: 1px solid $b-color;

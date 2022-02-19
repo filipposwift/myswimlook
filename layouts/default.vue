@@ -123,7 +123,7 @@ export default {}
   right: 0;
   background-color: get-color(primary, normal);
   z-index: 10;
-  border-right: 1px solid $b-color;
+  // border-right: 1px solid $b-color;
 
   a.nuxt-link-active {
     color: get-color(basic, normal);

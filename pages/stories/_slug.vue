@@ -2,7 +2,7 @@
   <div class="page__wrapper story">
     <SocialHead
       :title="story.title"
-      :description="story.highLight"
+      :description="story.subtitle"
       :image="story.coverImage[0].secure_url"
       :url="`https://www.myswimlook.com/stories/${$route.params.slug}`"
     />
@@ -37,11 +37,12 @@
           </p>
         </figcaption>
       </figure>
-      <div class="story__intro__subtitle">
-        <p>
-          {{ story.subtitle }}
-        </p>
-        <h6 v-if="story.author">by {{ story.author }}</h6>
+      <div
+        v-dompurify-html="$md.render(story.subtitle)"
+        class="story__intro__subtitle"
+      ></div>
+      <div v-if="story.author" class="story__intro__author">
+        <h6>by {{ story.author }}</h6>
       </div>
       <div
         v-dompurify-html="$md.render(story.incipit)"
@@ -61,7 +62,7 @@
           </div>
           <figure class="story__intro__style-card__media">
             <nuxt-img
-              :src="itemCard.cloudinarySwimlook[2].public_id"
+              :src="itemCard.featuredImageForStory[0].public_id"
               alt="Hero image of woman in swimwear"
               width="800"
               provider="cloudinary"
@@ -77,88 +78,21 @@
               :designer-site="designerUrl"
               class="story__visit"
             />
-            <!-- <p>USD {{ itemCard.price }}</p>
-            <VisitSite :url="designerUrl" class="visit" /> -->
           </div>
         </div>
       </div>
     </section>
-    <section class="story__middle">
-      <figure class="story__middle__reference__media-top">
-        <nuxt-img
-          :src="story.imagesVertical[0].public_id"
-          :alt="
-            story.imagesVertical[0].context
-              ? story.imagesVertical[0].context.custom.alt
-              : 'Image of woman in swimsuit'
-          "
-          width="2000"
-          provider="cloudinary"
-          class="story__middle__reference__media__image"
-        ></nuxt-img>
-        <figcaption
-          :class="story.imagesVertical[0].context ? 'story__fig-caption' : ''"
-        >
-          <p>
-            Photo:
-            {{
-              story.imagesVertical[0].context
-                ? story.imagesVertical[0].context.custom.caption
-                : ''
-            }}
-          </p>
-        </figcaption>
-      </figure>
-      <figure class="story__middle__reference__media-bottom">
-        <nuxt-img
-          :src="story.imagesVertical[1].public_id"
-          :alt="
-            story.imagesVertical[1].context
-              ? story.imagesVertical[1].context.custom.alt
-              : 'Image of woman in swimsuit'
-          "
-          width="2000"
-          provider="cloudinary"
-          class="story__middle__reference__media__image"
-        ></nuxt-img>
-        <figcaption
-          :class="story.imagesVertical[1].context ? 'story__fig-caption' : ''"
-        >
-          <p>
-            Photo:
-            {{
-              story.imagesVertical[1].context
-                ? story.imagesVertical[1].context.custom.caption
-                : ''
-            }}
-          </p>
-        </figcaption>
-      </figure>
-      <figure class="story__middle__reference__media-big">
-        <nuxt-img
-          :src="story.imageLandscape[0].public_id"
-          :alt="
-            story.imageLandscape[0].context
-              ? story.imageLandscape[0].context.custom.alt
-              : 'Image fo woman in swimsuit'
-          "
-          width="1000"
-          provider="cloudinary"
-          class="story__middle__reference__media__image"
-        ></nuxt-img>
-        <figcaption
-          :class="story.imageLandscape[0].context ? 'story__fig-caption' : ''"
-        >
-          <p>
-            Photo:
-            {{
-              story.imageLandscape[0].context
-                ? story.imageLandscape[0].context.custom.caption
-                : ''
-            }}
-          </p>
-        </figcaption>
-      </figure>
+    <section v-if="middleLayout === 'c'">
+      <StoryMiddleCombined :story="story" />
+    </section>
+    <section v-if="middleLayout === 's'">
+      <StoryMiddleStacked :story="story" />
+    </section>
+    <section v-if="middleLayout === 'r'">
+      <StoryMiddleReversedStacked :story="story" />
+    </section>
+    <section v-if="middleLayout === 't'">
+      <StoryMiddlePortraits :story="story" />
     </section>
     <section class="story__end">
       <div class="story__end__article__body">
@@ -201,7 +135,7 @@ export default {
           vmid: 'description',
           hid: 'description',
           name: 'description',
-          content: this.story.highLight,
+          content: this.story.subtitle,
         },
       ],
       link: [
@@ -213,11 +147,6 @@ export default {
         },
       ],
     }
-    // const { title, subtitle } = this.story
-    // return {
-    //   title,
-    //   meta: createSEOMeta({ subtitle }),
-    // }
   },
 
   computed: {
@@ -242,6 +171,13 @@ export default {
       return []
     },
 
+    middleLayout() {
+      const txt = this.story.middleLayout
+      txt.trim()
+      const revisedTxt = txt.slice(0, 1)
+      return revisedTxt.toLowerCase()
+    },
+
     designerUrl() {
       const tmp = this.$store.state.data.data.find(
         (designer) => designer.name === this.itemCard.designer
@@ -263,34 +199,25 @@ export default {
           ),
         [BLOCKS.EMBEDDED_ENTRY]: (node, key, h, next) =>
           h(
-            'nuxt-img',
+            'story-image-wrapper',
             {
               key,
               attrs: {
-                src: node.data.target.fields.image[0].public_id,
-                alt: node.data.target.fields.image[0].context
-                  ? node.data.target.fields.image[0].context.custom.alt
-                  : 'Image',
-                provider: 'cloudinary',
-                width: '400',
-                class: 'story__image',
+                story: node.data,
+                nodeType: node.nodeType,
               },
             },
             next(node.content, key, h, next)
           ),
+
         [INLINES.EMBEDDED_ENTRY]: (node, key, h, next) =>
           h(
-            'nuxt-img',
+            'story-image-wrapper',
             {
               key,
               attrs: {
-                src: node.data.target.fields.image[0].public_id,
-                alt: node.data.target.fields.image[0].context
-                  ? node.data.target.fields.image[0].context.custom.alt
-                  : 'Image',
-                provider: 'cloudinary',
-                width: '400',
-                class: 'story__image-inline',
+                story: node.data,
+                nodeType: node.nodeType,
               },
             },
             next(node.content, key, h, next)
@@ -310,18 +237,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.prova {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .story__intro {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows:
-    16rem fit-content(40%) minmax(24rem, auto) minmax(48rem, auto) 16rem
+    16rem fit-content(40%) minmax(16rem, auto) 10rem minmax(48rem, auto) 16rem
     64rem;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  // @include phone {
-  //   grid-template-rows: none;
-  //   grid-auto-rows: minmax(16rem, auto);
-  // }
+
   @include phone {
     display: flex;
     flex-direction: column;
@@ -334,9 +264,7 @@ export default {
   border-bottom: 1px solid $b-color;
   border-right: 1px solid $b-color;
   background-color: get-color(primary, bright);
-  // @include phone {
-  //   grid-area: 2 / 1 / 3 / 8;
-  // }
+
   @include phone {
     order: 1;
     border-top: 0px;
@@ -353,12 +281,10 @@ export default {
   }
 }
 .story__intro__media {
-  grid-area: 1 / 5 / 6 / 13;
+  grid-area: 1 / 5 / 7 / 13;
   position: relative;
   border-left: 1px solid $b-color;
-  // @include phone {
-  //   grid-area: 1 / 3 / 7 / 13;
-  // }
+
   @include phone {
     order: 2;
     height: 50vh;
@@ -371,41 +297,52 @@ export default {
 .story__intro__subtitle {
   grid-area: 3 / 1 / 4 / 5;
   margin: 4rem;
-  // @include phone {
-  //   grid-area: 7 / 1 / 8 / 8;
-  // }
+  @extend %paragraph-20;
+  font-weight: 300;
+  text-align: center;
+
   @include phone {
     order: 3;
   }
-  p {
-    @extend %paragraph-20;
-    font-weight: 300;
-    text-align: center;
-  }
-  h6 {
-    @extend %paragraph-16;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 3.2rem 0;
-  }
 }
-.story__intro__incipit {
+
+.story__intro__author {
   grid-area: 4 / 1 / 5 / 5;
-  @extend %paragraph-16;
-  padding: 1.6rem;
-  line-height: 1.5;
-  text-align: justify;
 
   @include phone {
     order: 4;
   }
+
+  h6 {
+    @extend %paragraph-16;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1.6rem 0;
+  }
+}
+.story__intro__incipit {
+  grid-area: 5 / 1 / 6 / 5;
+  @extend %paragraph-16;
+  white-space: pre-line;
+  padding: 1.6rem;
+  line-height: 1.5;
+  text-align: justify;
+
+  a {
+    color: red;
+  }
+
+  @include phone {
+    order: 5;
+  }
 }
 .story__intro__highlight {
-  grid-area: 6 / 1 / 7 / 9;
+  grid-area: 7 / 1 / 8 / 9;
   border-top: 1px solid $b-color;
   border-bottom: 1px solid $b-color;
   @extend %center;
   @extend %title-30;
+  white-space: pre-line;
   line-height: 1.5;
 
   text-align: center;
@@ -413,7 +350,7 @@ export default {
   padding: 3.2rem 1.6rem;
 
   @include phone {
-    order: 6;
+    order: 7;
     font-size: 2.4rem;
     padding: 40px 1.6rem;
   }
@@ -423,17 +360,14 @@ export default {
 }
 
 .story__intro__style__card__wrapper {
-  grid-area: 5 / 9 / 7 / 13;
+  grid-area: 6 / 9 / 8 / 13;
   z-index: 1;
   border-bottom: 1px solid $b-color;
   border-top: 1px solid $b-color;
   border-left: 1px solid $b-color;
-  // @include phone {
-  //   grid-area: 6 / 8 / 9 / 13;
-  //   border-bottom: 0px;
-  // }
+
   @include phone {
-    order: 5;
+    order: 6;
     border-bottom: 0px;
     border-left: 0px;
     height: 70vh;
@@ -448,12 +382,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 0.2fr;
   grid-template-rows: 7rem 1fr 4rem;
-  // @include phone {
-  //   grid-template-rows: 7rem 1fr 7rem;
-  // }
-  // @include xs-phone {
-  //   grid-template-rows: 14rem 1fr 14rem;
-  // }
 }
 
 .story__intro__style-card__hashtag {
@@ -462,7 +390,7 @@ export default {
   border-bottom: 1px solid $b-color;
   h3 {
     @extend %title-30;
-    font-family: 'Wok Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 300;
     line-height: 7rem;
     text-align: center;
@@ -470,10 +398,7 @@ export default {
     @include phone {
       font-size: 24px;
     }
-    // @include xs-phone {
-    //   font-size: 16px;
-    //   line-height: 20rem;
-    // }
+
     span {
       color: get-color(basic, normal);
     }
@@ -506,39 +431,14 @@ export default {
   position: absolute;
   bottom: 0;
   right: 0;
-  // display: flex;
-  // justify-content: flex-end;
-  // background-color: get-color(primary, normal);
+
   z-index: 2;
   border-top: 1px solid $b-color;
-
-  // p {
-  //   display: block;
-  //   width: 50%;
-  //   @extend %paragraph-20-light;
-  //   text-align: center;
-  //   line-height: 5rem;
-  //   border-right: 1px solid $b-color;
-  // @include phone {
-  //   font-size: 16px;
-  //   line-height: 7rem;
-  //   letter-spacing: 2px;
-  //   flex-grow: 1;
-  // }
-  // @include xs-phone {
-  //   line-height: 14rem;
-  // }
 }
 .story__visit {
-  // flex-grow: 1;
   border-left: 1px solid $b-color;
-  // @include phone {
-  //   align-items: center;
-  //   display: flex;
-  //   justify-content: center;
-  // }
 }
-// }
+
 .story__intro__style-card__media {
   grid-area: 2 / 1 / 4 / 3;
   height: 100%;
@@ -547,49 +447,6 @@ export default {
   // border: 1px solid $b-color;
 }
 .story__intro__style-card__media__image {
-  @extend %cover;
-}
-
-.story__middle {
-  width: 100%;
-  height: 75vh;
-  min-height: 100rem;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 10rem repeat(2, minmax(0, 1fr)) 10rem;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  @include phone {
-    grid-template-rows: repeat(2, 1fr);
-  }
-}
-.story__middle__reference__media {
-  &-top {
-    grid-area: 1 / 1 / 3 / 4;
-    position: relative;
-    @include phone {
-      grid-area: 1 / 1 / 2 / 7;
-    }
-  }
-
-  &-bottom {
-    grid-area: 3 / 1 / 5 / 4;
-    position: relative;
-    @include phone {
-      grid-area: 1 / 7 / 2 / 13;
-    }
-  }
-
-  &-big {
-    grid-area: 2 / 4 / 5 / 13;
-    position: relative;
-    @include phone {
-      grid-area: 2 / 1 / 3 / 13;
-    }
-  }
-}
-
-.story__middle__reference__media__image {
   @extend %cover;
 }
 
@@ -663,15 +520,18 @@ export default {
 
 .story__image-inline {
   float: right;
-  padding-top: 1.6rem;
-  padding-left: 1.6rem;
-  padding-bottom: 1.6rem;
+  margin-top: 1.6rem;
+  margin-left: 1.6rem;
+  margin-bottom: 1.6rem;
+  height: 40vw;
+
   @include phone {
     display: block;
     float: none;
     padding: 0;
     margin-top: 5rem;
     margin-bottom: 1.6rem;
+    height: 50vh;
   }
 }
 
