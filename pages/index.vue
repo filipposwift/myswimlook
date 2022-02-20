@@ -279,6 +279,7 @@ export default {
       return this.stories.story[0].fields
     },
   },
+
   mounted() {
     this.initImageParallax()
     this.lineAnimation()
