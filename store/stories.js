@@ -18,6 +18,7 @@ export const actions = {
       const client = createClient()
       const response = await client.getEntries({
         content_type: 'stories',
+        order: '-sys.createdAt',
         include: 10,
       })
 

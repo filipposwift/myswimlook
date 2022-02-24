@@ -8,7 +8,9 @@ export const getters = {}
 
 export const mutations = {
   updateData: (state, payload) => {
-    state.data = payload
+    state.data = payload.sort(function (a, b) {
+      return Math.random() * 2 - 1
+    })
   },
 }
 

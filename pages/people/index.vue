@@ -39,7 +39,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import _shuffle from 'lodash/shuffle'
+// import _shuffle from 'lodash/shuffle'
 import { slideLeft } from '@/utils/transitions'
 export default {
   name: 'PeoplePage',
@@ -62,7 +62,7 @@ export default {
       image: 'https://www.myswimlook.com/social-media-card.jpg',
       url: 'https://www.myswimlook.com/people',
 
-      adjustedPeople: null,
+      // adjustedPeople: null,
     }
   },
 
@@ -92,42 +92,43 @@ export default {
     ...mapState({
       people: (state) => state.people.data,
     }),
-    // adjustedPeople() {
-    //   const tmp = [...this.people]
-    //   const shuffled = tmp
-    //     .map((value) => ({ value, sort: Math.random() }))
-    //     .sort((a, b) => a.sort - b.sort)
-    //     .map(({ value }) => value)
+    adjustedPeople() {
+      const tmp = [...this.people]
 
+      // for (let a = 0; a < tmp.length; a++) {
+      //   const x = tmp[a]
+      //   const y = Math.floor(Math.random() * (a + 1))
+      //   tmp[a] = tmp[y]
+      //   tmp[y] = x
+      // }
+
+      let i = 0
+      while (i * 3 < tmp.length) {
+        tmp.splice(++i * 3, 0, this.peopleSpace)
+      }
+      tmp.splice(0, 0, this.peopleIntro)
+      // tmp.splice(1, 0, this.peopleIntro)
+
+      return tmp
+    },
+  },
+
+  mounted() {
+    // this.adjustedPeople = this.adjusted()
+  },
+
+  methods: {
+    // adjusted() {
+    //   const tmp = [...this.people]
+    //   const shuffled = _shuffle(tmp)
     //   let i = 0
     //   while (i * 3 < shuffled.length) {
     //     shuffled.splice(++i * 3, 0, this.peopleSpace)
     //   }
     //   shuffled.splice(0, 0, this.peopleIntro)
     //   // tmp.splice(1, 0, this.peopleIntro)
-
     //   return shuffled
     // },
-  },
-
-  mounted() {
-    this.adjustedPeople = this.adjusted()
-  },
-
-  methods: {
-    adjusted() {
-      const tmp = [...this.people]
-      const shuffled = _shuffle(tmp)
-
-      let i = 0
-      while (i * 3 < shuffled.length) {
-        shuffled.splice(++i * 3, 0, this.peopleSpace)
-      }
-      shuffled.splice(0, 0, this.peopleIntro)
-      // tmp.splice(1, 0, this.peopleIntro)
-
-      return shuffled
-    },
   },
 }
 </script>
