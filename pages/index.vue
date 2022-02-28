@@ -365,11 +365,12 @@ export default {
 }
 
 .cell__image__media {
-  height: 100%;
+  height: 0;
   position: relative;
   width: 90%;
   transition: transform 1s ease-out;
   overflow: hidden;
+  padding-bottom: 133.33%;
 
   &:hover {
     transform: translate3d(0, 0, 0);

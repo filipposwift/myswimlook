@@ -129,6 +129,9 @@ export default {
     margin-left: 0;
     height: 100vh;
     min-height: 100rem;
+    // height: 0;
+    // padding-bottom: 56.25%;
+    // overflow: hidden;
     position: relative;
     @include phone {
       margin-top: 0;

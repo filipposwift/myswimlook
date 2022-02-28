@@ -130,6 +130,7 @@ export default {
     margin-left: 0;
     height: 100vh;
     // min-height: 100rem;
+
     position: relative;
     @include phone {
       margin-top: 0;
