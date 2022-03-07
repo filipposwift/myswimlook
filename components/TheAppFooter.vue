@@ -1,5 +1,11 @@
 <template>
   <footer class="footer__container">
+    <div class="footer__disclaimer">
+      <p>
+        We may earn a commission from some links on the site, however we only
+        include swimsuits that we love and we want to wear.
+      </p>
+    </div>
     <div class="footer__items">
       <div class="footer__item">
         <h2>Explore</h2>
@@ -127,6 +133,14 @@ export default {
   background-color: get-color(primary, bright);
   @include phone {
     margin-bottom: 1.6rem;
+  }
+}
+
+.footer__disclaimer {
+  padding: 0.8rem;
+  p {
+    @extend %paragraph-16;
+    font-size: 14px;
   }
 }
 

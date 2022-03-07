@@ -3,7 +3,11 @@
     <figure
       :class="[
         'image__media',
-        item.contentType === 'itemCard' ? 'center' : 'left',
+        item.contentType === 'itemCard'
+          ? 'center'
+          : item.contentType === 'cloudinaryAsset'
+          ? 'left'
+          : 'wide',
         nodeType === 'embedded-entry-block' ? '' : 'inline',
       ]"
     >
@@ -21,6 +25,14 @@
         </p>
       </figcaption>
     </figure>
+    <div
+      v-if="
+        nodeType === 'embedded-entry-block' && item.contentType === 'itemCard'
+      "
+      class="image__title"
+    >
+      <h3>{{ designer }}</h3>
+    </div>
     <div
       v-if="
         nodeType === 'embedded-entry-block' && item.contentType === 'itemCard'
@@ -91,6 +103,16 @@ export default {
       }
       return ''
     },
+
+    designer() {
+      if (this.story.target.fields.designer) {
+        const tmp = this.$store.state.data.data.find(
+          (designer) => designer.name === this.story.target.fields.designer
+        ).name
+        return tmp
+      }
+      return ''
+    },
   },
 }
 </script>
@@ -109,20 +131,38 @@ export default {
   &.center {
     margin: auto;
     margin-bottom: 1.6rem;
+    @include phone {
+      margin: 0;
+    }
   }
   &.left {
     float: left;
     margin-right: 5rem;
     margin-bottom: 1.6rem;
-    height: 30vw;
-    width: 20vw;
+    height: 0;
+    width: 40vw;
+    padding-bottom: 25%;
     @include phone {
       float: none;
       height: 50vh;
       width: 90%;
       margin: auto;
+      padding-bottom: 0;
     }
   }
+
+  &.wide {
+    height: calc((88.7) / 16 * 9);
+    width: 88.7vw;
+    margin-top: 3.2rem;
+    margin-bottom: 3.2rem;
+    @include phone {
+      height: 50vh;
+      width: 100%;
+      margin: auto;
+    }
+  }
+
   &.inline {
     float: right;
     margin-right: 0;
@@ -138,16 +178,13 @@ export default {
 
   @include phone {
     height: 50vh;
-    width: 90%;
-    margin: auto;
+    width: calc(100% - 12.5vw);
   }
 }
 .image__media__image {
   @extend %cover;
-  // object-position: center top;
-  // @include phone {
-  //   object-position: center center;
-  // }
+
+  border: 1px solid $b-color;
 }
 
 .image__fig-caption {
@@ -164,13 +201,44 @@ export default {
     line-height: 1.1;
   }
 }
+.image__title {
+  background-color: get-color(primary, bright);
+  border: 1px solid $b-color;
+  border-left: 0;
+  height: 40vw;
+  position: absolute;
+  top: 0;
+  left: calc(50% + 15vw);
+  width: 13rem;
+
+  @include phone {
+    width: 12.5vw;
+    height: 50vh;
+    right: 0;
+    left: auto;
+  }
+
+  h3 {
+    @extend %title-30;
+    @extend %vertical-titles;
+    @include desktop {
+      font-size: 4.5rem;
+    }
+    @include phone {
+      font-size: 30px;
+    }
+  }
+}
+
 .image__visit-site {
   position: absolute;
   bottom: 0;
-  right: calc(30vw - 1.6rem);
+  right: calc(30vw - 14.5rem);
   border: 1px solid $b-color;
+  border-right: 0;
+
   @include phone {
-    right: 5%;
+    right: 0;
   }
 }
 </style>
