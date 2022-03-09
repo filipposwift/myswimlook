@@ -99,7 +99,11 @@
         >
           <IconInstagram class="social__logo" />
         </a>
-        <a href="" target="_blank" rel="nofollow noopener noreferrer">
+        <a
+          href="https://www.pinterest.it/myswimlook/"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
           <IconPinterest class="social__logo" />
         </a>
       </div>

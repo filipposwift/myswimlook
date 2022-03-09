@@ -168,8 +168,18 @@ export default async () => {
       preset: 'default',
       runtime: true,
       breaks: true,
-
-      // injected: true,
+      use: [
+        [
+          'markdown-it-link-attributes',
+          {
+            attrs: {
+              class: 'markdown-link',
+              target: '_blank',
+              rel: 'nofollow noopener noreferrer',
+            },
+          },
+        ],
+      ],
     },
 
     styleResources: {

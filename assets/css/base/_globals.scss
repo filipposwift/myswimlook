@@ -132,6 +132,10 @@ body {
     text-decoration: none;
   }
 
+  .markdown-link {
+    color: get-color(basic, normal);
+  }
+
   // @include xs-phone {
   //   font-size: calc((100vw / 500) * 10);
   // }
