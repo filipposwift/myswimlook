@@ -224,6 +224,9 @@ export default async () => {
         },
       ],
       // seo: true,
+      detectBrowserLanguage: {
+        useCookie: false,
+      },
       defaultLocale: 'en',
       vueI18n: {
         fallbackLocale: 'en',
