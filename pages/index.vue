@@ -85,7 +85,7 @@
                 :to="localePath(`/designers/${designer.slug}`)"
                 class="cell__content"
               >
-                <!-- <figure class="cell__image__media">
+                <figure class="cell__image__media">
                   <nuxt-img
                     :src="getFeaturedImage(designer.items)"
                     :alt="`Photo of style ${designer.name}`"
@@ -93,8 +93,8 @@
                     width="400"
                     class="cell__image__media-img"
                   ></nuxt-img>
-                </figure> -->
-                <ImageWapper :image="designer" class="prova" />
+                </figure>
+                <!-- <ImageWapper :image="designer" class="prova" /> -->
                 <div class="cell__title">
                   <h2>{{ designer.name }}</h2>
                 </div>
