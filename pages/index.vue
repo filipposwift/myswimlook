@@ -29,7 +29,7 @@
                 :to="localePath(`/styles/${style.slug}`)"
                 class="cell__content"
               >
-                <figure class="cell__image__media">
+                <!-- <figure class="cell__image__media">
                   <nuxt-img
                     :src="style.image[0].public_id"
                     :alt="`Photo of style ${style.name}`"
@@ -37,7 +37,8 @@
                     width="400"
                     class="cell__image__media-img"
                   ></nuxt-img>
-                </figure>
+                </figure> -->
+                <ImageWapper :image="style" class="prova" />
                 <div class="cell__title">
                   <h2>{{ style.name }}</h2>
                 </div>
@@ -84,7 +85,7 @@
                 :to="localePath(`/designers/${designer.slug}`)"
                 class="cell__content"
               >
-                <figure class="cell__image__media">
+                <!-- <figure class="cell__image__media">
                   <nuxt-img
                     :src="getFeaturedImage(designer.items)"
                     :alt="`Photo of style ${designer.name}`"
@@ -92,7 +93,8 @@
                     width="400"
                     class="cell__image__media-img"
                   ></nuxt-img>
-                </figure>
+                </figure> -->
+                <ImageWapper :image="designer" class="prova" />
                 <div class="cell__title">
                   <h2>{{ designer.name }}</h2>
                 </div>
@@ -124,7 +126,8 @@
                 :src="lastStory.coverImage[0].public_id"
                 :alt="`Image of article ${lastStory.title}`"
                 provider="cloudinary"
-                width="700"
+                width="873"
+                sizes="xs:100vw sm:100vw md:90vw xl:654px xxl:873px"
                 class="story__media-img"
               ></nuxt-img>
             </figure>
@@ -174,7 +177,13 @@
             all have their own unique interests, what is yours?
           </p>
           <p class="second">
-            Visit our instragram @myswimlook to share your ideas
+            <span>Visit our instragram </span
+            ><a
+              href="https://www.instagram.com/myswimlook/"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              >@myswimlook</a
+            ><span> to share your ideas.</span>
           </p>
         </div>
       </section>
@@ -389,6 +398,10 @@ export default {
   }
 }
 
+.prova {
+  width: 90%;
+}
+
 .cell__title {
   position: relative;
   width: 25%;
@@ -449,6 +462,9 @@ export default {
 
 .second {
   margin-top: 2.4rem;
+  a {
+    color: get-color(basic, normal);
+  }
 }
 
 .hc__slider__wrapper {

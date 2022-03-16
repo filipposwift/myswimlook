@@ -150,7 +150,14 @@ export default async () => {
       '@nuxtjs/i18n',
       '@nuxtjs/markdownit',
       '@nuxtjs/sitemap',
+      '@nuxtjs/gtm',
     ],
+
+    // Google Tag Manager Setup
+    gtm: {
+      id: 'GTM-MJTV9QQ',
+      scriptDefer: true,
+    },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
@@ -196,14 +203,20 @@ export default async () => {
         baseURL: 'https://res.cloudinary.com/swimlook/image/upload/',
       },
 
-      screens: {
-        xs: 320,
-        sm: 640,
-        md: 768,
-        lg: 1024,
-        xl: 1440,
-        xxl: 1920,
-      },
+      // screens: {
+      //   xs: 320,
+      //   sm: 640,
+      //   md: 768,
+      //   lg: 1024,
+      //   xl: 1440,
+      //   xxl: 1920,
+      // },
+
+      // screens: {
+      //   md: 768,
+      //   xl: 1440,
+      //   xxl: 1920,
+      // },
     },
 
     gsap: {

@@ -291,7 +291,8 @@ export default {
 
   computed: {
     currentPost() {
-      return this.postId[this.currentIndex]
+      const temp = this.postId[this.currentIndex]
+      return temp.trim()
     },
   },
 

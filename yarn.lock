@@ -1410,6 +1410,14 @@
     consola "^2.15.0"
     eslint-webpack-plugin "^2.4.1"
 
+"@nuxtjs/gtm@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/gtm/-/gtm-2.4.0.tgz#d7f5bb05b0306c564674831eab17b4e25cfdc1f6"
+  integrity sha512-Of5KuBBFwRjyJ6AuRrIQsh8J6ksIN2UegJDE8nBiTAanbwQBsAJ0hZibV9SjhKdGvGvWpbShQ4yR2bmQgY6XKA==
+  dependencies:
+    chalk "^4.1.0"
+    semver "^7.3.2"
+
 "@nuxtjs/i18n@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/i18n/-/i18n-7.2.0.tgz#f44fd61e3ec3c63663c392159e2d5f14d4f1091e"
@@ -9280,6 +9288,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@4.7.0-dev.20220315:
+  version "4.7.0-dev.20220315"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220315.tgz#f4486025a7d9aa39e8bd21d1f863e7b7513347dd"
+  integrity sha512-miUXjP+dc+ZRT7cUv/p+FKBBRifvV/dLZsrYigY3pclH/LMWWcmUz9mEtqOxTs8m3d1T6RobtF6BfQB8goqM6w==
 
 ua-parser-js@^0.7.28:
   version "0.7.31"

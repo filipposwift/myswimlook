@@ -13,6 +13,7 @@
       ></path>
     </svg>
     <h3>Swipe to scroll</h3>
+    <SwipeSvg class="swipe-svg" />
     <svg
       aria-hidden="true"
       class="arrow_right"
@@ -29,7 +30,12 @@
 </template>
 
 <script>
-export default {}
+import SwipeSvg from '@/assets/img/swipe-svg.svg?inline'
+export default {
+  components: {
+    SwipeSvg,
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -37,6 +43,7 @@ export default {}
   margin-top: 1.6rem;
   width: 40rem;
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: center;
   @include desktop {
@@ -68,5 +75,16 @@ export default {}
 }
 .arrow_left {
   transform: rotate(180deg);
+}
+.swipe-svg {
+  position: absolute;
+  top: -100%;
+  left: 20%;
+  z-index: 4;
+  opacity: 0.4;
+
+  @include phone {
+    display: none;
+  }
 }
 </style>

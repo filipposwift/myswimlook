@@ -193,7 +193,7 @@ export default {
   grid-row-gap: 0px;
   position: relative;
   // min-height: 56rem;
-  border-bottom: 1px solid $b-color;
+  // border-bottom: 1px solid $b-color;
   margin-bottom: 3rem;
   @include phone {
     grid-template-columns: minmax(40%, 1fr) minmax(326px, 540px);
@@ -290,7 +290,7 @@ export default {
   border-right: 1px solid $b-color;
   justify-content: center;
   @include phone {
-    border: 0;
+    // border: 0;
   }
 }
 
@@ -346,11 +346,11 @@ export default {
   border-bottom: 1px solid $b-color;
   @extend %center;
   @include phone {
-    border: 0;
+    // border: 0;
   }
   @include xs-phone {
     order: 1;
-    border-top: 0px;
+    // border-top: 0px;
     padding: 4.8rem 0;
   }
 
