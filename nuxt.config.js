@@ -172,12 +172,6 @@ export default async () => {
       baseURL: 'https://cdn.contentful.com',
     },
 
-    // sitemap: {
-    //   hostname: 'https://myswimlook.com',
-    //   gzip: true,
-    //   exclude: ['/thank-you', '/newProva'],
-    // },
-
     markdownit: {
       preset: 'default',
       runtime: true,
