@@ -52,7 +52,7 @@ export default async () => {
         },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         {
-          vmid: 'og: url',
+          vmid: 'og:url',
           hid: 'og:url',
           property: 'og:url',
           content: 'https://www.myswimlook.com',
