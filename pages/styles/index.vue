@@ -99,7 +99,7 @@ export default {
           vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://www.myswimlook.com/styles',
+          href: 'https://www.myswimlook.com/styles/',
         },
       ],
     }

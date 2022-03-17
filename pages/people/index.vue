@@ -82,7 +82,7 @@ export default {
           vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://www.myswimlook.com/people',
+          href: 'https://www.myswimlook.com/people/',
         },
       ],
     }

@@ -116,7 +116,7 @@ export default {
           vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://www.myswimlook.com/people/${this.$route.params.slug}`,
+          href: `https://www.myswimlook.com/people/${this.$route.params.slug}/`,
         },
       ],
     }

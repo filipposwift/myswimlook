@@ -114,7 +114,7 @@ export default {
           vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://www.myswimlook.com/stories',
+          href: 'https://www.myswimlook.com/stories/',
         },
       ],
     }

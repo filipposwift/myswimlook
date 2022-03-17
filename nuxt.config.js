@@ -109,7 +109,7 @@ export default async () => {
           vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://www.myswimlook.com',
+          href: 'https://www.myswimlook.com/',
         },
       ],
     },
@@ -256,6 +256,7 @@ export default async () => {
       },
       hostname: 'https://www.myswimlook.com',
       exclude: ['/thank-you', '/contact'],
+      // trailingSlash: true,
       // i18n: true,
 
       routes,

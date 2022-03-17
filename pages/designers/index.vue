@@ -102,7 +102,7 @@ export default {
           vmid: 'canonical',
           hid: 'canonical',
           rel: 'canonical',
-          href: 'https://www.myswimlook.com/designers',
+          href: 'https://www.myswimlook.com/designers/',
         },
       ],
     }
