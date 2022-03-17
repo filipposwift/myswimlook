@@ -152,7 +152,6 @@ export default async () => {
       '@nuxtjs/sitemap',
       '@nuxtjs/gtm',
       '@nuxtjs/robots',
-      'nuxt-trailingslash-module',
     ],
 
     // Google Tag Manager Setup
