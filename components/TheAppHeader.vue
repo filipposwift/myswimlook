@@ -33,7 +33,7 @@
               class="nav__items"
               :style="{ '--index': index }"
             >
-              <nuxt-link :to="localePath(`/${route.slug}`)" exact>
+              <nuxt-link :to="localePath(`/${route.slug}/`)" exact>
                 {{ route.name }}
               </nuxt-link>
             </li>

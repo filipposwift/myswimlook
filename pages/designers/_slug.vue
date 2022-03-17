@@ -33,7 +33,7 @@
             <div class="designer__slider__cell-text">
               <nuxt-link
                 :to="{
-                  path: localePath(`/styles/${item.style.toLowerCase()}`),
+                  path: localePath(`/styles/${item.style.toLowerCase()}/`),
                   hash: `${item.modelName}`,
                 }"
               >
@@ -54,7 +54,7 @@
           >
             <nuxt-link
               :to="{
-                path: localePath(`/styles/${item.style.toLowerCase()}`),
+                path: localePath(`/styles/${item.style.toLowerCase()}/`),
                 hash: `${item.modelName}`,
               }"
             >

@@ -3,12 +3,12 @@
     <nav class="left__navigation">
       <ul>
         <li class="nav__items">
-          <nuxt-link :to="localePath('/styles')">
+          <nuxt-link :to="localePath('/styles/')">
             <span>Styles</span>
           </nuxt-link>
         </li>
         <li class="nav__items second">
-          <nuxt-link :to="localePath('/designers')">
+          <nuxt-link :to="localePath('/designers/')">
             <span>Designers</span>
           </nuxt-link>
         </li>
@@ -17,12 +17,12 @@
     <nav class="right__navigation">
       <ul>
         <li class="nav__items">
-          <nuxt-link :to="localePath('/stories')">
+          <nuxt-link :to="localePath('/stories/')">
             <span>Stories</span>
           </nuxt-link>
         </li>
         <li class="nav__items second">
-          <nuxt-link :to="localePath('/people')">
+          <nuxt-link :to="localePath('/people/')">
             <span>People</span>
           </nuxt-link>
         </li>

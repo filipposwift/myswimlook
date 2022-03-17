@@ -16,17 +16,17 @@
             >
           </li>
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/designers')" exact>
+            <nuxt-link :to="localePath('/designers/')" exact>
               <span>Designers</span>
             </nuxt-link>
           </li>
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/stories')" exact>
+            <nuxt-link :to="localePath('/stories/')" exact>
               <span>Stories</span>
             </nuxt-link>
           </li>
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/people')" exact>
+            <nuxt-link :to="localePath('/people/')" exact>
               <span>People</span>
             </nuxt-link>
           </li>
@@ -36,7 +36,7 @@
         <h2>Get in touch</h2>
         <ul class="footerLinks">
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/contact')" exact
+            <nuxt-link :to="localePath('/contact/')" exact
               ><span>Contact</span></nuxt-link
             >
           </li>
@@ -46,15 +46,10 @@
         <h2>Quick Links</h2>
         <ul class="footerLinks">
           <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/privacy')" exact
+            <nuxt-link :to="localePath('/privacy/')" exact
               ><span>Privacy Policy</span></nuxt-link
             >
           </li>
-          <!-- <li class="footerLinks__item">
-            <nuxt-link :to="localePath('/')" exact>
-              <span>Terms and conditions</span>
-            </nuxt-link>
-          </li> -->
         </ul>
       </div>
       <div class="footer__item last">
@@ -72,13 +67,6 @@
       <div class="footer__logo">
         <nuxt-link :to="localePath('/')" exact>
           <figure class="footer__logo__media">
-            <!-- <img
-              src="~/assets/img/Logowhite.svg?data"
-              alt="Logo myswimllok"
-              width="250"
-              height="70"
-              class="footer__logo__media__image"
-            /> -->
             <LogoWhite class="footer__logo__media__image" />
           </figure>
         </nuxt-link>

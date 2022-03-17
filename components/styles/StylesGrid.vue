@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="localePath(`/styles/${slug}`)" class="styles__grid__link">
+  <nuxt-link :to="localePath(`/styles/${slug}/`)" class="styles__grid__link">
     <div class="styles__grid__container">
       <figure :class="`styles__grid__media ${number}`">
         <nuxt-img

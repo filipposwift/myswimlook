@@ -39,7 +39,7 @@
         </div>
         <div class="person__swimsuit__left__back">
           <ArrowBackCircle link="people" />
-          <nuxt-link :to="localePath('/people')" exact>
+          <nuxt-link :to="localePath('/people/')" exact>
             <span>Back to people</span>
           </nuxt-link>
         </div>

@@ -46,7 +46,7 @@
         >
           <nuxt-link
             v-if="index !== 0"
-            :to="localePath(`/stories/${story.fields.slug}`)"
+            :to="localePath(`/stories/${story.fields.slug}/`)"
             class="cell__content"
           >
             <figure class="cell__image__media">

@@ -26,7 +26,7 @@
             >
               <nuxt-link
                 v-if="index !== 0"
-                :to="localePath(`/styles/${style.slug}`)"
+                :to="localePath(`/styles/${style.slug}/`)"
                 class="cell__content"
               >
                 <!-- <figure class="cell__image__media">
@@ -82,7 +82,7 @@
             >
               <nuxt-link
                 v-if="index !== 2"
-                :to="localePath(`/designers/${designer.slug}`)"
+                :to="localePath(`/designers/${designer.slug}/`)"
                 class="cell__content"
               >
                 <figure class="cell__image__media">
@@ -142,12 +142,12 @@
               </div>
               <div class="story__text__cta">
                 <div class="cta__link">
-                  <nuxt-link :to="localePath(`/stories/${lastStory.slug}`)"
+                  <nuxt-link :to="localePath(`/stories/${lastStory.slug}/`)"
                     ><span>Read More</span></nuxt-link
                   >
                 </div>
                 <div class="cta__link-inverse">
-                  <nuxt-link :to="localePath('/stories')"
+                  <nuxt-link :to="localePath('/stories/')"
                     ><span>All Articles</span></nuxt-link
                   >
                 </div>

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="localePath(`/${link}`)" exact>
+  <nuxt-link :to="localePath(`/${link}/`)" exact>
     <div class="circle__back">
       <ArrowRight class="arrow_wrapper" />
     </div>

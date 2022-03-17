@@ -246,6 +246,7 @@ export default async () => {
 
     router: {
       linkExactActiveClass: 'linkExactActiveClass',
+      trailingSlash: true,
     },
 
     sitemap: {
@@ -256,7 +257,7 @@ export default async () => {
       },
       hostname: 'https://www.myswimlook.com',
       exclude: ['/thank-you', '/contact'],
-      // trailingSlash: true,
+      trailingSlash: true,
       // i18n: true,
 
       routes,

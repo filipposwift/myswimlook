@@ -14,7 +14,7 @@
       >
         <nuxt-link
           v-if="person.name"
-          :to="localePath(`/people/${person.slug}`)"
+          :to="localePath(`/people/${person.slug}/`)"
         >
           <figure class="people__grid__cell__media">
             <nuxt-img

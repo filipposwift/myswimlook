@@ -26,7 +26,7 @@
           <nuxt-link
             v-for="designer in FilterDesignerByLetter(letter)"
             :key="designer.name"
-            :to="localePath(`/designers/${designer.slug}`)"
+            :to="localePath(`/designers/${designer.slug}/`)"
           >
             <li>
               <p>{{ designer.name }}</p>
