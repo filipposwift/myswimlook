@@ -151,12 +151,19 @@ export default async () => {
       '@nuxtjs/markdownit',
       '@nuxtjs/sitemap',
       '@nuxtjs/gtm',
+      '@nuxtjs/robots',
     ],
 
     // Google Tag Manager Setup
     gtm: {
       id: 'GTM-MJTV9QQ',
       scriptDefer: true,
+    },
+
+    robots: {
+      UserAgent: '*',
+      Allow: '/',
+      Sitemap: 'https://www.myswimlook.com/sitemap.xml',
     },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -260,6 +267,7 @@ export default async () => {
 
     router: {
       linkExactActiveClass: 'linkExactActiveClass',
+      trailingSlash: false,
     },
 
     sitemap: {
