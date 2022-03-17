@@ -152,6 +152,7 @@ export default async () => {
       '@nuxtjs/sitemap',
       '@nuxtjs/gtm',
       '@nuxtjs/robots',
+      'nuxt-trailingslash-module',
     ],
 
     // Google Tag Manager Setup
@@ -261,7 +262,6 @@ export default async () => {
 
     router: {
       linkExactActiveClass: 'linkExactActiveClass',
-      trailingSlash: false,
     },
 
     sitemap: {
