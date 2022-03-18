@@ -26,10 +26,13 @@ export default {
   computed: {
     publicId() {
       if (this.image.image) {
-        return this.image.image[0].public_id
+        return this.image.image[0].public_id.replace(/\s+/g, '%20')
       }
 
-      return this.image.items[0].fields.cloudinarySwimlook[0].public_id
+      return this.image.items[0].fields.cloudinarySwimlook[0].public_id.replace(
+        /\s+/g,
+        '%20'
+      )
     },
     name() {
       if (this.image.image) {
@@ -65,6 +68,11 @@ export default {
   padding-bottom: 133.33%; /* 3:4 ratio */
   height: 0;
   overflow: hidden;
+  transition: transform 1s ease-out;
+  &:hover {
+    transform: translate3d(0, 0, 0);
+    transform: scale(0.95);
+  }
 }
 .image__media__image {
   height: 100%;
@@ -73,6 +81,13 @@ export default {
   position: absolute;
   top: 0;
   width: 100%;
+  cursor: pointer;
+  transition: transform 1s ease-out;
+  overflow: hidden;
+  &:hover {
+    transform: translate3d(0, 0, 0);
+    transform: scale(1.2);
+  }
 }
 
 .image__fig-caption {

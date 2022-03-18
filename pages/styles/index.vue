@@ -26,7 +26,8 @@
       <nuxt-img
         src="swimlook/Home%20Page/Styles-1.jpg"
         alt="Hero image of woman in swimwear"
-        width="2000"
+        width="1460"
+        sizes="xs:100vw sm:100vw md:100vw xl:1088px xxl:1460px"
         provider="cloudinary"
         class="styles__hero__media__image"
       ></nuxt-img

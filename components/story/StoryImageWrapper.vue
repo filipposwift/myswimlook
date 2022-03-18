@@ -14,7 +14,8 @@
       <nuxt-img
         :src="image"
         :alt="alt"
-        width="1000"
+        width="1750"
+        sizes="xs:100vw sm:100vw md:90vw xl:1310px xxl:1750px"
         provider="cloudinary"
         class="image__media__image"
       ></nuxt-img>
@@ -68,9 +69,12 @@ export default {
     },
     image() {
       if (this.item.contentType === 'itemCard') {
-        return this.item.fields.featuredImageForStory[0].public_id
+        return this.item.fields.featuredImageForStory[0].public_id.replace(
+          /\s+/g,
+          '%20'
+        )
       }
-      return this.item.fields.image[0].public_id
+      return this.item.fields.image[0].public_id.replace(/\s+/g, '%20')
     },
     alt() {
       if (this.item.contentType === 'itemCard') {

@@ -2,13 +2,14 @@
   <div class="story__middle">
     <figure class="story__middle__reference__media-top">
       <nuxt-img
-        :src="story.imagesVertical[0].public_id"
+        :src="story.imagesVertical[0].public_id.replace(/\s+/g, '%20')"
         :alt="
           story.imagesVertical[0].context
             ? story.imagesVertical[0].context.custom.alt
             : 'Image of woman in swimsuit'
         "
-        width="2000"
+        width="856"
+        sizes="xs:100vw sm:50vw md:50vw xl:631px xxl:856px"
         provider="cloudinary"
         class="story__middle__reference__media__image"
       ></nuxt-img>
@@ -27,13 +28,14 @@
     </figure>
     <figure class="story__middle__reference__media-bottom">
       <nuxt-img
-        :src="story.imagesVertical[1].public_id"
+        :src="story.imagesVertical[1].public_id.replace(/\s+/g, '%20')"
         :alt="
           story.imagesVertical[1].context
             ? story.imagesVertical[1].context.custom.alt
             : 'Image of woman in swimsuit'
         "
-        width="2000"
+        width="856"
+        sizes="xs:100vw sm:50vw md:50vw xl:631px xxl:856px"
         provider="cloudinary"
         class="story__middle__reference__media__image"
       ></nuxt-img>
@@ -52,13 +54,14 @@
     </figure>
     <figure class="story__middle__reference__media-big">
       <nuxt-img
-        :src="story.imageLandscape[0].public_id"
+        :src="story.imageLandscape[0].public_id.replace(/\s+/g, '%20')"
         :alt="
           story.imageLandscape[0].context
             ? story.imageLandscape[0].context.custom.alt
             : 'Image fo woman in swimsuit'
         "
-        width="1000"
+        width="1750"
+        sizes="xs:100vw sm:100vw md:90vw xl:1310px xxl:1750px"
         provider="cloudinary"
         class="story__middle__reference__media__image"
       ></nuxt-img>

@@ -14,13 +14,14 @@
       </div>
       <figure class="story__intro__media">
         <nuxt-img
-          :src="story.coverImage[0].public_id"
+          :src="story.coverImage[0].public_id.replace(/\s+/g, '%20')"
           :alt="
             story.coverImage[0].context
               ? story.coverImage[0].context.custom.alt
-              : 'Image of woman in swimsuit'
+              : 'Cover photo of the article'
           "
-          width="1000"
+          width="1164"
+          sizes="xs:100vw sm:100vw md:90vw xl:870px xxl:1164"
           provider="cloudinary"
           class="story__intro__media__image"
         ></nuxt-img>
@@ -62,9 +63,15 @@
           </div>
           <figure class="story__intro__style-card__media">
             <nuxt-img
-              :src="itemCard.featuredImageForStory[0].public_id"
+              :src="
+                itemCard.featuredImageForStory[0].public_id.replace(
+                  /\s+/g,
+                  '%20'
+                )
+              "
               alt="Hero image of woman in swimwear"
-              width="800"
+              width="485"
+              sizes="xs:100vw sm:100vw md:90vw xl:365px xxl:485px"
               provider="cloudinary"
               class="story__intro__style-card__media__image"
             ></nuxt-img>

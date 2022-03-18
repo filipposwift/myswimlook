@@ -31,8 +31,9 @@
       </template>
       <nuxt-img
         src="swimlook/styles/cover-styles"
-        alt="Hero image of woman in swimwear"
-        width="2000"
+        alt="women's white and pink floral bikini top"
+        width="1460"
+        sizes="xs:100vw sm:100vw md:100vw xl:1088px xxl:1460px"
         provider="cloudinary"
         class="styles__hero__media__image"
       ></nuxt-img
@@ -190,7 +191,7 @@ span {
   }
   @include phone {
     height: 80vw;
-    width: 90vw;
+    width: 80vw;
   }
 }
 

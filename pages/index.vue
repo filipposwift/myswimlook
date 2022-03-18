@@ -38,7 +38,7 @@
                     class="cell__image__media-img"
                   ></nuxt-img>
                 </figure> -->
-                <ImageWapper :image="style" class="prova" />
+                <ImageWapper :image="style" class="cell__image__media" />
                 <div class="cell__title">
                   <h2>{{ style.name }}</h2>
                 </div>
@@ -85,7 +85,7 @@
                 :to="localePath(`/designers/${designer.slug}/`)"
                 class="cell__content"
               >
-                <figure class="cell__image__media">
+                <!-- <figure class="cell__image__media">
                   <nuxt-img
                     :src="getFeaturedImage(designer.items)"
                     :alt="`Photo of style ${designer.name}`"
@@ -93,8 +93,8 @@
                     width="400"
                     class="cell__image__media-img"
                   ></nuxt-img>
-                </figure>
-                <!-- <ImageWapper :image="designer" class="prova" /> -->
+                </figure> -->
+                <ImageWapper :image="designer" class="cell__image__media" />
                 <div class="cell__title">
                   <h2>{{ designer.name }}</h2>
                 </div>
@@ -374,31 +374,6 @@ export default {
 }
 
 .cell__image__media {
-  height: 0;
-  position: relative;
-  width: 90%;
-  transition: transform 1s ease-out;
-  overflow: hidden;
-  padding-bottom: 133.33%;
-
-  &:hover {
-    transform: translate3d(0, 0, 0);
-    transform: scale(0.95);
-  }
-
-  &-img {
-    @extend %cover;
-    cursor: pointer;
-    transition: transform 1s ease-out;
-
-    &:hover {
-      transform: translate3d(0, 0, 0);
-      transform: scale(1.2);
-    }
-  }
-}
-
-.prova {
   width: 90%;
 }
 

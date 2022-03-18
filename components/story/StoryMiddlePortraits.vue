@@ -2,14 +2,15 @@
   <div class="story__middle">
     <figure class="story__middle__reference__media-top">
       <nuxt-img
-        :src="story.imagesVertical[0].public_id"
+        :src="story.imagesVertical[0].public_id.replace(/\s+/g, '%20')"
         :alt="
           story.imagesVertical[0].context
             ? story.imagesVertical[0].context.custom.alt
             : 'Image of woman in swimsuit'
         "
-        width="2000"
+        width="558"
         provider="cloudinary"
+        sizes="xs:100vw sm:50vw md:50vw xl:410px xxl:560px"
         class="story__middle__reference__media__image"
       ></nuxt-img>
       <figcaption
@@ -33,7 +34,8 @@
             ? story.imagesVertical[1].context.custom.alt
             : 'Image of woman in swimsuit'
         "
-        width="2000"
+        width="558"
+        sizes="xs:100vw sm:50vw md:50vw xl:410px xxl:560px"
         provider="cloudinary"
         class="story__middle__reference__media__image"
       ></nuxt-img>
@@ -58,7 +60,8 @@
             ? story.imageLandscape[0].context.custom.alt
             : 'Image fo woman in swimsuit'
         "
-        width="1000"
+        width="768"
+        sizes="xs:100vw sm:100vw md:100vw xl:410px xxl:560px"
         provider="cloudinary"
         class="story__middle__reference__media__image"
       ></nuxt-img>

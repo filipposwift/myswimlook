@@ -203,6 +203,14 @@ export default async () => {
       cloudinary: {
         baseURL: 'https://res.cloudinary.com/swimlook/image/upload/',
       },
+      screens: {
+        xs: 320,
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1440,
+        xxl: 1920,
+      },
     },
 
     gsap: {
