@@ -63,15 +63,9 @@
           </div>
           <figure class="story__intro__style-card__media">
             <nuxt-img
-              :src="
-                itemCard.featuredImageForStory[0].public_id.replace(
-                  /\s+/g,
-                  '%20'
-                )
-              "
+              :src="itemCard.featuredImageForStory[0].public_id"
               alt="Hero image of woman in swimwear"
               width="485"
-              sizes="xs:100vw sm:100vw md:90vw xl:365px xxl:485px"
               provider="cloudinary"
               class="story__intro__style-card__media__image"
             ></nuxt-img>

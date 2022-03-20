@@ -123,7 +123,7 @@
           <div class="story__wrapper">
             <figure class="story__media">
               <nuxt-img
-                :src="lastStory.coverImage[0].public_id"
+                :src="lastStory.coverImage[0].public_id.replace(/\s+/g, '%20')"
                 :alt="`Image of article ${lastStory.title}`"
                 provider="cloudinary"
                 width="873"

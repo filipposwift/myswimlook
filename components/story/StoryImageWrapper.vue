@@ -4,9 +4,11 @@
       :class="[
         'image__media',
         item.contentType === 'itemCard'
-          ? 'center'
+          ? 'item-card'
           : item.contentType === 'cloudinaryAsset'
           ? 'left'
+          : item.contentType === 'cloudinaryCenterAsset'
+          ? 'center'
           : 'wide',
         nodeType === 'embedded-entry-block' ? '' : 'inline',
       ]"
@@ -133,6 +135,13 @@ export default {
   height: 40vw;
   width: 30vw;
   &.center {
+    margin: auto;
+    margin-bottom: 1.6rem;
+    @include phone {
+      margin: 0;
+    }
+  }
+  &.item-card {
     margin: auto;
     margin-bottom: 1.6rem;
     @include phone {

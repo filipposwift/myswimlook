@@ -28,7 +28,7 @@
     </figure>
     <figure class="story__middle__reference__media-bottom">
       <nuxt-img
-        :src="story.imagesVertical[1].public_id"
+        :src="story.imagesVertical[1].public_id.replace(/\s+/g, '%20')"
         :alt="
           story.imagesVertical[1].context
             ? story.imagesVertical[1].context.custom.alt
@@ -54,7 +54,7 @@
     </figure>
     <figure class="story__middle__reference__media-big">
       <nuxt-img
-        :src="story.imageLandscape[0].public_id"
+        :src="story.imageLandscape[0].public_id.replace(/\s+/g, '%20')"
         :alt="
           story.imageLandscape[0].context
             ? story.imageLandscape[0].context.custom.alt
