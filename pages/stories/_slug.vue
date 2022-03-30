@@ -104,7 +104,7 @@
         />
       </div>
     </section>
-    <section class="story__instagram">
+    <section v-if="slides.length > 0" class="story__instagram">
       <h2>Instagram references</h2>
       <carousel :slides="slides" />
     </section>
@@ -182,8 +182,11 @@ export default {
     designerUrl() {
       const tmp = this.$store.state.data.data.find(
         (designer) => designer.name === this.itemCard.designer
-      ).website
-      return tmp
+      )
+      if (tmp) {
+        return tmp.website
+      }
+      return ''
     },
   },
 
