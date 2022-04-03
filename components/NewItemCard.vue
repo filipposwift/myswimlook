@@ -3,10 +3,10 @@
     <div class="item__card__title sticky">
       <div class="item__card__title__inner">
         <p class="is-mobile">{{ number }}</p>
-        <h1>
+        <h2>
           <span>{{ number }} - </span> {{ item.designer }}
-        </h1>
-        <p>{{ item.modelName }}</p>
+        </h2>
+        <h3>{{ item.modelName }}</h3>
       </div>
     </div>
     <div class="item__card__designer">
@@ -22,6 +22,7 @@
             class="item__card__designer__right__media-img"
             provider="cloudinary"
             :src="image.public_id.replace(/\s+/g, '%20')"
+            :alt="item.modelName"
             sizes="xs:100vw sm:100vw md:90vw xl:570px xxl:600px"
             width="600"
           />
@@ -215,7 +216,7 @@ export default {
   border-top: 1px solid $b-color;
   background-color: get-color(primary, bright);
 
-  h1 {
+  h2 {
     @extend %title-80;
     text-align: center;
     padding-top: 2.4rem;
@@ -231,7 +232,8 @@ export default {
     }
   }
 
-  p {
+  h3 {
+    font-family: 'Work Sans', sans-serif;
     @extend %paragraph-20;
     text-transform: uppercase;
     text-align: center;

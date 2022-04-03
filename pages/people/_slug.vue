@@ -2,7 +2,7 @@
   <div class="page__wrapper person">
     <SocialHead
       :title="person.name"
-      :description="person.description"
+      :description="`${person.name} job: ${person.description}`"
       :image="person.socialMedia[0].fields.image[0].secure_url"
       :url="`https://www.myswimlook.com/people/${$route.params.slug}`"
     />
@@ -108,7 +108,7 @@ export default {
           vmid: 'description',
           hid: 'description',
           name: 'description',
-          content: this.person.description,
+          content: this.person.name + ' job: ' + this.person.description,
         },
       ],
       link: [
