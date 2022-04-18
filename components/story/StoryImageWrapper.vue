@@ -1,18 +1,12 @@
 <template>
-  <div class="image__wrapper">
-    <figure
-      :class="[
-        'image__media',
-        item.contentType === 'itemCard'
-          ? 'item-card'
-          : item.contentType === 'cloudinaryAsset'
-          ? 'left'
-          : item.contentType === 'cloudinaryCenterAsset'
-          ? 'center'
-          : 'wide',
-        nodeType === 'embedded-entry-block' ? '' : 'inline',
-      ]"
-    >
+  <div
+    :class="[
+      'image__wrapper',
+      defineClass,
+      nodeType === 'embedded-entry-block' ? '' : 'inline',
+    ]"
+  >
+    <figure :class="['image__media', defineClass]">
       <nuxt-img
         :src="image"
         :alt="alt"
@@ -119,6 +113,22 @@ export default {
       }
       return ''
     },
+    defineClass() {
+      switch (this.item.contentType) {
+        case 'itemCard':
+          return 'item-card'
+        case 'cloudinaryAsset':
+          return 'center'
+        case 'cloudinaryWideAsset':
+          return 'wide'
+        case 'cloudinaryCenterAsset':
+          return 'center'
+        case 'cloudinaryDoubleLeftItem':
+          return 'double'
+        default:
+          return ''
+      }
+    },
   },
 }
 </script>
@@ -127,14 +137,11 @@ export default {
 .image__wrapper {
   position: relative;
   margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
-.image__media {
-  position: relative;
-  height: 40vw;
-  width: 30vw;
+  margin-bottom: 11rem;
+  float: left;
+  width: 50%;
   &.center {
+    float: none;
     margin: auto;
     margin-bottom: 1.6rem;
     @include phone {
@@ -142,19 +149,19 @@ export default {
     }
   }
   &.item-card {
+    float: none;
+    width: auto;
     margin: auto;
     margin-bottom: 1.6rem;
     @include phone {
       margin: 0;
+      margin-bottom: 1.6rem;
     }
   }
   &.left {
-    float: left;
     margin-right: 5rem;
     margin-bottom: 1.6rem;
-    height: 0;
-    width: 40vw;
-    padding-bottom: 25%;
+    width: 30vw;
     @include phone {
       float: none;
       height: 50vh;
@@ -164,7 +171,25 @@ export default {
     }
   }
 
+  &.double {
+    // height: 0;
+    width: 40%;
+    margin-right: 2%;
+    margin-left: 8%;
+    margin-bottom: 5rem;
+
+    @include phone {
+      float: none;
+      height: 50vh;
+      width: 90%;
+      margin: auto;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0;
+    }
+  }
+
   &.wide {
+    float: none;
     height: calc((88.7) / 16 * 9);
     width: 88.7vw;
     margin-top: 3.2rem;
@@ -187,6 +212,31 @@ export default {
       width: 90%;
       margin: auto;
     }
+  }
+  @include phone {
+    float: none;
+    height: 50vh;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 0;
+  }
+}
+
+.image__media {
+  position: relative;
+  height: 40vw;
+  width: 30vw;
+  &.item-card,
+  &.center {
+    margin: auto;
+  }
+  &.wide {
+    width: auto;
+  }
+
+  &.left {
+    height: 0;
+    padding-bottom: 90%;
   }
 
   @include phone {

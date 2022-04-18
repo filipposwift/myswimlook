@@ -115,6 +115,7 @@
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types'
 import RichTextRenderer from 'contentful-rich-text-vue-renderer'
 // import createSEOMeta from '@/utils/seo.js'
+
 export default {
   name: 'StoryPage',
 
@@ -192,6 +193,7 @@ export default {
 
   methods: {
     renderNodes() {
+      let imageClass = ''
       return {
         [BLOCKS.PARAGRAPH]: (node, key, h, next) =>
           h('p', { key }, next(node.content, key, h, next)),
@@ -201,9 +203,18 @@ export default {
             { key, attrs: { class: 'story__question' } },
             next(node.content, key, h)
           ),
-        [BLOCKS.EMBEDDED_ENTRY]: (node, key, h, next) =>
-          h(
-            'story-image-wrapper',
+        [BLOCKS.EMBEDDED_ENTRY]: (node, key, h, next) => {
+          switch (node.data.target.sys.contentType.sys.id) {
+            case 'rightItemCloudinaryAsset':
+              imageClass = 'story-inline-wrapper'
+              break
+            default:
+              imageClass = 'story-image-wrapper'
+              break
+          }
+
+          return h(
+            imageClass,
             {
               key,
               attrs: {
@@ -211,8 +222,10 @@ export default {
                 nodeType: node.nodeType,
               },
             },
+
             next(node.content, key, h, next)
-          ),
+          )
+        },
 
         [INLINES.EMBEDDED_ENTRY]: (node, key, h, next) =>
           h(
