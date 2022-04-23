@@ -55,7 +55,7 @@
       <div class="footer__item last">
         <h2>About us</h2>
         <p>
-          We are a team of fashion lovers and technical software delevopers
+          We are a team of fashion lovers and technical software developers
           composed by three women and one (very lucky) man. Our passion for the
           ocean, fashion and the environment is what drives MySwimLook. We focus
           on how technology and social media can help people make better and

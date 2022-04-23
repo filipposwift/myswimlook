@@ -31,15 +31,15 @@
         <div class="designer__slider__content">
           <div class="designer__slider__cell sticky">
             <div class="designer__slider__cell-text">
-              <nuxt-link
+              <!-- <nuxt-link
                 :to="{
                   path: localePath(`/styles/${item.style.toLowerCase()}/`),
                   hash: `${item.modelName}`,
                 }"
-              >
-                <h3>in {{ item.style }} Style</h3>
-                <h2>{{ item.modelName }}</h2>
-              </nuxt-link>
+              > -->
+              <!-- <h3>in {{ item.style }} Style</h3> -->
+              <h2>{{ item.modelName }}</h2>
+              <!-- </nuxt-link> -->
             </div>
             <price-and-visit
               :price="item.price"
@@ -52,22 +52,22 @@
             :key="index"
             class="designer__slider__cell"
           >
-            <nuxt-link
+            <!-- <nuxt-link
               :to="{
                 path: localePath(`/styles/${item.style.toLowerCase()}/`),
                 hash: `${item.modelName}`,
               }"
-            >
-              <figure class="designer__slider__cell__media">
-                <nuxt-img
-                  :src="picture.public_id"
-                  :alt="`Photo n. ${index} of ${item.modelName}`"
-                  provider="cloudinary"
-                  width="400"
-                  class="designer__slider__cell__media-img"
-                ></nuxt-img>
-              </figure>
-            </nuxt-link>
+            > -->
+            <figure class="designer__slider__cell__media">
+              <nuxt-img
+                :src="picture.public_id"
+                :alt="`Photo n. ${index} of ${item.modelName}`"
+                provider="cloudinary"
+                width="400"
+                class="designer__slider__cell__media-img"
+              ></nuxt-img>
+            </figure>
+            <!-- </nuxt-link> -->
           </div>
         </div>
       </div>
@@ -79,6 +79,7 @@
 
 <script>
 import { mapState } from 'vuex'
+
 export default {
   name: 'DesignerPage',
   layout: 'home',
@@ -120,6 +121,9 @@ export default {
     },
 
     models() {
+      // const filter = this.designer.items.filter(
+      //   (el) => el.fields.style !== 'Any'
+      // )
       const tmp = this.designer.items.map((el) => el.fields)
       return tmp
     },
@@ -286,10 +290,10 @@ export default {
     @extend %title-30;
     padding-bottom: 8rem;
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    &:hover {
-      color: get-color(basic, normal);
-    }
+    // cursor: pointer;
+    // &:hover {
+    //   color: get-color(basic, normal);
+    // }
     @include phone {
       display: none;
     }
@@ -301,10 +305,10 @@ export default {
     text-transform: uppercase;
 
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    &:hover {
-      color: get-color(basic, normal);
-    }
+    // cursor: pointer;
+    // &:hover {
+    //   color: get-color(basic, normal);
+    // }
     @include desktop {
       font-size: 3.5rem;
     }
@@ -337,23 +341,23 @@ export default {
   height: 100%;
   position: relative;
   width: 100%;
-  transition: transform 1s ease-out;
+  // transition: transform 1s ease-out;
   overflow: hidden;
 
-  &:hover {
-    transform: translate3d(0, 0, 0);
-    transform: scale(0.95);
-  }
+  // &:hover {
+  //   transform: translate3d(0, 0, 0);
+  //   transform: scale(0.95);
+  // }
 
   &-img {
     @extend %cover;
-    cursor: pointer;
-    transition: transform 1s ease-out;
+    // cursor: pointer;
+    // transition: transform 1s ease-out;
 
-    &:hover {
-      transform: translate3d(0, 0, 0);
-      transform: scale(1.2);
-    }
+    // &:hover {
+    //   transform: translate3d(0, 0, 0);
+    //   transform: scale(1.2);
+    // }
   }
 }
 

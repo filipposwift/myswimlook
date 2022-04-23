@@ -153,7 +153,7 @@ export default {}
   grid-area: 6 / 8 / 7 / 13;
   height: 100%;
   width: 100%;
-  border-bottom: 1px solid $b-color;
+
   display: flex;
   justify-content: flex-end;
   p {

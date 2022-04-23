@@ -108,7 +108,7 @@ export default {
           vmid: 'description',
           hid: 'description',
           name: 'description',
-          content: this.person.name + ' job: ' + this.person.description,
+          content: this.person.name,
         },
       ],
       link: [
