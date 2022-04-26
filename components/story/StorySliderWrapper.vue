@@ -60,7 +60,7 @@ export default {
   border-bottom: 1px solid $b-color;
   overscroll-behavior-x: contain;
   @include phone {
-    height: 80vw;
+    height: 100vw;
   }
 }
 .stories__slider__wrapper::-webkit-scrollbar {
@@ -86,7 +86,7 @@ export default {
     width: 40vw;
   }
   @include phone {
-    height: 80vw;
+    height: 100vw;
     width: 80vw;
   }
 }
@@ -105,6 +105,10 @@ export default {
   width: 100%;
   transition: transform 1s ease-out;
   overflow: hidden;
+
+  @include tablet {
+    padding-bottom: 100%;
+  }
 
   &:hover {
     transform: translate3d(0, 0, 0);
@@ -162,6 +166,9 @@ export default {
   }
   .author {
     flex-grow: 1;
+    @include phone {
+      display: none;
+    }
   }
 }
 </style>
