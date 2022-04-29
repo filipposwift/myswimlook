@@ -101,6 +101,7 @@ export default {
   justify-content: space-between;
   @include phone {
     flex-wrap: wrap;
+    height: 100vh;
   }
 }
 .story__middle__reference__media {

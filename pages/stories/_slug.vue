@@ -196,17 +196,30 @@ export default {
       let imageClass = ''
       return {
         [BLOCKS.PARAGRAPH]: (node, key, h, next) =>
-          h('p', { key }, next(node.content, key, h, next)),
+          h(
+            'p',
+            { key, attrs: { class: 'story__text' } },
+            next(node.content, key, h, next)
+          ),
         [BLOCKS.HEADING_6]: (node, key, h, next) =>
           h(
             'h6',
             { key, attrs: { class: 'story__question' } },
             next(node.content, key, h)
           ),
+        [BLOCKS.HEADING_5]: (node, key, h, next) =>
+          h(
+            'h5',
+            { key, attrs: { class: 'story__question-indent' } },
+            next(node.content, key, h)
+          ),
         [BLOCKS.EMBEDDED_ENTRY]: (node, key, h, next) => {
           switch (node.data.target.sys.contentType.sys.id) {
             case 'rightItemCloudinaryAsset':
               imageClass = 'story-inline-wrapper'
+              break
+            case 'cloudinaryVideoAsset':
+              imageClass = 'story-video-wrapper'
               break
             default:
               imageClass = 'story-image-wrapper'
@@ -368,11 +381,11 @@ export default {
 
   @include phone {
     order: 7;
-    font-size: 2.4rem;
+    font-size: 18px;
     padding: 40px 1.6rem;
   }
   @include xs-phone {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 
@@ -488,12 +501,16 @@ export default {
   }
 
   p {
-    @extend %paragraph-16;
+    font-weight: 300;
+    font-size: 18px;
     line-height: 1.5;
     padding-bottom: 1.6rem;
 
     a {
       color: get-color(basic, normal);
+    }
+    @include tablet {
+      font-size: 16px;
     }
   }
 
@@ -506,18 +523,67 @@ export default {
 }
 
 .story__question {
-  margin-top: 3.2rem;
-  margin-bottom: 2.4rem;
-  @extend %paragraph-16;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 18px;
+  line-height: 1.2;
   font-weight: 400;
-
   font-family: 'Work Sans', sans-serif;
+  width: 70%;
+
+  @include desktop {
+    width: 80%;
+  }
+  @include tablet {
+    width: 100%;
+  }
+
   @include phone {
     margin-top: 5rem;
   }
   @include xs-phone {
     margin-top: 30px;
     margin-bottom: 20px;
+  }
+}
+.story__question-indent {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 18px;
+  text-indent: -40px;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: 'Work Sans', sans-serif;
+  width: calc(75% - 80px);
+
+  @include desktop {
+    width: calc(85% - 80px);
+  }
+  @include tablet {
+    width: calc(100% - 80px);
+  }
+
+  @include phone {
+    margin-top: 5rem;
+  }
+  @include xs-phone {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.story__text {
+  width: 75%;
+  margin: auto;
+  @include desktop {
+    width: 85%;
+  }
+  @include tablet {
+    width: 100%;
   }
 }
 

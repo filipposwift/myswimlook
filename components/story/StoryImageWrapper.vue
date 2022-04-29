@@ -142,20 +142,22 @@ export default {
   width: 50%;
   &.center {
     float: none;
-    margin: auto;
-    margin-bottom: 1.6rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
     @include phone {
-      margin: 0;
+      margin-top: 5rem;
     }
   }
   &.item-card {
     float: none;
     width: auto;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 1.6rem;
     @include phone {
-      margin: 0;
-      margin-bottom: 1.6rem;
+      margin-top: 5rem;
+      margin-bottom: 3.2rem;
     }
   }
   &.left {
@@ -191,13 +193,19 @@ export default {
   &.wide {
     float: none;
     height: calc((88.7) / 16 * 9);
-    width: 88.7vw;
+    width: 70%;
     margin-top: 3.2rem;
     margin-bottom: 3.2rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include desktop {
+      width: 80%;
+    }
+
     @include phone {
       height: 50vh;
       width: 100%;
-      margin: auto;
     }
   }
 

@@ -92,7 +92,7 @@ export default {}
   }
   span {
     @extend %vertical-titles;
-
+    display: block;
     padding: 0px 20px 0px 20px;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
@@ -107,7 +107,7 @@ export default {}
 
 .main__content {
   margin-top: 50px;
-  width: 100%;
+  width: 99.97%;
   border-left: 1px solid $b-color;
   border-right: 1px solid $b-color;
 }
