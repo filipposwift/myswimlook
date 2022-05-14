@@ -531,10 +531,10 @@ export default {
   line-height: 1.2;
   font-weight: 400;
   font-family: 'Work Sans', sans-serif;
-  width: 70%;
+  width: 75%;
 
   @include desktop {
-    width: 80%;
+    width: 85%;
   }
   @include tablet {
     width: 100%;
@@ -558,10 +558,10 @@ export default {
   line-height: 1.2;
   font-weight: 400;
   font-family: 'Work Sans', sans-serif;
-  width: calc(75% - 80px);
+  width: 75%;
 
   @include desktop {
-    width: calc(85% - 80px);
+    width: calc(80% - 40px);
   }
   @include tablet {
     width: calc(100% - 80px);
