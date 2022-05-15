@@ -69,7 +69,7 @@ export default async () => {
           hid: 'og:description',
           property: 'og:description',
           content:
-            'Discover who is wearing the last trending swimsuits, check prices from over 40 different brands ando more the 100 models',
+            'Discover who is wearing the last trending swimsuits, check prices from over 60 different brands ando more the 100 models',
         },
         {
           vmid: 'og:image',
@@ -80,27 +80,29 @@ export default async () => {
         { hid: 'og:image:height', property: 'og:image:height', content: '630' },
         { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
 
-        { name: 'twitter:site', content: '' },
-        { name: 'twitter:card', content: '' },
+        { name: 'twitter:site', content: '@myswimlook' },
+        { name: 'twitter:card', content: 'summary_large_image' },
         {
           hid: 'twitter:url',
           name: 'twitter:url',
-          content: '',
+          content: 'https://www.myswimlook.com',
         },
         {
           hid: 'twitter:title',
           name: 'twitter:title',
-          content: '',
+          content:
+            'Be inspired by the best swimsuit designers, discover stylish swimwear, share your look',
         },
         {
           hid: 'twitter:description',
           name: 'twitter:description',
-          content: '',
+          content:
+            'Discover who is wearing the last trending swimsuits, check prices from over 60 different brands ando more the 100 models',
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: '',
+          content: 'https://www.myswimlook.com/social-media-card.jpg',
         },
       ],
       link: [

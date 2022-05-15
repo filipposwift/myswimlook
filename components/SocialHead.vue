@@ -27,21 +27,25 @@ export default {
     return {
       meta: [
         {
+          vmid: 'twitter:title',
           hid: 'twitter:title',
           name: 'twitter:title',
           content: this.title,
         },
         {
+          vmid: 'twitter:description',
           hid: 'twitter:description',
           name: 'twitter:description',
           content: this.description,
         },
         {
+          vmid: 'twitter:image',
           hid: 'twitter:image',
           name: 'twitter:image',
           content: this.image,
         },
         {
+          vmid: 'twitter:image:alt',
           hid: 'twitter:image:alt',
           name: 'twitter:image:alt',
           content: this.title,
