@@ -33,6 +33,12 @@ export default {
           content: this.title,
         },
         {
+          vmid: 'twitter:url',
+          hid: 'twitter:url',
+          property: 'twitter:url',
+          content: this.url,
+        },
+        {
           vmid: 'twitter:description',
           hid: 'twitter:description',
           name: 'twitter:description',
@@ -50,6 +56,7 @@ export default {
           name: 'twitter:image:alt',
           content: this.title,
         },
+
         {
           vmid: 'og:title',
           hid: 'og:title',

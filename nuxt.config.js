@@ -80,26 +80,33 @@ export default async () => {
         { hid: 'og:image:height', property: 'og:image:height', content: '630' },
         { hid: 'og:image:width', property: 'og:image:width', content: '1200' },
 
+        { hid: 'twitter:dnt', property: 'twitter:dnt', content: 'on' },
+
         { name: 'twitter:site', content: '@myswimlook' },
         { name: 'twitter:card', content: 'summary_large_image' },
+
         {
+          vmid: 'twitter:url',
           hid: 'twitter:url',
           name: 'twitter:url',
           content: 'https://www.myswimlook.com',
         },
         {
+          vmid: 'twiiter:title',
           hid: 'twitter:title',
           name: 'twitter:title',
           content:
             'Be inspired by the best swimsuit designers, discover stylish swimwear, share your look',
         },
         {
+          vmid: 'twitter:description',
           hid: 'twitter:description',
           name: 'twitter:description',
           content:
             'Discover who is wearing the last trending swimsuits, check prices from over 60 different brands ando more the 100 models',
         },
         {
+          vmid: 'twitter:image',
           hid: 'twitter:image',
           name: 'twitter:image',
           content: 'https://www.myswimlook.com/social-media-card.jpg',
