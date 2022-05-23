@@ -56,10 +56,11 @@
       <div class="story__intro__style__card__wrapper">
         <div class="story__intro__style-card">
           <div class="story__intro__style-card__hashtag">
-            <h3>
+            <h3 v-if="itemCard.style.toLowerCase() !== 'any'">
               #my<span>{{ itemCard.style.toLowerCase() }}</span
               >swimlook
             </h3>
+            <h3 v-if="itemCard.style.toLowerCase() === 'any'">#myswimlook</h3>
           </div>
           <figure class="story__intro__style-card__media">
             <nuxt-img
