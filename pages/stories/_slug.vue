@@ -214,6 +214,13 @@ export default {
             { key, attrs: { class: 'story__question-indent' } },
             next(node.content, key, h)
           ),
+        [BLOCKS.QUOTE]: (node, key, h, next) =>
+          h(
+            'story-quote-renderer',
+            { key, attrs: { text: node.content[0] } },
+            next(node.content, key, h)
+          ),
+
         [BLOCKS.EMBEDDED_ENTRY]: (node, key, h, next) => {
           switch (node.data.target.sys.contentType.sys.id) {
             case 'rightItemCloudinaryAsset':
