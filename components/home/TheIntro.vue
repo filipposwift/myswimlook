@@ -50,6 +50,8 @@ export default {
           '.heading',
           {
             xPercent: 1.5,
+            yPercent: -200,
+            scale: 1.5,
             ease: 'none',
           },
           0
@@ -58,6 +60,7 @@ export default {
           '.heading-2',
           {
             xPercent: -1.5,
+            yPercent: -200,
             ease: 'none',
           },
           0
@@ -74,16 +77,22 @@ export default {
   flex-direction: column;
   align-items: center;
   background-color: get-color(primary, normal);
-  margin-bottom: 20rem;
+  margin-bottom: 2rem;
+  background-image: url('static/backgroud-image.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .intro__one {
-  margin-top: 50vh;
+  margin-top: 40vh;
+  padding-top: 10vh;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .intro__two {
+  padding-top: 10vh;
   white-space: nowrap;
   overflow: hidden;
 }

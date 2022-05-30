@@ -45,6 +45,7 @@ export default {}
   grid-template-rows: repeat(6, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  border-bottom: 1px solid $b-color;
   @include phone {
     grid-template-rows: repeat(4, 1fr) 0.2fr 1fr;
   }

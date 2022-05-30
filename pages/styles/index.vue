@@ -162,7 +162,7 @@ export default {
   grid-row-gap: 0px;
   width: 100%;
   height: calc(100vw - 128px);
-  border-top: 1px solid $b-color;
+  // border-top: 1px solid $b-color;
   @include phone {
     display: flex;
     flex-direction: column;

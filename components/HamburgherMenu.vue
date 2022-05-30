@@ -32,7 +32,7 @@ export default {}
 
 .line-style {
   position: absolute;
-  height: 10%;
+  height: 3%;
   left: 0;
   right: 0;
 }

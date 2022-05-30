@@ -137,9 +137,12 @@ export default {
   @extend %title-24;
   border-top: 1px solid $b-color;
   padding: 4rem 1.6rem;
+  @include tablet {
+    padding: 2rem 1.6rem;
+  }
   @include phone {
     font-size: 20px;
-    padding: 4rem 1.6rem;
+    padding: 1rem 1.6rem;
   }
   @include xs-phone {
     height: 35%;
@@ -160,15 +163,24 @@ export default {
     font-size: 16px;
     text-align: center;
     margin-top: 1.6rem;
+    @include phone {
+      margin-top: 0;
+    }
   }
   .title {
     flex: 1 0 90%;
+    @include tablet {
+      flex: 1 0 60%;
+    }
+    @include phone {
+      flex: 1 0 80%;
+    }
   }
   .author {
     flex-grow: 1;
-    @include phone {
-      display: none;
-    }
+    // @include phone {
+    //   display: none;
+    // }
   }
 }
 </style>

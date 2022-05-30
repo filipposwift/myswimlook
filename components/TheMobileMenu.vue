@@ -28,7 +28,7 @@
           class="mobile__cross"
           :style="{
             position: 'absolute',
-            width: '3px',
+            width: '1px',
             height: '28px',
             transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)',
           }"

@@ -121,16 +121,23 @@
         </div>
         <div class="hc__stories">
           <div class="story__wrapper">
-            <figure class="story__media">
-              <nuxt-img
-                :src="lastStory.coverImage[0].public_id.replace(/\s+/g, '%20')"
-                :alt="`Image of article ${lastStory.title}`"
-                provider="cloudinary"
-                width="873"
-                sizes="xs:100vw sm:100vw md:90vw xl:654px xxl:873px"
-                class="story__media-img"
-              ></nuxt-img>
-            </figure>
+            <nuxt-link
+              :to="localePath(`/stories/${lastStory.slug}/`)"
+              class="story__image-link"
+            >
+              <figure class="story__media">
+                <nuxt-img
+                  :src="
+                    lastStory.coverImage[0].public_id.replace(/\s+/g, '%20')
+                  "
+                  :alt="`Image of article ${lastStory.title}`"
+                  provider="cloudinary"
+                  width="873"
+                  sizes="xs:100vw sm:100vw md:90vw xl:654px xxl:873px"
+                  class="story__media-img"
+                ></nuxt-img>
+              </figure>
+            </nuxt-link>
             <div class="story__text__inner">
               <div class="story__text__intro"><h2>Latest Article</h2></div>
               <div class="story__text">
@@ -141,12 +148,16 @@
                 ></div>
               </div>
               <div class="story__text__cta">
-                <div class="cta__link">
+                <div :class="prova">
                   <nuxt-link :to="localePath(`/stories/${lastStory.slug}/`)"
                     ><span>Read More</span></nuxt-link
                   >
                 </div>
-                <div class="cta__link-inverse">
+                <div
+                  class="cta__link-inverse"
+                  @mouseover="changeHover = false"
+                  @mouseout="changeHover = true"
+                >
                   <nuxt-link :to="localePath('/stories/')"
                     ><span>All Articles</span></nuxt-link
                   >
@@ -200,6 +211,7 @@ export default {
 
   data() {
     return {
+      changeHover: true,
       designerIntro: {
         text: 'Swipe to scroll',
         intro: 'Sustainable brands to start your 2022',
@@ -286,6 +298,12 @@ export default {
     },
     lastStory() {
       return this.stories.story[0].fields
+    },
+    prova() {
+      if (this.changeHover) {
+        return 'cta__link'
+      }
+      return 'cta__link-inverse'
     },
   },
 
@@ -401,7 +419,7 @@ export default {
 }
 
 .home__section {
-  margin-top: 20rem;
+  margin-top: 5rem;
 }
 
 .hc__text {
@@ -481,7 +499,7 @@ export default {
   border-right: 1px solid $b-color;
 
   @include phone {
-    width: 90vw;
+    width: 85vw;
     height: 75vw;
   }
 }
@@ -571,11 +589,24 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  position: relative;
+
   border: 1px solid $b-color;
   border-top: 0px;
   @include phone {
-    width: 85%;
+    width: 100%;
+    min-height: 60vh;
+  }
+  @include xs-phone {
+    min-height: 40vh;
+  }
+}
+.story__image-link {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  @include phone {
+    width: 90%;
     min-height: 60vh;
   }
   @include xs-phone {
@@ -591,10 +622,10 @@ export default {
 
 .story__text__inner {
   position: relative;
-  max-width: 50%;
+  width: 50%;
   @include phone {
     position: static;
-    max-width: 100%;
+    width: 100%;
     border-top: 1px solid $b-color;
   }
 }
@@ -621,6 +652,7 @@ export default {
     transform: translate(0%, -50%) rotate(-90deg);
     white-space: nowrap;
     font-size: 4.5rem;
+    padding: 0;
   }
 }
 .story__text {

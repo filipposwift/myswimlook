@@ -38,23 +38,23 @@
         class="styles__hero__media__image"
       ></nuxt-img
     ></hero>
-    <HomeTheTitle>Inspiration</HomeTheTitle>
+    <StoryTheTitle>Inspiration</StoryTheTitle>
     <StorySliderWrapper :items="inspoStories.filtered" />
     <swipe-to-scroll v-if="inspoStories.show" class="show" />
-    <HomeTheTitle class="margin-top">Your Swimsuits and You</HomeTheTitle>
+    <StoryTheTitle class="margin-top">Your Swimsuits and You</StoryTheTitle>
     <StorySliderWrapper :items="whatYourStories.filtered" />
     <swipe-to-scroll v-if="whatYourStories.show" class="show" />
-    <HomeTheTitle class="margin-top">Sustainability</HomeTheTitle>
+    <StoryTheTitle class="margin-top">Sustainability</StoryTheTitle>
     <StorySliderWrapper :items="sustainabilityStories.filtered" />
     <swipe-to-scroll v-if="sustainabilityStories.show" class="show" />
-    <HomeTheTitle class="margin-top">Body Positivity</HomeTheTitle>
+    <StoryTheTitle class="margin-top">Body Positivity</StoryTheTitle>
     <StorySliderWrapper :items="positivityStories.filtered" />
     <swipe-to-scroll v-if="positivityStories.show" class="show" />
-    <HomeTheTitle class="margin-top">News and Trends</HomeTheTitle>
+    <StoryTheTitle class="margin-top">News and Trends</StoryTheTitle>
     <StorySliderWrapper :items="newsStories.filtered" />
     <swipe-to-scroll v-if="newsStories.show" class="show" />
     <div class="stories__text">
-      <span>Share your swim looks #myswimlook </span
+      <span>Share your swim looks</span
       ><a
         href="https://www.instagram.com/myswimlook/"
         target="_blank"
@@ -199,20 +199,26 @@ span {
 }
 .stories__text {
   border-bottom: 1px solid $b-color;
+  span {
+    @extend %paragraph-16;
+    @include phone {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+  }
 
-  @extend %paragraph-16;
-  font-size: 3rem;
   line-height: 4rem;
   padding: 8rem 1.6rem 8rem 1.6rem;
 
   a {
+    @extend %paragraph-16;
     color: get-color(basic, normal);
-  }
 
-  @include phone {
-    padding: 16rem 1.6rem 16rem 1.6rem;
-    font-size: 18px;
-    line-height: 1.2;
+    @include phone {
+      padding: 16rem 1.6rem 16rem 1.6rem;
+      font-size: 18px;
+      line-height: 1.2;
+    }
   }
 }
 
