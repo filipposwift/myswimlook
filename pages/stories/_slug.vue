@@ -567,6 +567,7 @@ export default {
   font-weight: 400;
   font-family: 'Work Sans', sans-serif;
   width: 75%;
+  clear: both;
 
   @include desktop {
     width: calc(80% - 40px);

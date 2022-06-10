@@ -178,7 +178,7 @@ export default {
     width: 40%;
     margin-right: 2%;
     margin-left: 8%;
-    margin-bottom: 5rem;
+    margin-bottom: 10rem;
 
     @include phone {
       float: none;
