@@ -11,7 +11,7 @@
           class="tiles__line-img"
         >
           <nuxt-img
-            :src="image.public_id"
+            :src="encodeURI(image.public_id)"
             alt="Photo1"
             provider="cloudinary"
             width="400"
@@ -29,7 +29,7 @@
           class="tiles__line-img"
         >
           <nuxt-img
-            :src="image.public_id"
+            :src="encodeURI(image.public_id)"
             alt="Photo1"
             provider="cloudinary"
             width="400"
@@ -45,7 +45,7 @@
           class="tiles__line-img"
         >
           <nuxt-img
-            :src="image.public_id"
+            :src="encodeURI(image.public_id)"
             alt="Photo1"
             provider="cloudinary"
             width="400"
@@ -62,7 +62,7 @@
           class="tiles__line-img"
         >
           <nuxt-img
-            :src="image.public_id"
+            :src="encodeURI(image.public_id)"
             alt="Photo1"
             provider="cloudinary"
             width="400"
@@ -81,7 +81,7 @@
           class="tiles__line-img"
         >
           <nuxt-img
-            :src="image.public_id"
+            :src="encodeURI(image.public_id)"
             alt="Photo1"
             provider="cloudinary"
             width="400"

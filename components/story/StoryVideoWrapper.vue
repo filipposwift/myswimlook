@@ -174,8 +174,7 @@ export default {
       return { fields, contentType }
     },
     video() {
-      return this.item.fields.video[0].secure_url.replace(/\s+/g, '%20')
-      // return this.item.fields.image[0].public_id.replace(/\s+/g, '%20')
+      return encodeURI(this.item.fields.video[0].secure_url)
     },
   },
 

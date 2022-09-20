@@ -21,7 +21,7 @@
           <nuxt-img
             class="item__card__designer__right__media-img"
             provider="cloudinary"
-            :src="image.public_id.replace(/\s+/g, '%20')"
+            :src="encodeURI(image.public_id)"
             :alt="item.modelName"
             sizes="xs:100vw sm:100vw md:90vw xl:570px xxl:600px"
             width="600"

@@ -127,9 +127,7 @@
             >
               <figure class="story__media">
                 <nuxt-img
-                  :src="
-                    lastStory.coverImage[0].public_id.replace(/\s+/g, '%20')
-                  "
+                  :src="encodeURI(lastStory.coverImage[0].public_id)"
                   :alt="`Image of article ${lastStory.title}`"
                   provider="cloudinary"
                   width="873"
@@ -323,7 +321,7 @@ export default {
 
   methods: {
     getFeaturedImage(designer) {
-      return designer[0].fields.cloudinarySwimlook[0].public_id
+      return encodeURI(designer[0].fields.cloudinarySwimlook[0].public_id)
     },
 
     initImageParallax() {

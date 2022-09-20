@@ -26,12 +26,11 @@ export default {
   computed: {
     publicId() {
       if (this.image.image) {
-        return this.image.image[0].public_id.replace(/\s+/g, '%20')
+        return encodeURI(this.image.image[0].public_id)
       }
 
-      return this.image.items[0].fields.cloudinarySwimlook[0].public_id.replace(
-        /\s+/g,
-        '%20'
+      return encodeURI(
+        this.image.items[0].fields.cloudinarySwimlook[0].public_id
       )
     },
     name() {

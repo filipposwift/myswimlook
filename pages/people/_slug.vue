@@ -50,7 +50,7 @@
             class="person__left__swimsuit__media"
           >
             <nuxt-img
-              :src="image.public_id"
+              :src="encodeURI(image.public_id)"
               provider="cloudinary"
               width="600"
               alt="product image"

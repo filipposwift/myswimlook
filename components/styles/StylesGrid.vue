@@ -40,7 +40,7 @@ export default {
 
   computed: {
     url() {
-      return this.image[0].public_id
+      return encodeURI(this.image[0].public_id)
     },
   },
 }

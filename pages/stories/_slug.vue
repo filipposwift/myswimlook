@@ -14,7 +14,7 @@
       </div>
       <figure class="story__intro__media">
         <nuxt-img
-          :src="story.coverImage[0].public_id.replace(/\s+/g, '%20')"
+          :src="encodeURI(story.coverImage[0].public_id)"
           :alt="
             story.coverImage[0].context
               ? story.coverImage[0].context.custom.alt
@@ -64,7 +64,7 @@
           </div>
           <figure class="story__intro__style-card__media">
             <nuxt-img
-              :src="itemCard.featuredImageForStory[0].public_id"
+              :src="encodeURI(itemCard.featuredImageForStory[0].public_id)"
               alt="Hero image of woman in swimwear"
               width="485"
               provider="cloudinary"
@@ -540,6 +540,7 @@ export default {
   font-weight: 400;
   font-family: 'Work Sans', sans-serif;
   width: 75%;
+  clear: both;
 
   @include desktop {
     width: 85%;

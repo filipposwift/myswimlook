@@ -12,7 +12,7 @@
         >
           <figure class="cell__image__media">
             <nuxt-img
-              :src="story.fields.coverImage[0].public_id"
+              :src="encodeURI(story.fields.coverImage[0].public_id)"
               :alt="`Photo of article ${story.fields.title}`"
               provider="cloudinary"
               width="400"

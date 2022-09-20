@@ -65,12 +65,10 @@ export default {
     },
     image() {
       if (this.item.contentType === 'itemCard') {
-        return this.item.fields.featuredImageForStory[0].public_id.replace(
-          /\s+/g,
-          '%20'
-        )
+        return encodeURI(this.item.fields.featuredImageForStory[0].public_id)
       }
-      return this.item.fields.image[0].public_id.replace(/\s+/g, '%20')
+
+      return encodeURI(this.item.fields.image[0].public_id)
     },
     alt() {
       if (this.item.contentType === 'itemCard') {

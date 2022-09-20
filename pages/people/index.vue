@@ -18,7 +18,7 @@
         >
           <figure class="people__grid__cell__media">
             <nuxt-img
-              :src="person.socialMedia[0].fields.image[0].public_id"
+              :src="encodeURI(person.socialMedia[0].fields.image[0].public_id)"
               provider="cloudinary"
               alt="Image from instagram post"
               width="400"

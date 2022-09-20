@@ -60,7 +60,7 @@
             > -->
             <figure class="designer__slider__cell__media">
               <nuxt-img
-                :src="picture.public_id"
+                :src="encodeURI(picture.public_id)"
                 :alt="`Photo n. ${index} of ${item.modelName}`"
                 provider="cloudinary"
                 width="400"

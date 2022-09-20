@@ -8,7 +8,7 @@
     >
       <div class="hg__image">
         <nuxt-img
-          :src="`${slide.image[0].public_id}`"
+          :src="`${encodeURI(slide.image[0].public_id)}`"
           provider="cloudinary"
           class="carousel-indicator-item"
           :class="{ active: currentIndex === index }"
