@@ -3,7 +3,6 @@
     <a :href="url" target="_blank" rel="nofollow noopener noreferrer"
       >Visit Site</a
     >
-    <!-- <button @click="prova">Prova</button> -->
   </div>
 </template>
 
@@ -13,13 +12,6 @@ export default {
     url: {
       type: String,
       required: true,
-    },
-  },
-
-  methods: {
-    prova() {
-      console.log('succede qualcosa')
-      window.open(this.url)
     },
   },
 }
@@ -34,8 +26,6 @@ export default {
   width: 100%;
   min-width: 40%;
   padding: 0.8rem 1.6rem;
-  //prova per button cancellare da qui in avanti
-  // cursor: pointer;
 
   a {
     @extend %paragraph-20-light;
