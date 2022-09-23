@@ -48,8 +48,9 @@ export default {
       return { fields, contentType }
     },
     image() {
-      return encodeURI(
-        this.item.fields.itemCard.fields.featuredImageForStory[0].public_id
+      return this.item.fields.itemCard.fields.featuredImageForStory[0].public_id.replace(
+        /\s+/g,
+        '%20'
       )
     },
     alt() {
