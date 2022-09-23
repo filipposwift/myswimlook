@@ -50,7 +50,7 @@ export default {
     image() {
       // commento per nuovo commit
       return encodeURI(
-        this.item.fields.itemCard.fields.featuredImageForStory[0]
+        this.item.fields.itemCard.fields.featuredImageForStory[0].public_id
       )
     },
     alt() {

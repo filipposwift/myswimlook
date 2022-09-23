@@ -224,7 +224,7 @@ export default {
         [BLOCKS.EMBEDDED_ENTRY]: (node, key, h, next) => {
           switch (node.data.target.sys.contentType.sys.id) {
             case 'rightItemCloudinaryAsset':
-              imageClass = 'story-inline-wrapper'
+              imageClass = 'story-new-inline-wrapper'
               break
             case 'cloudinaryVideoAsset':
               imageClass = 'story-video-wrapper'
