@@ -48,6 +48,7 @@ export default {
       return { fields, contentType }
     },
     image() {
+      // commento per nuovo commit
       return this.item.fields.itemCard.fields.featuredImageForStory[0].public_id.replace(
         /\s+/g,
         '%20'
